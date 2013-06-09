@@ -1,6 +1,7 @@
 package page;
 
 import net.hello.world.webutils.page.Page;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,7 @@ public class LoginPage extends Page {
 
     @FindBy(id = "submit")
     private WebElement submitButton;
+    private String errorText;
 
     public LoginPage(WebDriver driver) {
         super(driver, "login");
@@ -39,10 +41,13 @@ public class LoginPage extends Page {
     }
 
     public LoginPage sendLoginFor(String username, String password) {
-//        enter(username).into(usernameField);
-//        enter(password).into(passwordField);
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
         submitButton.click();
         return this;
     }
 
+    public String getErrorText() {
+        return errorText;
+    }
 }

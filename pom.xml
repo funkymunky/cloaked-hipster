@@ -7,8 +7,9 @@
     <groupId>HelloWorld</groupId>
     <artifactId>HelloWorld</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
     <properties>
-        <spring.security.version>3.2.1.RELEASE</spring.security.version>
+        <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <spring.version>3.2.2.RELEASE</spring.version>
     </properties>
 
@@ -20,39 +21,92 @@
             <artifactId>maven-jetty-plugin</artifactId>
             <version>6.1.26</version>
         </plugin>
+
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>selenium-maven-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+            <execution>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>start-server</goal>
+                </goals>
+                <configuration>
+                    <background>true</background>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+    <!--<plugin>-->
+        <!--<groupId>org.mortbay.jetty</groupId>-->
+        <!--<artifactId>maven-jetty-plugin</artifactId>-->
+        <!--<version>6.1.22</version>-->
+        <!--<executions>-->
+            <!--<execution>-->
+                <!--<id>start-jetty-for-web-tests</id>-->
+                <!--<phase>pre-integration-test</phase>-->
+                <!--<goals>-->
+                    <!--<goal>run</goal>-->
+                <!--</goals>-->
+                <!--<configuration>-->
+                    <!--<useTestClasspath>true</useTestClasspath>-->
+                    <!--<scanIntervalSeconds>0</scanIntervalSeconds>-->
+                    <!--<daemon>true</daemon>-->
+                    <!--<systemProperties>-->
+                        <!--<systemProperty>-->
+                            <!--<name>run.mode</name>-->
+                            <!--<value>integrationTest</value>-->
+                        <!--</systemProperty>-->
+                        <!--<systemProperty>-->
+                            <!--<name>server.env</name>-->
+                            <!--<value>dev</value>-->
+                        <!--</systemProperty>-->
+                        <!--<systemProperty>-->
+                            <!--<name>logging.hostname</name>-->
+                            <!--<value>dev</value>-->
+                        <!--</systemProperty>-->
+                        <!--<systemProperty>-->
+                            <!--<name>log4j.email.enabled</name>-->
+                            <!--<value>false</value>-->
+                        <!--</systemProperty>-->
+                        <!--<systemProperty>-->
+                            <!--<name>useTestClasspath</name>-->
+                            <!--<value>true</value>-->
+                        <!--</systemProperty>-->
+                    <!--</systemProperties>-->
+                <!--</configuration>-->
+            <!--</execution>-->
+            <!--<execution>-->
+                <!--<id>stop-jetty-after-web-tests</id>-->
+                <!--<phase>post-integration-test</phase>-->
+                <!--<goals>-->
+                    <!--<goal>stop</goal>-->
+                <!--</goals>-->
+            <!--</execution>-->
+        <!--</executions>-->
+        <!--<configuration>-->
+            <!--<stopPort>9991</stopPort>-->
+            <!--<stopKey>test</stopKey>-->
+        <!--</configuration>-->
+    <!--</plugin>-->
     </plugins>
+
     </build>
 
 
     <dependencies>
 
         <!-- Spring 3 dependencies -->
+
+
+        <!-- Spring Security -->
+
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
             <version>1.2</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -81,6 +135,75 @@
             <scope>test</scope>
         </dependency>
 
+
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
     </dependencies>
 
 

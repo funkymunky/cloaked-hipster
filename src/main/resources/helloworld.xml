@@ -5,5 +5,5 @@
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
 
     <import resource="helloWorldConfig/jmx.xml" />
-
+    <import resource="helloWorldConfig/helloworld-security.xml"/>
 </beans>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring-form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="java.util.Calendar" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -16,12 +17,12 @@
 <p><span class="something">Hello world</span></p>
 <%--<a href="/HelloWorld/account">List accounts</a>--%>
 <p>
-    <form id="loginForm" action="<c:url value='login_check.htm'/>" method="post">
-        Username: <input type="text" name="username" width="20px"/>
+    <spring-form:form id="loginForm" action="<c:url value='login_check.htm'/>" method="post">
+        Username: <spring-form:input id="username" name="username" width="20px" path="username"/>
         <br/><br/>
-        Password: <input type="text" name="password" width="20px"/>
+        Password: <spring-form:password id="password" name="password" width="20px" path="password"/>
         <input type="submit" value="Login"/>
-    </form>
+    </spring-form:form>
 </p>
 </body>
 </html>

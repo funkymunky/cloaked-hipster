@@ -33,7 +33,7 @@ public class IndexPageWebTest {
 
     @After
     public void tearDown() throws Exception {
-        driver.quit();
+//        driver.close();
     }
 
     @Test
@@ -60,9 +60,10 @@ public class IndexPageWebTest {
     }
 
     @Test
-    public void cannotLogInWithWrongPassword() {
+    @DoNotCloseDriver
+    public void cannotLogInWithWrongPassword() throws InterruptedException {
         LoginPage loginPage = LoginPage.open(driver); //.logInExpectingFailureAs("guest", "badguess");
-        System.out.println("i am here");
-//        assertThat(loginPage.getErrorText(), is("Your login attempt was not successful.\nPlease try again."));
+        loginPage.sendLoginFor("admin", "password");
+        assertThat(loginPage.getErrorText(), is("Your login attempt was not successful.\nPlease try again."));
     }
 }
