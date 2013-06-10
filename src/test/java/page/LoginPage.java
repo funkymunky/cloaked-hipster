@@ -1,7 +1,6 @@
 package page;
 
-import net.hello.world.webutils.page.Page;
-import org.openqa.selenium.By;
+import net.helloworld.site.webutils.page.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
