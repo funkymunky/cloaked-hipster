@@ -1,54 +1,30 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"%>
+<%@ page import="org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter"%>
+<%@ page import="org.springframework.security.core.AuthenticationException"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
-<head>
-    <title>Login Page</title>
-    <style>
-        .errorblock {
-            color: #ff0000;
-            background-color: #ffEEEE;
-            border: 3px solid #ff0000;
-            padding: 8px;
-            margin: 16px;
-        }
-    </style>
-</head>
-<body onload='document.f.j_username.focus();'>
-<h3>Login with Username and Password (Custom Page)</h3>
-
-<c:if test="${not empty error}">
-    <div class="errorblock">
-        Your login attempt was not successful, try again.<br /> Caused :
-            ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-    </div>
-</c:if>
-
-<form name='f' action="<c:url value='j_spring_security_check' />"
-      method='POST'>
-
-    <table>
-        <tr>
-            <td>User:</td>
-            <td>
-                <input type='text' name='j_username' value=''>
-            </td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td>
-                <input type='password' name='j_password'/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan='2'>
-                <input name="submit" type="submit" value="submit"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan='2'><input name="reset" type="reset"/>
-            </td>
-        </tr>
-    </table>
-
-</form>
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Login Page</title>
+    </head>
+    <body>
+        <form action="j_spring_security_check" method="POST" >
+            <label for="j_username">Username</label>
+            <input type="text" name="j_username" id="j_username"/>
+            <br/>
+            <label for="j_password">Password</label>
+            <input type="password" name="j_password" id="j_password" />
+            <br/>
+            <input type='checkbox' name='_spring_security_remember_me' /> Remember me on this computer.
+            <br/>
+            <input type="submit" value="Login" />
+        </form>
+        <p><a href="member/memberPage1.jsp">Go to Member page 1</a></p>
+        <p><a href="admin/adminPage1.jsp">Go to Admin page 1</a></p>
+        <p><a href="index.jsp">Go to Index page</a></p>
+    </body>
 </html>

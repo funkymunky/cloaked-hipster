@@ -15,8 +15,13 @@
     <mvc:default-servlet-handler /> <!-- adding this line and the one above solved the css issues! -->
     <context:component-scan base-package="net.helloworld" />
 
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+    </bean>
+
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--<property name="prefix" value="/"/>-->
         <property name="suffix" value=".jsp"/>
         <property name="order" value="3" />
     </bean>

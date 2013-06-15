@@ -17,12 +17,7 @@
 <p><span class="something">Hello world</span></p>
 <%--<a href="/HelloWorld/account">List accounts</a>--%>
 <p>
-    <spring-form:form id="loginForm" action="<c:url value='login_check.htm'/>" method="post">
-        Username: <spring-form:input id="username" name="username" width="20px" path="username"/>
-        <br/><br/>
-        Password: <spring-form:password id="password" name="password" width="20px" path="password"/>
-        <input type="submit" value="Login"/>
-    </spring-form:form>
+Hi!
 </p>
 </body>
 </html>

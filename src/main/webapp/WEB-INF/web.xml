@@ -9,6 +9,10 @@
         <param-value>false</param-value>
     </context-param>
 
+    <!--
+        We register a filter named springSecurityFilterChain that delegates all requests
+        matching the url pattern ‘/*’ to a DelegatingFilterProxy.
+    -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -16,9 +20,19 @@
 
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <servlet-name>helloworld</servlet-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
     </filter-mapping>
 
+    <!--
+        We configure a listener to load the context of the web application at start up.
+        This will load our applicationContext-security.xml file.
+        The application context is then available via
+        WebApplicationContextUtils.getWebApplicationContext(servletContext).
+    -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -60,6 +74,8 @@
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
     <!--<error-page>-->
