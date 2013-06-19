@@ -4,3 +4,4 @@
 <meta content="TRUE" name="MSSmartTagsPreventParsing" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/games.css"/>" />
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.css"/>" />

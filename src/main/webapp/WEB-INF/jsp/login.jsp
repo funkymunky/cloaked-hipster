@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/jsp/include/head.jsp" %>
+<!-- Need the above three lines to get stylesheets across all pages -->
 
 <%@ page import="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"%>
 <%@ page import="org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter"%>
@@ -10,21 +13,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Page</title>
+
     </head>
     <body>
-        <form action="j_spring_security_check" method="POST" >
-            <label for="j_username">Username</label>
-            <input type="text" name="j_username" id="j_username"/>
-            <br/>
-            <label for="j_password">Password</label>
-            <input type="password" name="j_password" id="j_password" />
-            <br/>
-            <input type='checkbox' name='_spring_security_remember_me' /> Remember me on this computer.
-            <br/>
-            <input type="submit" value="Login" />
+    <div class="container">
+        <div class="hero-unit">
+        <h1><span class="something">Awesome responsive layout</span></h1>
+        <p>Hello guys i am a ".hero-unit" and you can use me if you wanna say something important.</p>
+        <p><a class="btn btn-primary btn-large">Super important &raquo;</a></p>
+        </div><!-- .hero-unit -->
+
+        <form class="form-signin" action="j_spring_security_check" method="POST" >
+            <input type="text" class="input-block-level" name="j_username" id="j_username" placeholder="Username"/>
+            <input type="password" class="input-block-level" name="j_password" id="j_password" placeholder="Password" />
+            <label class="checkbox">
+                <input type="checkbox" name="_spring_security_remember_me" value="remember-me"/> Remember me on this computer.
+            </label>
+            <button class="btn btn-large btn-primary" type="submit">Login</button>
         </form>
         <p><a href="member/memberPage1.jsp">Go to Member page 1</a></p>
         <p><a href="admin/adminPage1.jsp">Go to Admin page 1</a></p>
         <p><a href="index.jsp">Go to Index page</a></p>
+        </div>
     </body>
 </html>

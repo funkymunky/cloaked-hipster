@@ -17,7 +17,7 @@ public class HomeController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView helloWorld() {
         String message = "<br>Hello World!";
-        return new ModelAndView("welcome", "message", message);
+        return new ModelAndView("login", "message", message);
     }
 
 

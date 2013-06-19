@@ -19,13 +19,12 @@ import org.springframework.ui.ModelMap;
 public class LoginController {
 
     @RequestMapping(value="/welcome", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model, Principal principal ) {
+    public String printWelcome(ModelMap model, Principal principal) {
 
         String name = principal.getName();
-        model.addAttribute("username", name);
-        model.addAttribute("message", "Spring Security Custom Form example");
+        model.put("username", name);
+        model.put("message", "Welcome back " + name);
         return "hello";
-
     }
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
@@ -34,20 +33,18 @@ public class LoginController {
         return "login";
 
     }
-//
-//    @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
-//    public String loginerror(ModelMap model) {
-//
+
+    @RequestMapping(value="/loginFail", method = RequestMethod.GET)
+    public String loginerror(ModelMap model) {
+
 //        model.addAttribute("error", "true");
-//        return "login";
-//
-//    }
-//
-//    @RequestMapping(value="/logout", method = RequestMethod.GET)
-//    public String logout(ModelMap model) {
-//
-//        return "login";
-//
-//    }
+        return "loginFail";
+
+    }
+
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logout(ModelMap model) {
+        return "login";
+    }
 
 }
