@@ -1,3 +1,10 @@
+       <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+        </style>
+
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
@@ -24,6 +31,7 @@
                     <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
+                <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
             </ul>
         <!--
         <form class="navbar-form pull-right">

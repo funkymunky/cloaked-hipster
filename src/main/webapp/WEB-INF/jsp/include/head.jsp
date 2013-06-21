@@ -5,3 +5,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/games.css"/>" />
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.css"/>" />
+<link rel="stylesheet" href="<c:url value="/css/bootstrap-responsive.css"/>" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="<c:url value="/js/bootstrap.js"/>" /></script>

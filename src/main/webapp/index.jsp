@@ -2,7 +2,6 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/jsp/include/head.jsp" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,6 +10,7 @@
 
 <html>
 <head>
+    <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
     <title> Index </title>
 </head>
 <body>
@@ -21,8 +21,8 @@
 
     <!-- Main hero unit for a primary marketing message or call to action -->
     <div class="hero-unit">
-    <c:if test="${not empty username}">
-       <h1>Goodbye ${username}</h1>
+    <c:if test="${not empty name}">
+       <h1>Goodbye ${name}</h1>
     </c:if>
     <h1>Hello, world!</h1>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>

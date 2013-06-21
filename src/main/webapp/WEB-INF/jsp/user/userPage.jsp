@@ -1,21 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/jsp/include/head.jsp" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- This is needed for the logout to work properly. -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
     <head>
-        <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ACCESS DENIED</title>
+        <title></title>
     </head>
     <body>
         <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
-        <p>Access denied. You don't have the required permissions to visit that page.</p>
+        <p>${message}</p>
         <p><a href="/HelloWorld/member/userHome">Go to Member page 1</a></p>
         <p><a href="/HelloWorld/admin/userHome">Go to Admin page 1</a></p>
-        <p><a href="index.jsp">Go to Index page</a></p>
+        <p><a href="../index.jsp">Go to Index page</a></p>
     </body>
 </html>

@@ -76,7 +76,7 @@
         <sec:intercept-url pattern="/member/**" access="ROLE_MEMBER,ROLE_ADMIN" />
         <sec:form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/loginFail"/>
         <sec:access-denied-handler ref ="myAccessDeniedHandlerImpl"/>
-        <!--<sec:logout logout-success-url="/goodbye.jsp" />-->
+        <sec:logout logout-success-url="/goodbye.jsp" />
     </sec:http>
 
     <!--
@@ -84,7 +84,7 @@
        This way, the address bar updates to the access denied page's URL.
     -->
     <bean id="myAccessDeniedHandlerImpl" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
-        <property name="errorPage" value="/accessDenied.jsp"/>
+        <property name="errorPage" value="/accessDenied"/>
     </bean>
 
     <sec:authentication-manager>

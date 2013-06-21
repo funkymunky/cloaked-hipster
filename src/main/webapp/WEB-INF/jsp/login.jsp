@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/jsp/include/head.jsp" %>
 <!-- Need the above three lines to get stylesheets across all pages -->
 
 <%@ page import="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"%>
@@ -11,6 +10,7 @@
 
 <html>
     <head>
+        <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Page</title>
 
@@ -31,9 +31,6 @@
             </label>
             <button class="btn btn-large btn-primary" type="submit">Login</button>
         </form>
-        <p><a href="member/memberPage1.jsp">Go to Member page 1</a></p>
-        <p><a href="admin/adminPage1.jsp">Go to Admin page 1</a></p>
-        <p><a href="index.jsp">Go to Index page</a></p>
         </div>
     </body>
 </html>
