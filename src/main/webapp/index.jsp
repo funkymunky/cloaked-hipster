@@ -12,6 +12,9 @@
 <head>
     <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
     <title> Index </title>
+
+
+
 </head>
 <body>
 
@@ -28,6 +31,42 @@
     <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
     </div>
+    <p>Content here. <a class="alert" href=#>Alert!</a></p>
+
+    <!-- bootbox code -->
+        <!--<script src="bootbox.min.js"></script>-->
+
+        <script>
+            var myword = "aloha";
+            $(document).on("click", ".alert", function(e) {
+                bootbox.alert("<table border='1'><tr><td>"+myword+"</td><td>how</td><td>are</td><td>are</td><td>you?</td></tr></table>",
+                 function() {
+                    console.log("Alert Callback");
+                });
+
+            });
+        </script>
+
+        <script type="text/javascript">
+
+        var theUrl="http://api.ipaddresslabs.com/iplocation/v1.6/locateip?key=SAK2CYX89P64V7WX74HZ&ip=58.6.48.2";
+
+        xmlhttp=new XMLHttpRequest();
+
+        xmlhttp.open("GET", theUrl, true);
+         xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+           alert(xmlhttp.responseText)
+           parser=new DOMParser();
+             xmlDoc=parser.parseFromString(xmlhttp.responseText,"text/xml");
+             alert(xmlDoc.getElementsByTagName("isp")[0].childNodes[0].nodeValue);
+          }
+         }
+         xmlhttp.send(null)
+
+        </script>
+
+
 
     <!-- Example row of columns -->
     <div class="row">

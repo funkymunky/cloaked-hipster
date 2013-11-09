@@ -2,19 +2,18 @@ package net.helloworld.site;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.security.Principal;
+import java.util.Set;
 
 /**
  * Date: 11/05/13
  * Time: 8:05 AM
  */
-
-import java.security.Principal;
-import java.util.Set;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 
 @Controller
 public class LoginController {

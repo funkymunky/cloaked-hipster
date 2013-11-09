@@ -7,4 +7,6 @@
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.css"/>" />
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-responsive.css"/>" />
 <script src="http://code.jquery.com/jquery.js"></script>
+<script src="<c:url value="/js/jquery-1.8.3.js"/>" /></script>
 <script src="<c:url value="/js/bootstrap.js"/>" /></script>
+<script src="<c:url value="/js/bootbox.js"/>" /></script>

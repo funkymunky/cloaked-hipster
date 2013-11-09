@@ -15,9 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView helloWorld() {
+    public String showHomePage() {
         String message = "<br>Hello World!";
-        return new ModelAndView("login", "message", message);
+//        return new ModelAndView("login", "message", message);
+        return "hello";
     }
 
 
