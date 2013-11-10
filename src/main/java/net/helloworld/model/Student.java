@@ -61,6 +61,14 @@ public class Student implements Serializable {
         this.id = id;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     @Override
     public String toString() {
         return StringUtils.capitalize(lastName) + ", " + firstName;

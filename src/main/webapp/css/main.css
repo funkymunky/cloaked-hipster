@@ -5,3 +5,7 @@
 .mytest {
     text-align: center;
 }
+
+div.ui-datepicker{
+    font-size:12px;
+}

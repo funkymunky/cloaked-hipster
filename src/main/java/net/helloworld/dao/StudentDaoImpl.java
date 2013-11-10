@@ -35,6 +35,7 @@ public class StudentDaoImpl implements StudentDao {
         studentToUpdate.setFirstName(student.getFirstName());
         studentToUpdate.setOtherNames(student.getOtherNames());
         studentToUpdate.setLastName(student.getLastName());
+        studentToUpdate.setDateOfBirth(student.getDateOfBirth());
         getCurrentSession().update(studentToUpdate);
 
     }
