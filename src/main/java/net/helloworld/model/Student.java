@@ -2,10 +2,7 @@ package net.helloworld.model;
 
 import org.springframework.util.StringUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -27,6 +24,10 @@ public class Student implements Serializable {
     private String firstName;
     private String otherNames;
     private Date dateOfBirth;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
 
     public String getLastName() {
@@ -67,6 +68,14 @@ public class Student implements Serializable {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

@@ -1,0 +1,15 @@
+package net.helloworld.service;
+
+import net.helloworld.model.Address;
+import net.helloworld.model.Student;
+
+/**
+ * Date: 17/10/13
+ * Time: 11:28 PM
+ */
+public interface AddressService {
+
+    public void addAddress(Address address);
+    public void updateAddress(Address address);
+    public Address getAddress(int id);
+}

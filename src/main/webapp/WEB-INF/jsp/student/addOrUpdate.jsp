@@ -11,52 +11,48 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
-
         <div class="container">
 
-            <spring-form:form method="POST" modelAttribute="student">
-            <table>
-                <tr>
-                    <td colspan="2">First name:</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><spring-form:input path="firstName" placeholder="First name" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">Other names:</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><spring-form:input path="otherNames" placeholder="Other names" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">Last name:</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><spring-form:input path="lastName" placeholder="Last name"/></td>
-                </tr>
-                <tr>
-                    <td colspan="2">Date of birth:</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><spring-form:input path="dateOfBirth" placeholder="Date of birth" id="datepicker" /></td>
-                </tr>
-                <tr>
-                    <td>
+        <div class="row-fluid">
+            <div class="span12">
+                <spring-form:form method="POST" modelAttribute="student">
+                    <fieldset>
+                        <legend>Student information</legend>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <h4>Personal details</h4>
+                                <label>First name:</label>
+                                <spring-form:input path="firstName" placeholder="First name" />
+
+                                <label>Other names:</label>
+                                <spring-form:input path="otherNames" placeholder="Other names" />
+
+                                <label>Last name:</label>
+                                <spring-form:input path="lastName" placeholder="Last name"/>
+
+                                <label>Date of birth:</label>
+                                <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="datepicker" />
+                            </div>
+
+                            <div class="span6">
+                                <h4>Address details</h4>
+
+                            </div>
+                        </div>
                         <c:choose>
                             <c:when test="${updateMode != true}">
-                                <input type="submit" value="Add student"/>
+                                <button type="submit" class="btn btn-primary">Add student</button>
                             </c:when>
                             <c:otherwise>
-                                <input type="submit" value="Update student"/>
+                                <button type="submit" class="btn btn-primary">Update student</button>
                             </c:otherwise>
                         </c:choose>
-                    </td>
-                    <td align="right">
-                        <a href="/HelloWorld/student">Cancel</a>
-                    </td>
-                </tr>
-            </table>
-            </spring-form:form>
+                        <button type="button" class="btn" onclick="location.href='/HelloWorld/student'">Cancel</button>
+                    </fieldset>
+                </spring-form:form>
+
+             </div>
+        </div>
 
             <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
             <c:if test="${not empty showLink}"><div id="link"><a href="/HelloWorld/student">Return to Students page</a></div></c:if>

@@ -31,3 +31,26 @@ CREATE TABLE  IF NOT EXISTS`stduents` (
   `otherNames` varchar(60),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE students add dateOfBirth date;
+
+alter table students drop column dateOfBirth;
+
+CREATE TABLE IF NOT EXISTS `address` (  
+  `id` int(6) NOT NULL AUTO_INCREMENT,  
+  `addressLine1` varchar(100) DEFAULT NULL,  
+  `addressLine2` varchar(100) DEFAULT NULL,  
+  `suburb` varchar(100) DEFAULT NULL,  
+  `postcode` varchar(100) DEFAULT NULL,  
+  `state` varchar(100) DEFAULT NULL,  
+  `country` varchar(100) DEFAULT NULL,  
+  `telephone` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)  
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+ALTER TABLE students add column address_id int(6);
+
+alter table students 
+add constraint FK_student_address 
+foreign key (address_id) references address(id);

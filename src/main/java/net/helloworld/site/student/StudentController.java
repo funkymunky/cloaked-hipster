@@ -37,7 +37,7 @@ public class StudentController {
     @RequestMapping(value="/student/add", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute Student student, Model model) {
         studentService.addStudent(student);
-        model.addAttribute("message", "successfully saved student: " + student.toString());
+        model.addAttribute("message", "Successfully saved student: " + student.toString());
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", false);
         return "/student/addOrUpdate";
