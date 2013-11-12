@@ -11,47 +11,59 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
-        <div class="container">
-
+        <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span12">
-                <spring-form:form method="POST" modelAttribute="student">
-                    <fieldset>
-                        <legend>Student information</legend>
-                        <div class="row-fluid">
-                            <div class="span6">
-                                <h4>Personal details</h4>
-                                <label>First name:</label>
-                                <spring-form:input path="firstName" placeholder="First name" />
+            <div class="span2">
+                <%@ include file="/WEB-INF/jsp/include/stduent_navbar.jsp" %>
+            </div>
 
-                                <label>Other names:</label>
-                                <spring-form:input path="otherNames" placeholder="Other names" />
+            <div class="span10">
+                <legend>Student information</legend>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h4>Personal details</h4>
+                        <spring-form:form method="POST" modelAttribute="student">
+                        <fieldset>
+                            <label>First name:</label>
+                            <spring-form:input path="firstName" placeholder="First name" />
 
-                                <label>Last name:</label>
-                                <spring-form:input path="lastName" placeholder="Last name"/>
+                            <label>Other names:</label>
+                            <spring-form:input path="otherNames" placeholder="Other names" />
 
-                                <label>Date of birth:</label>
-                                <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="datepicker" />
-                            </div>
+                            <label>Last name:</label>
+                            <spring-form:input path="lastName" placeholder="Last name"/>
 
-                            <div class="span6">
-                                <h4>Address details</h4>
+                            <label>Date of birth:</label>
+                            <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="datepicker" />
 
-                            </div>
-                        </div>
-                        <c:choose>
+                            <c:choose>
                             <c:when test="${updateMode != true}">
-                                <button type="submit" class="btn btn-primary">Add student</button>
+                            <button type="submit" class="btn btn-primary">Add student</button>
                             </c:when>
                             <c:otherwise>
-                                <button type="submit" class="btn btn-primary">Update student</button>
+                            <button type="submit" class="btn btn-primary">Update student</button>
                             </c:otherwise>
-                        </c:choose>
-                        <button type="button" class="btn" onclick="location.href='/HelloWorld/student'">Cancel</button>
-                    </fieldset>
-                </spring-form:form>
+                            </c:choose>
+                            <button type="button" class="btn" onclick="location.href='/HelloWorld/student'">Cancel</button>
+                        </fieldset>
+                        </spring-form:form>
+                    </div>
 
-             </div>
+                    <div class="span6">
+                        <ul class="nav nav-tabs">
+                            <li><a href="#" class="educationInfo">Education</a></li>
+                            <li><a href="#" class="addressInfo">Address</a></li>
+                            <li><a href="#" class="bankInfo">Bank</a></li>
+                            <li><a href="#" class="sponsorInfo">Sponsor</a></li>
+                        </ul>
+                        <%@ include file="/WEB-INF/jsp/student/educationDetails.jsp" %>
+                        <%@ include file="/WEB-INF/jsp/student/addressDetails.jsp" %>
+                        <%@ include file="/WEB-INF/jsp/student/bankDetails.jsp" %>
+                        <%@ include file="/WEB-INF/jsp/student/sponsorDetails.jsp" %>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
             <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
@@ -62,6 +74,42 @@
 
     <script type="text/javascript">
         $(function() {
+            $(".educationInfo").click( function() {
+                $('#bankInfo').hide();
+                $('#sponsorInfo').hide();
+                $('#addressInfo').hide();
+                $('#educationInfo').show();
+            });
+        });
+
+        $(function() {
+            $(".addressInfo").click( function() {
+                $('#educationInfo').hide();
+                $('#bankInfo').hide();
+                $('#sponsorInfo').hide();
+                $('#addressInfo').show();
+            });
+        });
+
+        $(function() {
+            $(".bankInfo").click( function() {
+                $('#educationInfo').hide();
+                $('#sponsorInfo').hide();
+                $('#addressInfo').hide();
+                $('#bankInfo').show();
+            });
+        });
+
+        $(function() {
+            $(".sponsorInfo").click( function() {
+                $('#educationInfo').hide();
+                $('#bankInfo').hide();
+                $('#addressInfo').hide();
+                $('#sponsorInfo').show();
+            });
+        });
+
+        $(function() {
             $("#datepicker").datepicker({ defaultDate: '-13y'});
             if ($("#datepicker").val().length > 0 ) {
                 var dateObject = new Date($("#datepicker").val());
@@ -69,6 +117,8 @@
                 $('#datepicker').val(dateString);
             }
         });
+
+
 
     </script>
 </html>

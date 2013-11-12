@@ -4,18 +4,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-    <head>
-        <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
-
-        <title>Students</title>
-    </head>
-    <body>
-        <div class="container">
-            <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
-
-            <p>This is the index page for new students.</p>
-            <p><a href="/HelloWorld/student/add">Add new student</a></p>
-            <p><a href="/HelloWorld/student/view">View student</a></p>
+<head>
+    <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
+    <title>Students</title>
+</head>
+<body>
+<%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <%@ include file="/WEB-INF/jsp/include/stduent_navbar.jsp" %>
+            </div>
+            <div class="span10">
+                Perhaps the list view of students should go in here....
+            </div>
         </div>
+    </div>
     </body>
 </html>

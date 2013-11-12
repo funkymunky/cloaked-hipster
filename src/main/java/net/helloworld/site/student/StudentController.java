@@ -1,5 +1,6 @@
 package net.helloworld.site.student;
 
+import net.helloworld.model.Address;
 import net.helloworld.model.Student;
 import net.helloworld.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class StudentController {
     @RequestMapping(value="/student/add", method = RequestMethod.GET)
     public String addStudentPage(Model model) {
         model.addAttribute("student", new Student());
+        model.addAttribute("address", new Address());
         return "/student/addOrUpdate";
     }
 
@@ -55,6 +57,7 @@ public class StudentController {
         Student student = studentService.getStudent(id);
         model.addAttribute("student", student);
         model.addAttribute("updateMode", true);
+        model.addAttribute("address", new Address());
         return "/student/addOrUpdate";
     }
 

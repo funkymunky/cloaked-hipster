@@ -6,25 +6,32 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
-
     <title>Students</title>
 </head>
 <body>
-<div class="container">
-    <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
+<%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
-    <p>Listing all students.</p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <%@ include file="/WEB-INF/jsp/include/stduent_navbar.jsp" %>
+            </div>
 
-    <table>
-        <tr>
-            <th>Student Name</th>
-        </tr>
-        <c:forEach var="student" items ="${students}">
-            <tr>
-                <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>
+            <div class="span10">
+            <legend>Student list</legend>
+
+                <table class="table table-striped">
+                    <tr>
+                        <th>Student Name</th>
+                    </tr>
+                    <c:forEach var="student" items ="${students}">
+                        <tr>
+                            <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
