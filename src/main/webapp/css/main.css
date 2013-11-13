@@ -9,3 +9,17 @@
 div.ui-datepicker{
     font-size:12px;
 }
+
+.nav-tabs > li > a {
+    background-color: #00ced1;
+    color: black;
+}
+
+.nav-menu > li > a {
+    background-color: #ffa07a;
+}
+
+li.myactive a {
+    background-color: #d3d3d3;
+    color: black;
+}

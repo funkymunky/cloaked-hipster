@@ -49,9 +49,9 @@
                         </spring-form:form>
                     </div>
 
-                    <div class="span6">
+                    <div class="span7" style="background-color: #e0ffff">
                         <ul class="nav nav-tabs">
-                            <li><a href="#" class="educationInfo">Education</a></li>
+                            <li class="myactive"><a href="#" class="educationInfo">Education</a></li>
                             <li><a href="#" class="addressInfo">Address</a></li>
                             <li><a href="#" class="bankInfo">Bank</a></li>
                             <li><a href="#" class="sponsorInfo">Sponsor</a></li>
@@ -73,39 +73,46 @@
 
 
     <script type="text/javascript">
+        function setActiveNavTab() {
+            var selectedItem = $('li.myactive');
+            selectedItem.removeClass();
+            $(this).parent().addClass('myactive');
+        }
+
+        function hideAllExceptThis(divIdToShow) {
+            $('#bankInfo').hide();
+            $('#sponsorInfo').hide();
+            $('#addressInfo').hide();
+            $('#educationInfo').hide();
+
+            $(divIdToShow).show();
+        }
+
         $(function() {
             $(".educationInfo").click( function() {
-                $('#bankInfo').hide();
-                $('#sponsorInfo').hide();
-                $('#addressInfo').hide();
-                $('#educationInfo').show();
+                hideAllExceptThis("#educationInfo");
+                setActiveNavTab.call(this);
             });
         });
 
         $(function() {
             $(".addressInfo").click( function() {
-                $('#educationInfo').hide();
-                $('#bankInfo').hide();
-                $('#sponsorInfo').hide();
-                $('#addressInfo').show();
+                hideAllExceptThis("#addressInfo");
+                setActiveNavTab.call(this);
             });
         });
 
         $(function() {
             $(".bankInfo").click( function() {
-                $('#educationInfo').hide();
-                $('#sponsorInfo').hide();
-                $('#addressInfo').hide();
-                $('#bankInfo').show();
+                hideAllExceptThis("#bankInfo");
+                setActiveNavTab.call(this);
             });
         });
 
         $(function() {
             $(".sponsorInfo").click( function() {
-                $('#educationInfo').hide();
-                $('#bankInfo').hide();
-                $('#addressInfo').hide();
-                $('#sponsorInfo').show();
+                hideAllExceptThis("#sponsorInfo");
+                setActiveNavTab.call(this);
             });
         });
 
