@@ -1,5 +1,6 @@
 package net.helloworld.service;
 
+import net.helloworld.model.Address;
 import net.helloworld.model.Student;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface StudentService {
     public void updateStudent(Student student);
     public Student getStudent(int id);
     public List<Student> getAllStudents();
+    public Address getAddressForStudent(int id);
+    public void updateAddressForStudent(int id, Address address);
 }

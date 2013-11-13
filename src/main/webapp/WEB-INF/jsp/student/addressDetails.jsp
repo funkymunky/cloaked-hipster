@@ -1,5 +1,5 @@
 <div id="addressInfo" style="display: none;">
-    <spring-form:form method="POST" modelAttribute="address" class="form-horizontal">
+    <spring-form:form method="POST" modelAttribute="address" class="form-horizontal" action="/HelloWorld/address/addOrUpdate">
     <fieldset>
         <div class="control-group">
             <label class="control-label" for="inputLine1">Address line 1:</label>
@@ -23,5 +23,6 @@
             <button type="submit" class="btn btn-primary">Update info</button> </div>
         </div>
     </fieldset>
+        <input type="hidden" value="${student.id}" name="studentid" />
     </spring-form:form>
 </div>

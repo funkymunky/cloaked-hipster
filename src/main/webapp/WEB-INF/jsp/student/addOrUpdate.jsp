@@ -118,7 +118,17 @@
             }
         });
 
+        $(function() {
+            $("#eduSchool").click(function() {
+                $("#inputDegree").prop('disabled', true);
+            });
+        });
 
+        $(function() {
+            $("#eduUni").click( function() {
+                $("#inputDegree").prop('disabled', false);
+            });
+        });
 
     </script>
 </html>

@@ -44,7 +44,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public void updateAddress(Student student, Address address) {
         Student studentToUpdate = getStudent(student.getId());
-        studentToUpdate.setAddress(student.getAddress());
+        studentToUpdate.setAddress(address);
         getCurrentSession().update(studentToUpdate);
     }
 
@@ -58,6 +58,12 @@ public class StudentDaoImpl implements StudentDao {
     @SuppressWarnings("unchecked")
     public List<Student> getAllStudents() {
         return sessionFactory.getCurrentSession().createQuery("from Student").list();
+    }
+
+    @Override
+    public Address getAddressForStudent(int id) {
+        Student currentStudent = getStudent(id);
+        return currentStudent.getAddress();
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

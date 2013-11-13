@@ -1,7 +1,7 @@
 package net.helloworld.service;
 
 import net.helloworld.dao.StudentDao;
-import net.helloworld.dao.StudentDaoImpl;
+import net.helloworld.model.Address;
 import net.helloworld.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +38,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getAllStudents() {
         return studentDao.getAllStudents();
+    }
+
+    @Override
+    public Address getAddressForStudent(int id) {
+        return studentDao.getAddressForStudent(id);
+    }
+
+    @Override
+    public void updateAddressForStudent(int id, Address address) {
+        Student student = getStudent(id);
+        studentDao.updateAddress(student, address);
     }
 }
