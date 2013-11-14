@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * Date: 27/10/13
- * Time: 6:28 PM
- */
 @Controller
 public class AddressController {
 
@@ -27,12 +23,25 @@ public class AddressController {
 
     @RequestMapping(value="/address/addOrUpdate", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute Address address, @RequestParam("studentid") String studentId, Model model) {
-        addressService.addAddress(address);
+
         int id = Integer.parseInt(studentId);
         Student student = studentService.getStudent(id);
-        studentService.updateAddressForStudent(id, address);
+
+        String message;
+
+        if (student.getAddress() != null) {
+            Address oldAddress = studentService.getAddressForStudent(id);
+            addressService.updateAddress(address, oldAddress.getId());
+            message = "Successfully updated address";
+        } else {
+            addressService.addAddress(address);
+            studentService.updateAddressForStudent(id, address);
+            message = "Successfully added address ";
+        }
+
+        model.addAttribute("activeTab", "address");
         model.addAttribute("student", student);
-        model.addAttribute("message", "Successfully added address ");
+        model.addAttribute("message", message);
         return "/student/addOrUpdate";
     }
 }

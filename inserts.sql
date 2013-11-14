@@ -54,3 +54,19 @@ ALTER TABLE students add column address_id int(6);
 alter table students 
 add constraint FK_student_address 
 foreign key (address_id) references address(id);
+
+alter table students drop foreign key FK_student_address;
+
+CREATE TABLE IF NOT EXISTS `education` (
+    `id` int(50) not null auto_increment,
+    `institutionType` varchar(255) default null,
+    `institutionName` varchar(255) default null,
+    `degreeName` varchar(255) default null,
+    `yearOfStudy` int(10) default null,
+    `applicationDate` date default null,
+    `startDate` date default null,
+    `endDate` date default null,
+    `monthlyAllowance` decimal(65,2) default null,
+    `agent` varchar(255) default null,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;

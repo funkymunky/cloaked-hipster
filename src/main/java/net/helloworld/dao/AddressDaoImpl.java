@@ -30,6 +30,25 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public void updateAddress(Address address) {
         Address addressToUpdate = getAddress(address.getId());
+        updateAddressDetails(address, addressToUpdate);
+
+    }
+
+    @Override
+    public void updateAddress(Address address, int id) {
+        Address addressToUpdate = getAddress(id);
+        updateAddressDetails(address, addressToUpdate);
+    }
+
+
+    @Override
+    public Address getAddress(int id) {
+        Address address = (Address) getCurrentSession().get(Address.class, id);
+        return address;
+
+    }
+
+    private void updateAddressDetails(Address address, Address addressToUpdate) {
         addressToUpdate.setAddressLine1(address.getAddressLine1());
         addressToUpdate.setAddressLine2(address.getAddressLine2());
         addressToUpdate.setSuburb(address.getSuburb());
@@ -38,13 +57,6 @@ public class AddressDaoImpl implements AddressDao {
         addressToUpdate.setCountry(address.getCountry());
         addressToUpdate.setTelephone(address.getTelephone());
         getCurrentSession().update(addressToUpdate);
-
-    }
-
-    @Override
-    public Address getAddress(int id) {
-        Address address = (Address) getCurrentSession().get(Address.class, id);
-        return address;
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

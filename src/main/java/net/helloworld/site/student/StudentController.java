@@ -1,5 +1,6 @@
 package net.helloworld.site.student;
 
+import net.helloworld.InstitutionType;
 import net.helloworld.model.Address;
 import net.helloworld.model.Student;
 import net.helloworld.service.AddressService;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.text.AttributedString;
 import java.util.List;
 
 /**
@@ -35,8 +35,10 @@ public class StudentController {
 
     @RequestMapping(value="/student/add", method = RequestMethod.GET)
     public String addStudentPage(Model model) {
+        model.addAttribute("activeTab", "education");
         model.addAttribute("student", new Student());
         model.addAttribute("address", new Address());
+        model.addAttribute("enums", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
@@ -44,10 +46,13 @@ public class StudentController {
     public String submitForm(@ModelAttribute Student student, Model model) {
         studentService.addStudent(student);
         Address address = getAddress(student.getId());
+
+        model.addAttribute("activeTab", "education");
         model.addAttribute("message", "Successfully saved student: " + student.toString());
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", false);
         model.addAttribute("address", address);
+        model.addAttribute("enums", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
@@ -62,9 +67,12 @@ public class StudentController {
     public String editStudent(@PathVariable int id, Model model) {
         Student student = studentService.getStudent(id);
         Address address = getAddress(id);
+
+        model.addAttribute("activeTab", "education");
         model.addAttribute("student", student);
         model.addAttribute("updateMode", true);
         model.addAttribute("address", address);
+        model.addAttribute("enums", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
@@ -74,18 +82,18 @@ public class StudentController {
         studentService.updateStudent(student);
         Address address = getAddress(student.getId());
         String message = String.format("%s, %s's record was updated successfully.", student.getLastName().toUpperCase(), student.getFirstName());
+
+        model.addAttribute("activeTab", "education");
         model.addAttribute("message", message);
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);
         model.addAttribute("address", address);
+        model.addAttribute("enums", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
     private Address getAddress(int id) {
         Address address = studentService.getAddressForStudent(id);
-        if (address == null) {
-            address = new Address();
-        }
-        return address;
+        return address == null ? new Address() : address;
     }
 }

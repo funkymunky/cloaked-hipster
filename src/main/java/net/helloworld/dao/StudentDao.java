@@ -13,8 +13,9 @@ public interface StudentDao {
 
     public void addStudent(Student student);
     public void updateStudent(Student student);
-    public void updateAddress(Student student, Address address);
     public Student getStudent(int id);
     public List<Student> getAllStudents();
+
     public Address getAddressForStudent(int id);
+    public void updateAddress(Student student, Address address);
 }

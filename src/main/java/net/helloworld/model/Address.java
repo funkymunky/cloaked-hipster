@@ -85,4 +85,15 @@ public class Address implements Serializable {
         return id;
     }
 
- }
+    @Override
+    public String toString() {
+        return String.format("Address:"
+                               + " Id: %s"
+                               + " Line1: %s "
+                               + " Line2: %s "
+                               + " Suburb: %s "
+                               + " Postcode: %s"
+                               + " State: %s "
+                               + " Country: %s" , getId().toString(), getAddressLine1(), getAddressLine2(), getSuburb(), getPostcode(), getState(), getCountry());
+    }
+}

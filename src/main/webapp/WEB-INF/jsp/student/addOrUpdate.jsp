@@ -51,7 +51,7 @@
 
                     <div class="span7" style="background-color: #e0ffff">
                         <ul class="nav nav-tabs">
-                            <li class="myactive"><a href="#" class="educationInfo">Education</a></li>
+                            <li><a href="#" class="educationInfo">Education</a></li>
                             <li><a href="#" class="addressInfo">Address</a></li>
                             <li><a href="#" class="bankInfo">Bank</a></li>
                             <li><a href="#" class="sponsorInfo">Sponsor</a></li>
@@ -68,11 +68,23 @@
 
             <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
             <c:if test="${not empty showLink}"><div id="link"><a href="/HelloWorld/student">Return to Students page</a></div></c:if>
+
         </div>
     </body>
 
 
     <script type="text/javascript">
+
+        <c:if test="${activeTab == 'education'}">
+            hideAllExceptThis("#educationInfo");
+            setActiveNavTab.call($(".educationInfo"));
+        </c:if>
+
+        <c:if test="${activeTab == 'address'}">
+            hideAllExceptThis("#addressInfo");
+            setActiveNavTab.call($(".addressInfo"));
+        </c:if>
+
         function setActiveNavTab() {
             var selectedItem = $('li.myactive');
             selectedItem.removeClass();
@@ -123,18 +135,6 @@
                 var dateString = $.datepicker.formatDate("dd/mm/yy", dateObject);
                 $('#datepicker').val(dateString);
             }
-        });
-
-        $(function() {
-            $("#eduSchool").click(function() {
-                $("#inputDegree").prop('disabled', true);
-            });
-        });
-
-        $(function() {
-            $("#eduUni").click( function() {
-                $("#inputDegree").prop('disabled', false);
-            });
         });
 
     </script>

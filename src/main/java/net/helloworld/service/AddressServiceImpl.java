@@ -29,6 +29,11 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public void updateAddress(Address address, int id) {
+        addressDao.updateAddress(address, id);
+    }
+
+    @Override
     public Address getAddress(int id) {
         return addressDao.getAddress(id);
     }
