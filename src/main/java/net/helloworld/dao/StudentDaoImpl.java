@@ -34,7 +34,6 @@ public class StudentDaoImpl implements StudentDao {
     public void updateStudent(Student student) {
         Student studentToUpdate = getStudent(student.getId());
         studentToUpdate.setFirstName(student.getFirstName());
-        studentToUpdate.setOtherNames(student.getOtherNames());
         studentToUpdate.setLastName(student.getLastName());
         studentToUpdate.setDateOfBirth(student.getDateOfBirth());
         getCurrentSession().update(studentToUpdate);
@@ -57,7 +56,7 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<Student> getAllStudents() {
-        return sessionFactory.getCurrentSession().createQuery("from Student").list();
+        return sessionFactory.getCurrentSession().createQuery("from Student order by lastname").list();
     }
 
     @Override

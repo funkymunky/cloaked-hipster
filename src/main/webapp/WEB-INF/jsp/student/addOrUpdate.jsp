@@ -14,7 +14,7 @@
         <div class="container-fluid">
         <div class="row-fluid">
             <div class="span2">
-                <%@ include file="/WEB-INF/jsp/include/stduent_navbar.jsp" %>
+                <%@ include file="/WEB-INF/jsp/include/student_navbar.jsp" %>
             </div>
 
             <div class="span10">
@@ -24,16 +24,13 @@
                         <h4>Personal details</h4>
                         <spring-form:form method="POST" modelAttribute="student">
                         <fieldset>
-                            <label>First name:</label>
+                            <label>First name: <spring-form:errors path="firstName" class="alert-error"></spring-form:errors></label>
                             <spring-form:input path="firstName" placeholder="First name" />
 
-                            <label>Other names:</label>
-                            <spring-form:input path="otherNames" placeholder="Other names" />
-
-                            <label>Last name:</label>
+                            <label>Last name: <spring-form:errors path="lastName" class="alert-error"></spring-form:errors></label>
                             <spring-form:input path="lastName" placeholder="Last name"/>
 
-                            <label>Date of birth:</label>
+                            <label>Date of birth: <spring-form:errors path="dateOfBirth" class="alert-error"></spring-form:errors></label>
                             <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="datepicker" />
 
                             <c:choose>
@@ -56,10 +53,10 @@
                             <li><a href="#" class="bankInfo">Bank</a></li>
                             <li><a href="#" class="sponsorInfo">Sponsor</a></li>
                         </ul>
-                        <%@ include file="/WEB-INF/jsp/student/educationDetails.jsp" %>
-                        <%@ include file="/WEB-INF/jsp/student/addressDetails.jsp" %>
-                        <%@ include file="/WEB-INF/jsp/student/bankDetails.jsp" %>
-                        <%@ include file="/WEB-INF/jsp/student/sponsorDetails.jsp" %>
+                        <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
+                        <%@ include file="/WEB-INF/jsp/student/addressDetails.jspf" %>
+                        <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
+                        <%@ include file="/WEB-INF/jsp/student/sponsorDetails.jspf" %>
                     </div>
                 </div>
 
@@ -129,12 +126,18 @@
         });
 
         $(function() {
-            $("#datepicker").datepicker({ defaultDate: '-13y'});
-            if ($("#datepicker").val().length > 0 ) {
-                var dateObject = new Date($("#datepicker").val());
-                var dateString = $.datepicker.formatDate("dd/mm/yy", dateObject);
-                $('#datepicker').val(dateString);
-            }
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                defaultDate: '-13y'
+            });
+
+//            if ($("#datepicker").val().length > 0 ) {
+//                var dateObject = new Date($("#datepicker").val());
+//                var dateString = $.datepicker.formatDate("dd/mm/yy", dateObject);
+//                $('#datepicker').val(dateString);
+//            }
         });
 
     </script>

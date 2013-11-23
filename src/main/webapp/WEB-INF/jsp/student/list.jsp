@@ -14,24 +14,41 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span2">
-                <%@ include file="/WEB-INF/jsp/include/stduent_navbar.jsp" %>
+                <%@ include file="/WEB-INF/jsp/include/student_navbar.jsp" %>
             </div>
 
             <div class="span10">
             <legend>Student list</legend>
 
+                <form class="navbar-search pull-right">
+                    <input type="text" class="search-query" placeholder="Search" id="searchStudent">
+                </form>
+
                 <table class="table table-striped">
-                    <tr>
+                    <thead><tr>
                         <th>Student Name</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <c:forEach var="student" items ="${students}">
                         <tr>
-                            <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+                            <td>${student.lastName}, ${student.firstName}</td>
+                            <td><a href="/HelloWorld/student/edit/${student.id}">View</a></td>
                         </tr>
                     </c:forEach>
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 </body>
+
+<script type="text/javascript">
+    $(function() { $("#searchStudent")
+            .autocomplete({source: [${students}]});
+
+    });
+
+</script>
+
 </html>

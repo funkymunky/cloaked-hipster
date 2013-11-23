@@ -16,7 +16,9 @@
     <mvc:default-servlet-handler /> <!-- adding this line and the one above solved the css issues! -->
     <context:annotation-config />
     <context:component-scan base-package="net.helloworld.site" />
+    <context:component-scan base-package="net.helloworld.validator" />
 
+    <!-- bind your messages.properties -->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages" />
     </bean>
@@ -27,6 +29,7 @@
         <property name="suffix" value=".jsp"/>
         <property name="order" value="0" />
     </bean>
+
 
     <!--<bean name="/login.htm" class="net.helloworld.site.LoginController" />-->
 <!--LoginController-->

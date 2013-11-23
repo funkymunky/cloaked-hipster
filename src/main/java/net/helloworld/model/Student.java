@@ -1,5 +1,7 @@
 package net.helloworld.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -22,7 +24,7 @@ public class Student implements Serializable {
 
     private String lastName;
     private String firstName;
-    private String otherNames;
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date dateOfBirth;
 
     @OneToOne
@@ -44,14 +46,6 @@ public class Student implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getOtherNames() {
-        return otherNames;
-    }
-
-    public void setOtherNames(String otherNames) {
-        this.otherNames = otherNames;
     }
 
     public Integer getId() {

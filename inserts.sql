@@ -70,3 +70,5 @@ CREATE TABLE IF NOT EXISTS `education` (
     `agent` varchar(255) default null,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+alter table students drop column otherNames;

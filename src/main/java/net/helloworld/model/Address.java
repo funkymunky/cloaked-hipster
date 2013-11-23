@@ -87,6 +87,9 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
+        if (id == null) {
+            return "";
+        }
         return String.format("Address:"
                                + " Id: %s"
                                + " Line1: %s "

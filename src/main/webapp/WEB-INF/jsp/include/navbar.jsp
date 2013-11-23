@@ -15,9 +15,9 @@
         </button>
         <a class="brand" href="#">LSF Sponsorship</a>
         <div class="nav-collapse collapse">
-            <ul class="nav">
+            <ul class="nav nav-top">
                 <li><a href="/HelloWorld/home">Home</a></li>
-                <li><a href="/HelloWorld/student">Students</a></li>
+                <li><a href="/HelloWorld/student/list">Students</a></li>
                 <li><a href="#contact">Games</a></li>
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -48,11 +48,11 @@
 
 <script>
    $(document).ready(function() {
-       var path = window.location.pathname;
-       var navListItems = $(".nav li a");
+       var pathNode = window.location.pathname.split('/')[2];
+       var navListItems = $(".nav-top li a");
        navListItems.each(function () {
-           var hrefPath = $(this).attr('href').toLowerCase();
-           if (path.toLowerCase().indexOf(hrefPath) >= 0 ) {
+           var hrefPath = $(this).attr('href').toLowerCase().split('/')[2];
+           if (pathNode.toLowerCase().indexOf(hrefPath) >= 0 ) {
                $(this).parent().addClass('active');
                return false;
            }
