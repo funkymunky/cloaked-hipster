@@ -23,3 +23,7 @@ li.myactive a {
     background-color: #d3d3d3;
     color: black;
 }
+
+.error {
+    color: red;
+}

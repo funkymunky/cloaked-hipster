@@ -41,7 +41,7 @@
                             <button type="submit" class="btn btn-primary">Update student</button>
                             </c:otherwise>
                             </c:choose>
-                            <button type="button" class="btn" onclick="location.href='/HelloWorld/student'">Cancel</button>
+                            <button type="button" class="btn" onclick="location.href='/HelloWorld/student/list'">Cancel</button>
                         </fieldset>
                         </spring-form:form>
                     </div>

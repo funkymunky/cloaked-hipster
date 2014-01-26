@@ -18,7 +18,7 @@
             <ul class="nav nav-top">
                 <li><a href="/HelloWorld/home">Home</a></li>
                 <li><a href="/HelloWorld/student/list">Students</a></li>
-                <li><a href="#contact">Games</a></li>
+                <li><a href="/HelloWorld/games">Games</a></li>
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
