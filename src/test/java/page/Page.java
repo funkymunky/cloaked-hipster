@@ -1,4 +1,4 @@
-package net.helloworld.site.webutils.page;
+package page;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +19,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.FluentWait;
 
 
-public abstract class Page {
+public class Page {
 
     private FluentWait<WebDriver> wait;
 
@@ -36,7 +36,12 @@ public abstract class Page {
         this(driver, expectedBodyId);
     }
 
-    private String getTitle() {
+    public Page(WebDriver driver) {
+        this.driver = driver;
+        this.expectedBodyId = "";
+    }
+
+    public String getTitle() {
         return getDriver().getTitle();
     }
 

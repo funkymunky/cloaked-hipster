@@ -29,7 +29,7 @@
             <label class="checkbox">
                 <input type="checkbox" name="_spring_security_remember_me" value="remember-me"/> Remember me on this computer.
             </label>
-            <button class="btn btn-large btn-primary" type="submit">Login</button>
+            <button class="btn btn-large btn-primary" type="submit" id="submit">Login</button>
             <br/>
             <c:if test="${not empty message}"><span class="error">${message}</span></c:if>
         </form>

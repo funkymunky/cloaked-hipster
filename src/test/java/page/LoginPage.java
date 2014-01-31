@@ -1,29 +1,23 @@
 package page;
 
-import net.helloworld.site.webutils.page.Page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import util.WebTestUtil;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ayesha
- * Date: 10/04/13
- * Time: 8:01 AM
- * To change this template use File | Settings | File Templates.
- */
 public class LoginPage extends Page {
 
-    @FindBy(id = "username")
+    @FindBy(id = "j_username")
     private WebElement usernameField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "j_password")
     private WebElement passwordField;
 
     @FindBy(id = "submit")
     private WebElement submitButton;
-    private String errorText;
+
+    @FindBy(className = "error")
+    private WebElement errorText;
 
     public LoginPage(WebDriver driver) {
         super(driver, "login");
@@ -47,6 +41,14 @@ public class LoginPage extends Page {
     }
 
     public String getErrorText() {
-        return errorText;
+        return errorText.getText();
+    }
+
+    public WebElement getUserName() {
+        return usernameField;
+    }
+
+    public WebElement getPassword() {
+        return passwordField;
     }
 }

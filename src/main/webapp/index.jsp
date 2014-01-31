@@ -73,7 +73,7 @@
         <div class="span6">
         <h2>Heading</h2>
         <p>Hello and welcome. This is a sample project to learn some basics.</p>
-        <p><a class="btn" href="/HelloWorld/login">Login</a></p>
+        <div id="goToLogin"><p><a class="btn" href="/HelloWorld/login">Login</a></p></div>
         </div>
 
         <div class="span6">

@@ -7,14 +7,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ayesha
- * Date: 15/03/13
- * Time: 7:58 AM
- * To change this template use File | Settings | File Templates.
- */
-
 public class Selenium2Example  {
     public static void main(String[] args) {
         // Create a new instance of the Firefox driver
