@@ -1,4 +1,4 @@
-package net.helloworld.site.test;
+package integration;
 
 import org.junit.After;
 import org.junit.Before;
