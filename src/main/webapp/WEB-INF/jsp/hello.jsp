@@ -10,8 +10,9 @@
     <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
     <div class="container">
-        <h1>${message}</h1>
-        <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
-    </div> <!-- /container -->
+        <p class="lead">${message}</p>
+        <p><a href="/HelloWorld/member/userHome">Go to Member page 1</a></p>
+        <p><a href="/HelloWorld/admin/userHome">Go to Admin page 1</a></p>
+    </div>
 </body>
 </html>

@@ -67,8 +67,8 @@ public class LoginController {
 
         model.put("username", name);
         model.put("role", role);
-        String messageToDisplay = String.format("Welcome back %s.\nYou are on the %s page.", name, memberType);
+        String messageToDisplay = String.format("Welcome back %s.\nYou are on the home page.", name);
         model.put("message", messageToDisplay);
-        return "/user/userPage";
+        return "/user/home";
     }
 }

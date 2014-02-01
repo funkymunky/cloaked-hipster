@@ -15,30 +15,5 @@ import java.security.Principal;
 @Controller
 public class UserController {
 
-    @RequestMapping(value="/admin/userHome", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model, Principal principal) {
-        return setPageMessages(model, principal, true);
-    }
 
-    @RequestMapping(value="/member/userHome", method = RequestMethod.GET)
-    public String printWelcomeMember(ModelMap model, Principal principal) {
-        return setPageMessages(model, principal, false);
-    }
-
-    private String setPageMessages(ModelMap model, Principal principal, boolean adminMember) {
-        String name = principal.getName();
-        String memberType = "member";
-        String role = "ROLE_MEMBER";
-
-        if (adminMember) {
-            memberType = "admin";
-            role = "ROLE_ADMIN";
-        }
-
-        model.put("username", name);
-        model.put("role", role);
-        String messageToDisplay = String.format("Welcome back %s.\nYou are on the %s page.", name, memberType);
-        model.put("message", messageToDisplay);
-        return "/user/userPage";
-    }
 }

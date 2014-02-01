@@ -16,6 +16,5 @@
         <p>Access denied. You don't have the required permissions to visit that page.</p>
         <p><a href="/HelloWorld/member/userHome">Go to Member page 1</a></p>
         <p><a href="/HelloWorld/admin/userHome">Go to Admin page 1</a></p>
-        <p><a href="index.jsp">Go to Index page</a></p>
     </body>
 </html>

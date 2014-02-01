@@ -13,11 +13,6 @@
     <body>
         <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
-        <div class="container">
-            <p class="lead">${message}</p>
-            <p><a href="/HelloWorld/member/userHome">Go to Member page 1</a></p>
-            <p><a href="/HelloWorld/admin/userHome">Go to Admin page 1</a></p>
-            <p><a href="../index.jsp">Go to Index page</a></p>
-        </div>
+
     </body>
 </html>
