@@ -20,10 +20,11 @@
             <div class="span10">
                 <legend>Student information</legend>
                 <div class="row-fluid">
+                    <fieldset class="main-content">
                     <div class="span4">
                         <h4>Personal details</h4>
                         <spring-form:form method="POST" modelAttribute="student">
-                        <fieldset>
+                        <%--<fieldset>--%>
                             <label>First name: <spring-form:errors path="firstName" class="alert-error"></spring-form:errors></label>
                             <spring-form:input path="firstName" placeholder="First name" />
 
@@ -42,22 +43,17 @@
                             </c:otherwise>
                             </c:choose>
                             <button type="button" class="btn" onclick="location.href='/HelloWorld/student/list'">Cancel</button>
-                        </fieldset>
+                        <%--</fieldset>--%>
                         </spring-form:form>
                     </div>
 
-                    <div class="span7" style="background-color: #e0ffff">
-                        <ul class="nav nav-tabs">
-                            <li><a href="#" class="educationInfo">Education</a></li>
-                            <li><a href="#" class="addressInfo">Address</a></li>
-                            <li><a href="#" class="bankInfo">Bank</a></li>
-                            <li><a href="#" class="sponsorInfo">Sponsor</a></li>
-                        </ul>
-                        <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
+                    <div class="span7" style="background-color: #EBE0D6; display:none; padding-bottom: 20px; border-radius: 10px 10px 10px 10px;">
                         <%@ include file="/WEB-INF/jsp/student/addressDetails.jspf" %>
+                        <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/sponsorDetails.jspf" %>
                     </div>
+                    </fieldset>
                 </div>
 
             </div>
@@ -95,31 +91,37 @@
             $('#educationInfo').hide();
 
             $(divIdToShow).show();
+            $('.span7').show();
+//            event.preventDefault();
         }
 
         $(function() {
-            $(".educationInfo").click( function() {
+            $(".educationInfo").click( function(evt) {
+                evt.preventDefault();
                 hideAllExceptThis("#educationInfo");
                 setActiveNavTab.call(this);
             });
         });
 
         $(function() {
-            $(".addressInfo").click( function() {
+            $(".addressInfo").click( function(evt) {
+                evt.preventDefault();
                 hideAllExceptThis("#addressInfo");
                 setActiveNavTab.call(this);
             });
         });
 
         $(function() {
-            $(".bankInfo").click( function() {
+            $(".bankInfo").click( function(evt) {
+                evt.preventDefault();
                 hideAllExceptThis("#bankInfo");
                 setActiveNavTab.call(this);
             });
         });
 
         $(function() {
-            $(".sponsorInfo").click( function() {
+            $(".sponsorInfo").click( function(evt) {
+                evt.preventDefault();
                 hideAllExceptThis("#sponsorInfo");
                 setActiveNavTab.call(this);
             });

@@ -16,6 +16,9 @@ public class LoginPage extends Page {
     @FindBy(id = "submit")
     private WebElement submitButton;
 
+    @FindBy(className = "lead")
+    private WebElement message;
+
     @FindBy(className = "error")
     private WebElement errorText;
 
@@ -50,5 +53,9 @@ public class LoginPage extends Page {
 
     public WebElement getPassword() {
         return passwordField;
+    }
+
+    public String getWelcomeText() {
+        return message.getText();
     }
 }

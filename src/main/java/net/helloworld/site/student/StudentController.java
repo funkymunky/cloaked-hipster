@@ -56,7 +56,7 @@ public class StudentController {
 
     @RequestMapping(value="/student/add", method = RequestMethod.GET)
     public String addStudentPage(Model model) {
-        model.addAttribute("activeTab", "education");
+//        model.addAttribute("activeTab", "education");
         model.addAttribute("updateMode", false);
         model.addAttribute("student", new Student());
         model.addAttribute("address", new Address());
@@ -68,13 +68,13 @@ public class StudentController {
     public String submitForm(@Valid @ModelAttribute Student student, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("address", new Address());
-            model.addAttribute("activeTab", "education");
+//            model.addAttribute("activeTab", "address");
             return "/student/addOrUpdate";
         }
         studentService.addStudent(student);
         Address address = getAddress(student.getId());
 
-        model.addAttribute("activeTab", "education");
+//        model.addAttribute("activeTab", "address");
         model.addAttribute("message", "Successfully saved student: " + student.toString());
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", false);
@@ -88,7 +88,7 @@ public class StudentController {
         Student student = studentService.getStudent(id);
         Address address = getAddress(id);
 
-        model.addAttribute("activeTab", "education");
+//        model.addAttribute("activeTab", "address");
         model.addAttribute("student", student);
         model.addAttribute("updateMode", true);
         model.addAttribute("address", address);
@@ -103,7 +103,7 @@ public class StudentController {
         Address address = getAddress(student.getId());
         String message = String.format("%s, %s's record was updated successfully.", student.getLastName().toUpperCase(), student.getFirstName());
 
-        model.addAttribute("activeTab", "education");
+//        model.addAttribute("activeTab", "education");
         model.addAttribute("message", message);
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);

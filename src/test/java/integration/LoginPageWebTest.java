@@ -43,4 +43,11 @@ public class LoginPageWebTest {
         String errorText = loginPage.getErrorText();
         assertThat(errorText, is("Login failed"));
     }
+
+    @Test
+    public void testSuccessfulLogin() throws Exception {
+        loginPage.sendLoginFor("marco", "123");
+        String message = loginPage.getWelcomeText();
+        assertThat(message.contains("Welcome back marco"), is(true));
+    }
 }
