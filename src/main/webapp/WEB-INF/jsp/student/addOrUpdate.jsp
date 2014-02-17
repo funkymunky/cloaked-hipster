@@ -20,8 +20,9 @@
             <div class="span10">
                 <legend>Student information</legend>
                 <div class="row-fluid">
+                        <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
                     <fieldset class="main-content">
-                    <div class="span4">
+                        <div class="span4">
                         <h4>Personal details</h4>
                         <spring-form:form method="POST" modelAttribute="student">
                         <%--<fieldset>--%>
@@ -53,13 +54,14 @@
                         <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/sponsorDetails.jspf" %>
                     </div>
+
                     </fieldset>
                 </div>
-
+                <div class="row-fluid">
+                </div>
             </div>
         </div>
 
-            <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
             <c:if test="${not empty showLink}"><div id="link"><a href="/HelloWorld/student">Return to Students page</a></div></c:if>
 
         </div>

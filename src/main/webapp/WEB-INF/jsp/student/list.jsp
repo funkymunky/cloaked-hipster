@@ -32,8 +32,7 @@
                     <tbody>
                     <c:forEach var="student" items ="${students}">
                         <tr>
-                            <td>${student.lastName}, ${student.firstName}</td>
-                            <td><a href="/HelloWorld/student/edit/${student.id}">View</a></td>
+                            <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

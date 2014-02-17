@@ -47,3 +47,11 @@ li.myactive a {
 .error {
     color: red;
 }
+
+.message {
+    font-style: italic;
+}
+
+.green {
+    color: green;
+}
