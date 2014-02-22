@@ -1,6 +1,7 @@
 package net.helloworld.site.student;
 
 import net.helloworld.model.Address;
+import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 import net.helloworld.service.AddressService;
 import net.helloworld.service.StudentService;
@@ -26,6 +27,7 @@ public class AddressController {
 
         int id = Integer.parseInt(studentId);
         Student student = studentService.getStudent(id);
+        Education education = studentService.getEducationForStudent(id);
 
         String message;
 
@@ -42,6 +44,7 @@ public class AddressController {
         model.addAttribute("activeTab", "address");
         model.addAttribute("student", student);
         model.addAttribute("message", message);
+        model.addAttribute("education", education);
         return "/student/addOrUpdate";
     }
 }

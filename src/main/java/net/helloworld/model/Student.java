@@ -1,6 +1,5 @@
 package net.helloworld.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
@@ -30,6 +29,10 @@ public class Student implements Serializable {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @OneToOne
+    @JoinColumn(name = "education_id")
+    private Education education;
 
 
     public String getLastName() {
@@ -70,6 +73,14 @@ public class Student implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Education getEducation() {
+        return education;
+    }
+
+    public void setEducation(Education education) {
+        this.education = education;
     }
 
     @Override

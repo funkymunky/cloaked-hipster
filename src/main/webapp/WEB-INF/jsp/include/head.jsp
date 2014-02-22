@@ -8,4 +8,5 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/games.css"/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/main.css"/>" />
 <script src="http://code.jquery.com/jquery.js"></script>
+<script src="<c:url value='/js/jquery-ui-1.10.3.custom.js'/>"></script>
 <script src="<c:url value='/js/d3.v3.js'/>"></script>

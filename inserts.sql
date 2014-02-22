@@ -72,3 +72,23 @@ CREATE TABLE IF NOT EXISTS `education` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 alter table students drop column otherNames;
+
+alter table students
+add constraint FK_student_education
+foreign key (education_id) references education(id);
+
+
+/** Latest create table for students **/
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `dateOfBirth` date DEFAULT NULL,
+  `address_id` int(6) DEFAULT NULL,
+  `education_id` int(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_student_address` (`address_id`),
+  KEY `FK_student_education` (`education_id`),
+  CONSTRAINT `FK_student_education` FOREIGN KEY (`education_id`) REFERENCES `education` (`id`),
+  CONSTRAINT `FK_student_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1

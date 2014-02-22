@@ -9,6 +9,7 @@
         <mapping class="net.helloworld.model.Address" />
         <mapping class="net.helloworld.model.User" />
         <mapping class="net.helloworld.model.Authority" />
+        <mapping class="net.helloworld.model.Education" />
     </session-factory>
 
 </hibernate-configuration>

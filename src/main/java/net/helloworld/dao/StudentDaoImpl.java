@@ -1,6 +1,7 @@
 package net.helloworld.dao;
 
 import net.helloworld.model.Address;
+import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -63,6 +64,19 @@ public class StudentDaoImpl implements StudentDao {
     public Address getAddressForStudent(int id) {
         Student currentStudent = getStudent(id);
         return currentStudent.getAddress();
+    }
+
+    @Override
+    public Education getEducationForStudent(int id) {
+        Student currentStudent = getStudent(id);
+        return currentStudent.getEducation();
+    }
+
+    @Override
+    public void updateEducation(Student student, Education education) {
+        Student studentToUpdate = getStudent(student.getId());
+        studentToUpdate.setEducation(education);
+        getCurrentSession().update(studentToUpdate);
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

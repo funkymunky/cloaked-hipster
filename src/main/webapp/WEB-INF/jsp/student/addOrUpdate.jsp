@@ -33,7 +33,7 @@
                             <spring-form:input path="lastName" placeholder="Last name"/>
 
                             <label>Date of birth: <spring-form:errors path="dateOfBirth" class="alert-error"></spring-form:errors></label>
-                            <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="datepicker" />
+                            <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="dateOfBirth" class="datepicker" />
 
                             <c:choose>
                             <c:when test="${updateMode != true}">
@@ -130,7 +130,7 @@
         });
 
         $(function() {
-            $("#datepicker").datepicker({
+            $(".datepicker").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 dateFormat: 'dd/mm/yy',

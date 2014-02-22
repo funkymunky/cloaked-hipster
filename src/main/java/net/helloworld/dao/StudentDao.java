@@ -1,6 +1,7 @@
 package net.helloworld.dao;
 
 import net.helloworld.model.Address;
+import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 
 import java.util.List;
@@ -18,4 +19,8 @@ public interface StudentDao {
 
     public Address getAddressForStudent(int id);
     public void updateAddress(Student student, Address address);
+
+    public Education getEducationForStudent(int id);
+    public void updateEducation(Student student, Education education);
+
 }
