@@ -2,9 +2,9 @@ package net.helloworld.site.student;
 
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
-import net.helloworld.model.Student;
 import net.helloworld.service.AddressService;
 import net.helloworld.service.StudentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,29 +22,46 @@ public class AddressController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value="/address/addOrUpdate", method = RequestMethod.POST)
-    public String submitForm(@ModelAttribute Address address, @RequestParam("studentid") String studentId, Model model) {
+    private static final Logger log = Logger.getLogger(AddressController.class);
 
-        int id = Integer.parseInt(studentId);
-        Student student = studentService.getStudent(id);
-        Education education = studentService.getEducationForStudent(id);
+    @RequestMapping(value="/address/addOrUpdate", method = RequestMethod.POST)
+    public String submitForm( @RequestParam("studentid") String studentId,
+                              @ModelAttribute AddressCommand addressCommand,
+                              Model model) {
 
         String message;
+        int id = Integer.parseInt(studentId);
+        Education education = studentService.getEducationForStudent(id);
 
-        if (student.getAddress() != null) {
-            Address oldAddress = studentService.getAddressForStudent(id);
-            addressService.updateAddress(address, oldAddress.getId());
+        Address currentAddress = studentService.getAddressForStudent(id);
+        Address updatedAddress = addressCommand.getAddress();
+
+        if (currentAddress != updatedAddress && currentAddress != null) {
+            addressService.updateAddress(updatedAddress, currentAddress.getId());
             message = "Successfully updated address";
         } else {
-            addressService.addAddress(address);
-            studentService.updateAddressForStudent(id, address);
+            addressService.addAddress(updatedAddress);
+            studentService.updateAddressForStudent(id, updatedAddress);
             message = "Successfully added address ";
         }
 
         model.addAttribute("activeTab", "address");
-        model.addAttribute("student", student);
+        model.addAttribute("student", studentService.getStudent(id));
         model.addAttribute("message", message);
         model.addAttribute("education", education);
+        model.addAttribute("updateMode", true);
         return "/student/addOrUpdate";
     }
+
+ private static class AddressCommand {
+     private Address address;
+
+     public Address getAddress() {
+         return address;
+     }
+
+     public void setAddress(Address address) {
+         this.address = address;
+     }
+ }
 }

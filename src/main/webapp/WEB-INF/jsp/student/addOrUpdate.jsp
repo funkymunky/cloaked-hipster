@@ -80,6 +80,10 @@
             setActiveNavTab.call($(".addressInfo"));
         </c:if>
 
+        function clearMessages() {
+            $('.message').text("");
+        }
+
         function setActiveNavTab() {
             var selectedItem = $('li.myactive');
             selectedItem.removeClass();
@@ -102,6 +106,7 @@
                 evt.preventDefault();
                 hideAllExceptThis("#educationInfo");
                 setActiveNavTab.call(this);
+                clearMessages();
             });
         });
 
@@ -110,6 +115,7 @@
                 evt.preventDefault();
                 hideAllExceptThis("#addressInfo");
                 setActiveNavTab.call(this);
+                clearMessages();
             });
         });
 

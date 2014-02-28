@@ -66,6 +66,7 @@ public class EducationController {
             model.addAttribute("student", student);
             model.addAttribute("address", address);
             model.addAttribute("message", message);
+            model.addAttribute("updateMode", true);
         }
         return "/student/addOrUpdate";
     }
