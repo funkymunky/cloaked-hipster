@@ -1,6 +1,6 @@
 package net.helloworld.site.student;
 
-import net.helloworld.model.Address;
+import net.helloworld.InstitutionType;
 import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 import net.helloworld.service.EducationService;
@@ -40,34 +40,50 @@ public class EducationController {
     }
 
     @RequestMapping(value="/education/addOrUpdate", method = RequestMethod.POST)
-    public String submitForm(@ModelAttribute Education education, @RequestParam(value="studentid") String studentId, Model model, BindingResult bindingResult) {
+    public String submitForm(@ModelAttribute EducationCommand education,
+                             @RequestParam(value="studentid") String studentId,
+                             BindingResult bindingResult,
+                             Model model) {
 
         if (bindingResult.hasErrors()) {
             log.warn(bindingResult.getAllErrors().toString());
 
         }  else {
+            String message;
             int id = Integer.parseInt(studentId);
             Student student = studentService.getStudent(id);
-            Address address = studentService.getAddressForStudent(id);
 
-            String message;
+            Education currentEducation = student.getEducation();
+            Education modifiedEducation = education.getEducation();
 
-            if (student.getEducation() != null) {
-                Education oldEducation = studentService.getEducationForStudent(id);
-                educationService.updateEducation(education, oldEducation.getId());
+            if (currentEducation != modifiedEducation && currentEducation != null) {
+                educationService.updateEducation(modifiedEducation, currentEducation.getId());
                 message = "Successfully updated education details";
             } else {
-                educationService.addEducation(education);
-                studentService.updateEducationForStudent(id, education);
+                educationService.addEducation(modifiedEducation);
+                studentService.updateEducationForStudent(id, modifiedEducation);
                 message = "Successfully added education details ";
             }
 
             model.addAttribute("activeTab", "education");
-            model.addAttribute("student", student);
-            model.addAttribute("address", address);
+            model.addAttribute("student", studentService.getStudent(id));
+            model.addAttribute("institutionTypeValues", InstitutionType.values());
             model.addAttribute("message", message);
             model.addAttribute("updateMode", true);
         }
         return "/student/addOrUpdate";
+    }
+
+    public static final class EducationCommand {
+        Education education;
+
+        public Education getEducation() {
+            return this.education;
+        }
+
+        public void setEducation(Education education) {
+            this.education = education;
+        }
+
     }
 }

@@ -1,10 +1,12 @@
     <div id="educationInfo" class="student-insert">
-    <spring-form:form method="POST" modelAttribute="education" class="form-horizontal" action="/education/addOrUpdate">
+    <spring-form:form method="POST" modelAttribute="student.education" class="form-horizontal" action="/education/addOrUpdate">
         <fieldset>
         <div class="control-group">
             <label class="control-label" for="institutionType">Type:</label>
             <div class="controls">
-                <spring-form:input path="institutionType" id="institutionType" type="text" />
+                <spring-form:select path="institutionType" id="institutionType" type="text">
+                    <spring-form:options items="${institutionTypeValues}"/>
+                </spring-form:select>
             </div>
         </div>
         <div class="control-group">
@@ -64,3 +66,19 @@
         <input type="hidden" value="${student.id}" name="studentid" />
     </spring-form:form>
 </div>
+
+<script type="text/javascript">
+
+    $(function() {
+        $('#institutionType').change(function() {
+            var selectedValue = $('#institutionType').find(':selected').text();
+            if (selectedValue == 'School') {
+                $('#degreeName').val('N/A');
+                $('#degreeName').prop( "disabled", true );
+            } else {
+                $('#degreeName').prop( "disabled", false );
+            }
+        })
+    })
+
+</script>

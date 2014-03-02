@@ -56,7 +56,6 @@ public class StudentController {
     public String addStudentPage(Model model) {
         model.addAttribute("updateMode", false);
         model.addAttribute("student", new Student());
-        model.addAttribute("education", new Education());
         model.addAttribute("enums", InstitutionType.values());
         return "/student/addOrUpdate";
     }
@@ -69,40 +68,33 @@ public class StudentController {
             return "/student/addOrUpdate";
         }
         studentService.addStudent(student);
-        Education education = studentService.getEducationForStudent(student.getId());
 
         model.addAttribute("message", "Successfully saved student: " + student.toString());
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", false);
-        model.addAttribute("education", education);
-        model.addAttribute("enums", InstitutionType.values());
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
     @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.GET)
     public String editStudent(@PathVariable int id, Model model) {
         Student student = studentService.getStudent(id);
-        Education education = studentService.getEducationForStudent(id);
 
         model.addAttribute("student", student);
         model.addAttribute("updateMode", true);
-        model.addAttribute("education", education);
-
-        model.addAttribute("enums", InstitutionType.values());
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
     @RequestMapping(value = "student/edit/{id}", method = RequestMethod.POST)
     public String updateStudent(@ModelAttribute Student student, Model model) {
         studentService.updateStudent(student);
-        Education education = studentService.getEducationForStudent(student.getId());
         String message = String.format("%s, %s's record was updated successfully.", student.getLastName().toUpperCase(), student.getFirstName());
 
         model.addAttribute("message", message);
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);
-        model.addAttribute("education", education);
-        model.addAttribute("enums", InstitutionType.values());
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
         return "/student/addOrUpdate";
     }
 
