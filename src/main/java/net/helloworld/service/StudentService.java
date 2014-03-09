@@ -2,6 +2,7 @@ package net.helloworld.service;
 
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
+import net.helloworld.model.Sponsorship;
 import net.helloworld.model.Student;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface StudentService {
 
     public Education getEducationForStudent(int id);
     public void updateEducationForStudent(int id, Education education);
+
+    public Sponsorship getSponsorshipForStudent(int id);
+    public void updateSponsorshipForStudent(int id, Sponsorship sponsorship);
 }

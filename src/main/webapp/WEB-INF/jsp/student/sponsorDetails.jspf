@@ -1,36 +1,41 @@
 <div id="sponsorInfo" class="student-insert">
-    <form class="form-horizontal">
-        <fieldset>
+    <spring-form:form method="POST" modelAttribute="student.sponsorship" class="form-horizontal" action="/sponsor/addOrUpdate">
+    <fieldset>
             <div class="control-group">
-                <label class="control-label" for="inputSponsorshipType">Sponsorship type:</label>
+                <label class="control-label" for="sponsorshipType">Sponsorship type:</label>
                 <div class="controls">
-                    <input id="inputSponsorshipType" type="text" />
+                    <spring-form:input  path="sponsorshipType" id="sponsorshipType" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputSponsor">Sponsor:</label>
+                <label class="control-label" for="sponsor">Sponsor:</label>
                 <div class="controls">
-                    <input id="inputSponsor" type="text" />
+                    <%--<spring-form:input path="sponsor" id="sponsor" type="text" />--%>
+                    <spring-form:select path="sponsor" id="sponsor" type="text">
+                        <c:forEach items="${listOfSponsors}" var="s">
+                            <spring-form:option value="${s.id}">${s}</spring-form:option>
+                        </c:forEach>
+                    </spring-form:select>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputCurrency">Elected currency:</label>
+                <label class="control-label" for="electedCurrency">Elected currency:</label>
                 <div class="controls">
-                    <input id="inputCurrency" type="text" />
+                    <spring-form:input path="electedCurrency" id="electedCurrency" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputPaymentFrom">Payment from:</label>
+                <label class="control-label" for="paymentFrom">Payment from:</label>
                 <div class="controls">
-                    <input id="inputPaymentFrom" type="text" />
+                    <spring-form:input path="paymentFrom" id="paymentFrom" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputPaymentTill">Payment till:</label>
+                <label class="control-label" for="paymentTill">Payment till:</label>
                 <div class="controls">
-                    <input id="inputPaymentTill" type="text" />
+                    <spring-form:input path="paymentTill" id="paymentTill" type="text" />
                 </div>
             </div>
         </fieldset>
-    </form>
+    </spring-form:form>
 </div>

@@ -1,19 +1,18 @@
 package net.helloworld.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 /**
  * Date: 17/10/13
  * Time: 11:01 PM
  */
 @Entity
-@Table(name = "STUDENTS")
-public class Student implements Serializable {
+@Table(name = "SPONSORS")
+public class Sponsor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,20 +22,16 @@ public class Student implements Serializable {
 
     private String lastName;
     private String firstName;
-    @DateTimeFormat(pattern="dd/MM/yyyy")
-    private Date dateOfBirth;
+    private String phone1;
+    private String phone2;
 
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToOne
-    @JoinColumn(name = "education_id")
-    private Education education;
-
-    @OneToOne
-    @JoinColumn(name = "sponsorship_id")
-    private Sponsorship sponsorship;
+    @OneToMany
+    @JoinColumn(name = "student_id")
+    private List<Student> student;
 
     public String getLastName() {
         return lastName;
@@ -62,36 +57,33 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getPhone1() {
+        return phone1;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
     }
 
     public Address getAddress() {
         return address;
     }
 
+
     public void setAddress(Address address) {
         this.address = address;
     }
 
-    public Education getEducation() {
-        return education;
-    }
-
-    public void setEducation(Education education) {
-        this.education = education;
-    }
-
-    public Sponsorship getSponsorship() {
-        return sponsorship;
-    }
-
-    public void setSponsorship(Sponsorship sponsorship) {
-        this.sponsorship = sponsorship;
+    public List<Student> getStudents() {
+        return student;
     }
 
     @Override

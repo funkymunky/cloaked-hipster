@@ -6,10 +6,3 @@ target/
 
 # ignore iml
 *.iml
-*.idea
-
-# ignore log4j property file
-log4j.properties
-
-#ignore mac-osx files
-*.DS_Store

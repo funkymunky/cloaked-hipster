@@ -3,8 +3,10 @@ package net.helloworld.site.student;
 import net.helloworld.InstitutionType;
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
+import net.helloworld.model.Sponsor;
 import net.helloworld.model.Student;
 import net.helloworld.service.AddressService;
+import net.helloworld.service.SponsorService;
 import net.helloworld.service.StudentService;
 import net.helloworld.validator.StudentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class StudentController {
     private StudentService studentService;
 
     @Autowired
-    private AddressService addressService;
+    private SponsorService sponsorService;
 
     @Autowired
     private StudentValidator studentValidator;
@@ -57,6 +59,7 @@ public class StudentController {
         model.addAttribute("updateMode", false);
         model.addAttribute("student", new Student());
         model.addAttribute("enums", InstitutionType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
 
@@ -73,6 +76,7 @@ public class StudentController {
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", false);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
 
@@ -83,6 +87,7 @@ public class StudentController {
         model.addAttribute("student", student);
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
 
@@ -95,6 +100,7 @@ public class StudentController {
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
 

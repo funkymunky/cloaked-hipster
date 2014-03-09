@@ -92,3 +92,32 @@ CREATE TABLE `students` (
   CONSTRAINT `FK_student_education` FOREIGN KEY (`education_id`) REFERENCES `education` (`id`),
   CONSTRAINT `FK_student_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+
+
+CREATE TABLE IF NOT EXISTS `sponsors` (
+  `id` int(11) not null auto_increment,
+  `firstName` varchar(255) default null,
+  `lastName` varchar(255) default null,
+  `phone1` varchar(255) default null,
+  `phone2` varchar(255) default null,
+  `address_id` int(6) default null,
+  PRIMARY KEY (`id`),
+  KEY `FK_sponsor_address` (`address_id`),
+  CONSTRAINT `FK_sponsor_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+
+
+CREATE TABLE IF NOT EXISTS `sponsorship` (
+  `id` int(11) not null auto_increment,
+  `sponsor_id` int(11) default null,
+  `student_id` int(11) default null,
+  `sponsorshipType` varchar(255) default null,
+  `electedCurrency` varchar(255) default null,
+  `paymentFrom` date default null,
+  `paymentTill` date default null,
+  PRIMARY KEY (`id`),
+  KEY `FK_sponsorship_sponsor` (`sponsor_id`),
+  KEY `FK_sponsorship_student` (`student_id`),
+  CONSTRAINT `FK_sponsorship_sponsor` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`),
+  CONSTRAINT `FK_sponsorship_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1

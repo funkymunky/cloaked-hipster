@@ -2,6 +2,7 @@ package net.helloworld.dao;
 
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
+import net.helloworld.model.Sponsorship;
 import net.helloworld.model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -76,6 +77,19 @@ public class StudentDaoImpl implements StudentDao {
     public void updateEducation(Student student, Education education) {
         Student studentToUpdate = getStudent(student.getId());
         studentToUpdate.setEducation(education);
+        getCurrentSession().update(studentToUpdate);
+    }
+
+    @Override
+    public Sponsorship getSponsorshipForStudent(int id) {
+        Student currentStudent = getStudent(id);
+        return currentStudent.getSponsorship();
+    }
+
+    @Override
+    public void updateSponsorshipForStudent(Student student, Sponsorship sponsorship) {
+        Student studentToUpdate = getStudent(student.getId());
+        studentToUpdate.setSponsorship(sponsorship);
         getCurrentSession().update(studentToUpdate);
     }
 

@@ -10,6 +10,8 @@
         <mapping class="net.helloworld.model.User" />
         <mapping class="net.helloworld.model.Authority" />
         <mapping class="net.helloworld.model.Education" />
+        <mapping class="net.helloworld.model.Sponsor" />
+        <mapping class="net.helloworld.model.Sponsorship" />
     </session-factory>
 
 </hibernate-configuration>
