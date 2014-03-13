@@ -80,6 +80,11 @@
             setActiveNavTab.call($(".addressInfo"));
         </c:if>
 
+        <c:if test="${activeTab == 'sponsor'}">
+            hideAllExceptThis("#sponsorInfo");
+            setActiveNavTab.call($(".sponsorInfo"));
+        </c:if>
+
         function clearMessages() {
             $('.message').text("");
         }

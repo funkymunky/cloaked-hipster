@@ -4,7 +4,6 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Date: 17/10/13
@@ -28,10 +27,6 @@ public class Sponsor implements Serializable {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
-    @OneToMany
-    @JoinColumn(name = "student_id")
-    private List<Student> student;
 
     public String getLastName() {
         return lastName;
@@ -77,13 +72,8 @@ public class Sponsor implements Serializable {
         return address;
     }
 
-
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public List<Student> getStudents() {
-        return student;
     }
 
     @Override

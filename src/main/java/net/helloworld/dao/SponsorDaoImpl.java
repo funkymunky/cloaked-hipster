@@ -2,7 +2,6 @@ package net.helloworld.dao;
 
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
-import net.helloworld.model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,12 +58,6 @@ public class SponsorDaoImpl implements SponsorDao {
     @SuppressWarnings("unchecked")
     public List<Sponsor> getAllSponsors() {
         return sessionFactory.getCurrentSession().createQuery("from Sponsor order by lastname").list();
-    }
-
-    @Override
-    public List<Student> getAllSponsorships(int id) {
-        Sponsor sponsor = getSponsor(id);
-        return sponsor.getStudents();
     }
 
     @Override

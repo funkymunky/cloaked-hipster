@@ -1,10 +1,10 @@
-package net.helloworld.dao;
+package net.helloworld.service;
 
 import net.helloworld.model.Sponsorship;
 
-public interface SponsorshipDao {
+public interface SponsorshipService {
 
-    public void addSponsorship(Sponsorship sponsorship);
+    public void addSponsorhsip(Sponsorship sponsorship);
     public void updateSponsorship(Sponsorship sponsorship);
     public void updateSponsorship(Sponsorship sponsorship, int id);
 

@@ -2,7 +2,6 @@ package net.helloworld.service;
 
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
-import net.helloworld.model.Student;
 
 import java.util.List;
 
@@ -17,7 +16,6 @@ public interface SponsorService {
     public Sponsor getSponsor(int id);
     public List<Sponsor> getAllSponsors();
 
-    public List<Student> getAllSponsorships(int id);
     public Address getAddressForSponsor(int id);
     public void updateAddressForSponsor(int id, Address address);
 

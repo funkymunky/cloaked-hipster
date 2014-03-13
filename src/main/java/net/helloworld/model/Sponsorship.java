@@ -1,6 +1,8 @@
 package net.helloworld.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,18 +17,16 @@ public class Sponsorship implements Serializable {
     @GeneratedValue
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "sponsor_id")
-    private Sponsor sponsor;
-
-    @OneToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-
     private String sponsorshipType;
     private String electedCurrency;
+
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date paymentFrom;
+
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date paymentTill;
+    private Long sponsor_id;
+    private Long student_id;
 
     public Integer getId() {
         return id;
@@ -34,22 +34,6 @@ public class Sponsorship implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Sponsor getSponsor() {
-        return sponsor;
-    }
-
-    public void setSponsor(Sponsor sponsor) {
-        this.sponsor = sponsor;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
     }
 
     public String getSponsorshipType() {
@@ -82,5 +66,21 @@ public class Sponsorship implements Serializable {
 
     public void setPaymentTill(Date paymentTill) {
         this.paymentTill = paymentTill;
+    }
+
+    public Long getSponsor() {
+        return sponsor_id;
+    }
+
+    public void setSponsor(Long sponsor) {
+        this.sponsor_id = sponsor;
+    }
+
+    public Long getStudent() {
+        return student_id;
+    }
+
+    public void setStudent(Long student) {
+        this.student_id = student;
     }
 }

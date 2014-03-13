@@ -3,7 +3,6 @@ package net.helloworld.service;
 import net.helloworld.dao.SponsorDao;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
-import net.helloworld.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,12 +38,6 @@ public class SponsorServiceImpl implements SponsorService {
     @Override
     public List<Sponsor> getAllSponsors() {
         return sponsorDao.getAllSponsors();
-    }
-
-    @Override
-    public List<Student> getAllSponsorships(int id) {
-        Sponsor sponsor = getSponsor(id);
-        return sponsor.getStudents();
     }
 
     @Override

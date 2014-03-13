@@ -1,6 +1,8 @@
 package net.helloworld.site.sponsorship;
 
 import net.helloworld.model.Sponsorship;
+import net.helloworld.service.SponsorService;
+import net.helloworld.service.SponsorshipService;
 import net.helloworld.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,9 +20,15 @@ public class SponsorshipController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private SponsorshipService sponsorshipService;
+
+    @Autowired
+    private SponsorService sponsorService;
+
     @InitBinder("sponsorship")
     private void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd//MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
@@ -31,15 +39,21 @@ public class SponsorshipController {
 
         String message = null;
         int id = Integer.parseInt(studentId);
+        sponsorshipCommand.setStudentOnSponsorship(studentId);
         Sponsorship currentSponsorship = studentService.getSponsorshipForStudent(id);
         Sponsorship updatedSponsorship = sponsorshipCommand.getSponsorship();
 
-        if (currentSponsorship != updatedSponsorship) {
-            studentService.updateSponsorshipForStudent(id, updatedSponsorship);
+        if (currentSponsorship != updatedSponsorship && currentSponsorship != null) {
+            sponsorshipService.updateSponsorship(updatedSponsorship, currentSponsorship.getId());
             message = "Successfully updated sponsorship details";
+        } else {
+            sponsorshipService.addSponsorhsip(updatedSponsorship);
+            studentService.updateSponsorshipForStudent(id, updatedSponsorship);
+            message = "Successfully added sponsorship details";
         }
 
         model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("sponsorship", studentService.getSponsorshipForStudent(id));
         model.addAttribute("activeTab", "sponsor");
         model.addAttribute("message", message);
@@ -57,6 +71,10 @@ public class SponsorshipController {
 
         public void setSponsorship(Sponsorship sponsorship) {
             this.sponsorship = sponsorship;
+        }
+
+        public void setStudentOnSponsorship(String id) {
+            this.sponsorship.setStudent(Long.valueOf(id));
         }
     }
 }

@@ -4,7 +4,12 @@ import net.helloworld.model.Sponsorship;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+
+@Repository
+@Transactional
 public class SponsorshipDaoImpl implements SponsorshipDao {
 
     @Autowired
@@ -21,7 +26,12 @@ public class SponsorshipDaoImpl implements SponsorshipDao {
 
     @Override
     public void updateSponsorship(Sponsorship sponsorship) {
-        Sponsorship sponsorshipToUpdate = getSponsorship(sponsorship.getId());
+        updateSponsorship(sponsorship, sponsorship.getId());
+    }
+
+    @Override
+    public void updateSponsorship(Sponsorship sponsorship, int id) {
+        Sponsorship sponsorshipToUpdate = getSponsorship(id);
         sponsorshipToUpdate.setSponsor(sponsorship.getSponsor());
         sponsorshipToUpdate.setStudent(sponsorship.getStudent());
         sponsorshipToUpdate.setSponsorshipType(sponsorship.getSponsorshipType());
