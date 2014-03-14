@@ -1,36 +1,42 @@
 <div id="bankInfo" class="student-insert">
-    <form class="form-horizontal">
+    <spring-form:form method="POST" modelAttribute="student.bank" class="form-horizontal" action="/bank/addOrUpdate">
         <fieldset>
             <div class="control-group">
-                <label class="control-label" for="inputName">Account name:</label>
+                <label class="control-label" for="accountName">Account name:</label>
                 <div class="controls">
-                    <input id="inputName" type="text" />
+                    <spring-form:input path="accountName" id="accountName" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputNumber">Account number:</label>
+                <label class="control-label" for="accountNumber">Account number:</label>
                 <div class="controls">
-                    <input id="inputNumber" type="text" />
+                    <spring-form:input path="accountNumber" id="accountNumber" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputBank">Bank</label>
+                <label class="control-label" for="bank">Bank</label>
                 <div class="controls">
-                    <input id="inputBank" type="text" />
+                    <spring-form:input path="bank" id="bank" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputBranch">Branch</label>
+                <label class="control-label" for="branch">Branch</label>
                 <div class="controls">
-                    <input id="inputBranch" type="text" />
+                    <spring-form:input path="branch" id="branch" type="text" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputStandingOrder">Standing order</label>
+                <label class="control-label" for="standingOrder">Standing order</label>
                 <div class="controls">
-                    <input id="inputStandingOrder" type="text" />
+                    <spring-form:input path="standingOrder" id="standingOrder" type="text" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Update bank details</button>
                 </div>
             </div>
         </fieldset>
-    </form>
+        <input type="hidden" value="${student.id}" name="studentid"/>
+    </spring-form:form>
 </div>

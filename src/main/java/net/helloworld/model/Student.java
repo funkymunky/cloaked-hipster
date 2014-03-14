@@ -38,6 +38,10 @@ public class Student implements Serializable {
     @JoinColumn(name = "sponsorship_id")
     private Sponsorship sponsorship;
 
+    @OneToOne
+    @JoinColumn(name = "bank_id")
+    private Bank bank;
+
     public String getLastName() {
         return lastName;
     }
@@ -94,8 +98,17 @@ public class Student implements Serializable {
         this.sponsorship = sponsorship;
     }
 
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
+    }
+
     @Override
     public String toString() {
         return StringUtils.capitalize(lastName) + ", " + firstName;
     }
+
 }

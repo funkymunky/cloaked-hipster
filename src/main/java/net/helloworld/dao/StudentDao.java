@@ -1,9 +1,6 @@
 package net.helloworld.dao;
 
-import net.helloworld.model.Address;
-import net.helloworld.model.Education;
-import net.helloworld.model.Sponsorship;
-import net.helloworld.model.Student;
+import net.helloworld.model.*;
 
 import java.util.List;
 
@@ -27,4 +24,6 @@ public interface StudentDao {
     public Sponsorship getSponsorshipForStudent(int id);
     public void updateSponsorshipForStudent(Student student, Sponsorship sponsorship);
 
+    Bank getBankDetailsForStudent(int id);
+    void updateBankDetailsForStudent(Student student, Bank bank);
 }

@@ -1,10 +1,7 @@
 package net.helloworld.service;
 
 import net.helloworld.dao.StudentDao;
-import net.helloworld.model.Address;
-import net.helloworld.model.Education;
-import net.helloworld.model.Sponsorship;
-import net.helloworld.model.Student;
+import net.helloworld.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,5 +73,17 @@ public class StudentServiceImpl implements StudentService {
     public void updateSponsorshipForStudent(int id, Sponsorship sponsorship) {
         Student student = getStudent(id);
         studentDao.updateSponsorshipForStudent(student, sponsorship);
+    }
+
+    @Override
+    public Bank getBankForStuent(int id) {
+        Bank bank = studentDao.getBankDetailsForStudent(id);
+        return bank == null ? null : bank;
+    }
+
+    @Override
+    public void updateBankForStudent(int id, Bank bank) {
+        Student student = getStudent(id);
+        studentDao.updateBankDetailsForStudent(student, bank);
     }
 }

@@ -1,9 +1,6 @@
 package net.helloworld.dao;
 
-import net.helloworld.model.Address;
-import net.helloworld.model.Education;
-import net.helloworld.model.Sponsorship;
-import net.helloworld.model.Student;
+import net.helloworld.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +87,19 @@ public class StudentDaoImpl implements StudentDao {
     public void updateSponsorshipForStudent(Student student, Sponsorship sponsorship) {
         Student studentToUpdate = getStudent(student.getId());
         studentToUpdate.setSponsorship(sponsorship);
+        getCurrentSession().update(studentToUpdate);
+    }
+
+    @Override
+    public Bank getBankDetailsForStudent(int id) {
+        Student currentStudent = getStudent(id);
+        return currentStudent.getBank();
+    }
+
+    @Override
+    public void updateBankDetailsForStudent(Student student, Bank bank) {
+        Student studentToUpdate = getStudent(student.getId());
+        studentToUpdate.setBank(bank);
         getCurrentSession().update(studentToUpdate);
     }
 

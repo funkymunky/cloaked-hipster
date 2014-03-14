@@ -121,3 +121,13 @@ CREATE TABLE IF NOT EXISTS `sponsorship` (
   CONSTRAINT `FK_sponsorship_sponsor` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`),
   CONSTRAINT `FK_sponsorship_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+
+CREATE TABLE IF NOT EXISTS `bank` (
+  `id` int(11) not null auto_increment,
+  `accountName` varchar(255) default null,
+  `accountNumber` varchar(255) default null,
+  `bank` varchar(255) default null,
+  `branch` varchar(255) default null,
+  `standingOrder` varchar(255) default null,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1

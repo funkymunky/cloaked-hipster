@@ -80,6 +80,11 @@
             setActiveNavTab.call($(".addressInfo"));
         </c:if>
 
+        <c:if test="${activeTab == 'bank'}">
+            hideAllExceptThis("#bankInfo");
+            setActiveNavTab.call($(".bankInfo"));
+        </c:if>
+
         <c:if test="${activeTab == 'sponsor'}">
             hideAllExceptThis("#sponsorInfo");
             setActiveNavTab.call($(".sponsorInfo"));

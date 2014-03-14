@@ -12,6 +12,7 @@
         <mapping class="net.helloworld.model.Education" />
         <mapping class="net.helloworld.model.Sponsor" />
         <mapping class="net.helloworld.model.Sponsorship" />
+        <mapping class="net.helloworld.model.Bank" />
     </session-factory>
 
 </hibernate-configuration>

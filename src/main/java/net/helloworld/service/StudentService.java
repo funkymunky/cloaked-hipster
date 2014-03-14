@@ -1,9 +1,6 @@
 package net.helloworld.service;
 
-import net.helloworld.model.Address;
-import net.helloworld.model.Education;
-import net.helloworld.model.Sponsorship;
-import net.helloworld.model.Student;
+import net.helloworld.model.*;
 
 import java.util.List;
 
@@ -26,4 +23,7 @@ public interface StudentService {
 
     public Sponsorship getSponsorshipForStudent(int id);
     public void updateSponsorshipForStudent(int id, Sponsorship sponsorship);
+
+    public Bank getBankForStuent(int id);
+    public void updateBankForStudent(int id, Bank bank);
 }
