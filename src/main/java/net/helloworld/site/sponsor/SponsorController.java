@@ -1,5 +1,6 @@
 package net.helloworld.site.sponsor;
 
+import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Sponsor;
 import net.helloworld.service.SponsorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class SponsorController {
 
     @RequestMapping(value = "/sponsor/list", method = RequestMethod.GET)
     public String listAllSponsors(Model model) {
-        List<Sponsor> allSponsors = sponsorService.getAllSponsors();
+        List<SponsorDTO> allSponsors = sponsorService.getAllSponsors();
         model.addAttribute("sponsors", allSponsors);
         return "/sponsor/list";
     }

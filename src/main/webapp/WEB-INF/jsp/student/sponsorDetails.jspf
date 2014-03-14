@@ -1,5 +1,5 @@
 <div id="sponsorInfo" class="student-insert">
-    <spring-form:form method="POST" modelAttribute="student.sponsorship" class="form-horizontal" action="/sponsorship/addOrUpdate">
+    <spring-form:form method="POST" modelAttribute="student.sponsorship" class="form-horizontal" action="/studentsponsorship/addOrUpdate">
     <fieldset>
             <div class="control-group">
                 <label class="control-label" for="sponsorshipType">Sponsorship type:</label>
@@ -11,7 +11,7 @@
                 <label class="control-label" for="sponsor">Sponsor:</label>
                 <div class="controls">
                     <spring-form:select path="sponsor" id="sponsor" type="text">
-                        <spring-form:options items="${listOfSponsors}" itemValue="id" itemLabel="firstName"/>
+                        <spring-form:options items="${listOfSponsors}" itemValue="sponsorId" itemLabel="name"/>
                     </spring-form:select>
                 </div>
             </div>

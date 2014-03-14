@@ -38,7 +38,7 @@
                         <c:otherwise>
                             <c:forEach var="sponsor" items ="${sponsors}">
                                 <tr>
-                                    <td><a href="/HelloWorld/sponsor/edit/${sponsor.id}">${sponsor.lastName}, ${sponsor.firstName}</a></td>
+                                    <td><a href="/HelloWorld/sponsor/edit/${sponsor.sponsorId}">${sponsor.lastName}, ${sponsor.firstName}</a></td>
                                 </tr>
                             </c:forEach>
                         </c:otherwise>

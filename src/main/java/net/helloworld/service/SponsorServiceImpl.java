@@ -1,12 +1,16 @@
 package net.helloworld.service;
 
 import net.helloworld.dao.SponsorDao;
+import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -36,8 +40,22 @@ public class SponsorServiceImpl implements SponsorService {
     }
 
     @Override
-    public List<Sponsor> getAllSponsors() {
-        return sponsorDao.getAllSponsors();
+    public List<SponsorDTO> getAllSponsors() {
+        List<SponsorDTO> allSponsorsDTO = new ArrayList<SponsorDTO>();
+        List<Sponsor> allSponsors = sponsorDao.getAllSponsors();
+        for (Sponsor sponsor : allSponsors) {
+            SponsorDTO sponsorDTO = new SponsorDTO(sponsor.getId(), sponsor.getFirstName(), sponsor.getLastName());
+            allSponsorsDTO.add(sponsorDTO);
+        }
+
+        Collections.sort(allSponsorsDTO, new Comparator<SponsorDTO>() {
+            @Override
+            public int compare(SponsorDTO sponsor1, SponsorDTO sponsor2) {
+                return sponsor1.getLastName().compareTo(sponsor2.getLastName());
+            }
+        });
+
+        return allSponsorsDTO;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.helloworld.service;
 
+import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
 
@@ -14,7 +15,7 @@ public interface SponsorService {
     public void addSponsor(Sponsor sponsor);
     public void updateSponsor(Sponsor sponsor);
     public Sponsor getSponsor(int id);
-    public List<Sponsor> getAllSponsors();
+    public List<SponsorDTO> getAllSponsors();
 
     public Address getAddressForSponsor(int id);
     public void updateAddressForSponsor(int id, Address address);
