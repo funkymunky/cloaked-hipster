@@ -4,13 +4,21 @@
             <div class="control-group">
                 <label class="control-label" for="sponsorshipType">Sponsorship type:</label>
                 <div class="controls">
-                    <spring-form:input  path="sponsorshipType" id="sponsorshipType" type="text" />
+                    <spring-form:select  path="sponsorshipType" id="sponsorshipType" type="text">
+                        <option value="">-- Select an option --</option>
+                        <c:forEach items="${sponsorshipTypeValues}" var="option">
+                            <option value="${option}">
+                                <c:out value="${option.sponsorshipTypeValue}"/>
+                            </option>
+                        </c:forEach>
+                    </spring-form:select>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="sponsor">Sponsor:</label>
                 <div class="controls">
                     <spring-form:select path="sponsor" id="sponsor" type="text">
+                        <spring-form:option value="">-- Select a sponsor --</spring-form:option>
                         <spring-form:options items="${listOfSponsors}" itemValue="sponsorId" itemLabel="name"/>
                     </spring-form:select>
                 </div>

@@ -1,11 +1,10 @@
 package net.helloworld.site.student;
 
 import net.helloworld.InstitutionType;
+import net.helloworld.SponsorshipType;
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
-import net.helloworld.model.Sponsor;
 import net.helloworld.model.Student;
-import net.helloworld.service.AddressService;
 import net.helloworld.service.SponsorService;
 import net.helloworld.service.StudentService;
 import net.helloworld.validator.StudentValidator;
@@ -76,6 +75,7 @@ public class StudentController {
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", false);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
@@ -87,6 +87,7 @@ public class StudentController {
         model.addAttribute("student", student);
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
@@ -100,6 +101,7 @@ public class StudentController {
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
