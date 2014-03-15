@@ -1,9 +1,9 @@
 package net.helloworld;
 
 public enum SponsorshipType {
-    FormerlySponsored("Formerly sponsored"),
     AwaitingSponsorship("Awaiting sponsorship"),
-    CurrentlySponsored("Currently sponsored");
+    CurrentlySponsored("Currently sponsored"),
+    FormerlySponsored("Formerly sponsored");
 
     private String description;
 

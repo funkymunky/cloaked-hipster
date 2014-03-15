@@ -57,7 +57,8 @@ public class StudentController {
     public String addStudentPage(Model model) {
         model.addAttribute("updateMode", false);
         model.addAttribute("student", new Student());
-        model.addAttribute("enums", InstitutionType.values());
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
