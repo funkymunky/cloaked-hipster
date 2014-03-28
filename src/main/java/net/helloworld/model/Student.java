@@ -42,6 +42,8 @@ public class Student implements Serializable {
     @JoinColumn(name = "bank_id")
     private Bank bank;
 
+    private String profilePic;
+
     public String getLastName() {
         return lastName;
     }
@@ -104,6 +106,14 @@ public class Student implements Serializable {
 
     public void setBank(Bank bank) {
         this.bank = bank;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
     @Override

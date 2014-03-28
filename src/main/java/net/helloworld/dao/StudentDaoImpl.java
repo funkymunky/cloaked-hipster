@@ -49,6 +49,9 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Student getStudent(int id) {
         Student student = (Student) getCurrentSession().get(Student.class, id);
+        if (student.getProfilePic() == null) {
+            student.setProfilePic("default_profile_icon.gif");
+        }
         return student;
     }
 
@@ -100,6 +103,19 @@ public class StudentDaoImpl implements StudentDao {
     public void updateBankDetailsForStudent(Student student, Bank bank) {
         Student studentToUpdate = getStudent(student.getId());
         studentToUpdate.setBank(bank);
+        getCurrentSession().update(studentToUpdate);
+    }
+
+    @Override
+    public String getProfilePicForStudent(int id) {
+        Student currentStudent = getStudent(id);
+        return currentStudent.getProfilePic();
+    }
+
+    @Override
+    public void updateProfilePicForStudent(Student student, String profilePic) {
+        Student studentToUpdate = getStudent(student.getId());
+        studentToUpdate.setProfilePic(profilePic);
         getCurrentSession().update(studentToUpdate);
     }
 

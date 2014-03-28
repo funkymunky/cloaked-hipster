@@ -10,20 +10,23 @@ import java.util.List;
  */
 public interface StudentService {
 
-    public void addStudent(Student student);
-    public void updateStudent(Student student);
-    public Student getStudent(int id);
-    public List<Student> getAllStudents();
+    void addStudent(Student student);
+    void updateStudent(Student student);
+    Student getStudent(int id);
+    List<Student> getAllStudents();
 
-    public Address getAddressForStudent(int id);
-    public void updateAddressForStudent(int id, Address address);
+    Address getAddressForStudent(int id);
+    void updateAddressForStudent(int id, Address address);
 
-    public Education getEducationForStudent(int id);
-    public void updateEducationForStudent(int id, Education education);
+    Education getEducationForStudent(int id);
+    void updateEducationForStudent(int id, Education education);
 
-    public Sponsorship getSponsorshipForStudent(int id);
-    public void updateSponsorshipForStudent(int id, Sponsorship sponsorship);
+    Sponsorship getSponsorshipForStudent(int id);
+    void updateSponsorshipForStudent(int id, Sponsorship sponsorship);
 
-    public Bank getBankForStuent(int id);
-    public void updateBankForStudent(int id, Bank bank);
+    Bank getBankForStudent(int id);
+    void updateBankForStudent(int id, Bank bank);
+
+    String getProfilePicForStudent(int id);
+    void updateProfilePicForStudent(int id, String profilePic);
 }

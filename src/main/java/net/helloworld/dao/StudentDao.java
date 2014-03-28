@@ -10,20 +10,23 @@ import java.util.List;
  */
 public interface StudentDao {
 
-    public void addStudent(Student student);
-    public void updateStudent(Student student);
-    public Student getStudent(int id);
-    public List<Student> getAllStudents();
+    void addStudent(Student student);
+    void updateStudent(Student student);
+    Student getStudent(int id);
+    List<Student> getAllStudents();
 
-    public Address getAddressForStudent(int id);
-    public void updateAddress(Student student, Address address);
+    Address getAddressForStudent(int id);
+    void updateAddress(Student student, Address address);
 
-    public Education getEducationForStudent(int id);
-    public void updateEducation(Student student, Education education);
+    Education getEducationForStudent(int id);
+    void updateEducation(Student student, Education education);
 
-    public Sponsorship getSponsorshipForStudent(int id);
-    public void updateSponsorshipForStudent(Student student, Sponsorship sponsorship);
+    Sponsorship getSponsorshipForStudent(int id);
+    void updateSponsorshipForStudent(Student student, Sponsorship sponsorship);
 
     Bank getBankDetailsForStudent(int id);
     void updateBankDetailsForStudent(Student student, Bank bank);
+
+    String getProfilePicForStudent(int id);
+    void updateProfilePicForStudent(Student student, String profilePic);
 }

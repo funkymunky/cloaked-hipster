@@ -49,6 +49,7 @@
                     </div>
 
                     <div class="span7" style="background-color: #EBE0D6; display:none; padding-bottom: 20px; border-radius: 10px 10px 10px 10px;">
+                        <%@ include file="/WEB-INF/jsp/student/profile.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/addressDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
@@ -69,6 +70,9 @@
 
 
     <script type="text/javascript">
+
+        $("#profileInfo").show();
+        $('.span7').show();
 
         <c:if test="${activeTab == 'education'}">
             hideAllExceptThis("#educationInfo");
@@ -101,6 +105,7 @@
         }
 
         function hideAllExceptThis(divIdToShow) {
+            $('#profileInfo').hide();
             $('#bankInfo').hide();
             $('#sponsorInfo').hide();
             $('#addressInfo').hide();

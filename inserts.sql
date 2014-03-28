@@ -131,3 +131,5 @@ CREATE TABLE IF NOT EXISTS `bank` (
   `standingOrder` varchar(255) default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+
+ALTER TABLE STUDENTS add column `profilePic` varchar(255);

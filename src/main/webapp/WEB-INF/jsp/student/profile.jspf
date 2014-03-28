@@ -1,0 +1,24 @@
+<div id="profileInfo" class="student-insert">
+    <input type="hidden" value="${student.id}" name="studentid" />
+    <spring-form:form class="form-horizontal" method="post" enctype="multipart/form-data" action="/uploadfile">
+        <fieldset>
+            <div class="controls">
+                <c:if test="${not empty student.profilePic}" var="profilePic"/>
+                <img src="<c:url value="/images/${student.profilePic}"/>"/>
+                </br>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="image">File</label>
+                <div class="controls">
+                    <input id="image" type="file" value="Select file"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Update info</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </spring-form:form>
+</div>

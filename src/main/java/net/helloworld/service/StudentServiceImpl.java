@@ -76,7 +76,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Bank getBankForStuent(int id) {
+    public Bank getBankForStudent(int id) {
         Bank bank = studentDao.getBankDetailsForStudent(id);
         return bank == null ? null : bank;
     }
@@ -85,5 +85,17 @@ public class StudentServiceImpl implements StudentService {
     public void updateBankForStudent(int id, Bank bank) {
         Student student = getStudent(id);
         studentDao.updateBankDetailsForStudent(student, bank);
+    }
+
+    @Override
+    public String getProfilePicForStudent(int id) {
+        String profilePic = studentDao.getProfilePicForStudent(id);
+        return profilePic == null ? "default_profile_icon.gif" : profilePic;
+    }
+
+    @Override
+    public void updateProfilePicForStudent(int id, String profilePic) {
+        Student student = getStudent(id);
+        studentDao.updateProfilePicForStudent(student, profilePic);
     }
 }
