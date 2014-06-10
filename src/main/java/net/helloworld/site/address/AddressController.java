@@ -1,5 +1,6 @@
 package net.helloworld.site.address;
 
+import net.helloworld.SponsorshipType;
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
 import net.helloworld.service.AddressService;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.validation.constraints.Null;
 
 @Controller
 public class AddressController {
@@ -56,6 +55,8 @@ public class AddressController {
 
             model.addAttribute("student", studentService.getStudent(id));
             model.addAttribute("education", education);
+            model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+            model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
             urlParent = "student";
         } else if (sponsorId != null) {
             id = Integer.parseInt(sponsorId);

@@ -53,7 +53,7 @@
                         <%@ include file="/WEB-INF/jsp/student/addressDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
-                        <%@ include file="/WEB-INF/jsp/student/sponsorDetails.jspf" %>
+                        <%@ include file="/WEB-INF/jsp/student/sponsorshipDetails.jspf" %>
                     </div>
 
                     </fieldset>

@@ -1,5 +1,6 @@
 package net.helloworld.site.sponsorship;
 
+import net.helloworld.SponsorshipType;
 import net.helloworld.model.Sponsorship;
 import net.helloworld.service.SponsorService;
 import net.helloworld.service.SponsorshipService;
@@ -32,7 +33,7 @@ public class SponsorshipController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-    @RequestMapping(value="/studentsponsorship/addOrUpdate", method= RequestMethod.POST)
+    @RequestMapping(value="/sponsorship/addOrUpdate", method= RequestMethod.POST)
     public String submitForm( @RequestParam(value = "studentid") String studentId,
                               @ModelAttribute SponsorshipCommand sponsorshipCommand,
                               Model model) {
@@ -54,6 +55,7 @@ public class SponsorshipController {
 
         model.addAttribute("student", studentService.getStudent(id));
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("sponsorship", studentService.getSponsorshipForStudent(id));
         model.addAttribute("activeTab", "sponsor");
         model.addAttribute("message", message);

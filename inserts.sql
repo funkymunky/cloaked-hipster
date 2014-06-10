@@ -133,3 +133,5 @@ CREATE TABLE IF NOT EXISTS `bank` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
 
 ALTER TABLE STUDENTS add column `profilePic` varchar(255);
+
+ALTER TABLE STUDENTS add column `sponsorshipType` varchar(255);

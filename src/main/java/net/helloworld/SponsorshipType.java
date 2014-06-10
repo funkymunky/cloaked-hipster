@@ -14,4 +14,8 @@ public enum SponsorshipType {
     public String getSponsorshipTypeValue() {
         return this.description;
     }
+
+    public String getSponsorshipTypeName() {
+        return this.name();
+    }
 }

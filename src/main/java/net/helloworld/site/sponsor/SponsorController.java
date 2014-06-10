@@ -65,7 +65,7 @@ public class SponsorController {
         return "/sponsor/addOrUpdate";
     }
 
-    @RequestMapping(value = "sponsor/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/sponsor/edit/{id}", method = RequestMethod.POST)
     public String updateSponsor(@ModelAttribute Sponsor sponsor, Model model) {
         sponsorService.updateSponsor(sponsor);
         String message = String.format("%s, %s's record was updated successfully.", sponsor.getLastName().toUpperCase(), sponsor.getFirstName());
