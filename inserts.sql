@@ -49,13 +49,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   PRIMARY KEY (`id`)  
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-ALTER TABLE students add column address_id int(6);
 
-alter table students 
-add constraint FK_student_address 
-foreign key (address_id) references address(id);
-
-alter table students drop foreign key FK_student_address;
 
 CREATE TABLE IF NOT EXISTS `education` (
     `id` int(50) not null auto_increment,
@@ -93,6 +87,38 @@ CREATE TABLE `students` (
   CONSTRAINT `FK_student_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
 
+alter table students
+add constraint FK_student_sponsorship
+foreign key (sponsorship_id) references sponsorship(id);
+
+alter table students
+add constraint FK_student_bank
+foreign key (bank_id) references bank(id);
+
+
+/* latest students create table script */
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `dateOfBirth` date DEFAULT NULL,
+  `address_id` int(6) DEFAULT NULL,
+  `education_id` int(6) DEFAULT NULL,
+  `sponsorship_id` int(11) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `profilePic` varchar(255) DEFAULT NULL,
+  `bank_id` int(11) DEFAULT NULL,
+  `sponsorshipType` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_student_address` (`address_id`),
+  KEY `FK_student_education` (`education_id`),
+  KEY `FK_student_sponsorship` (`sponsorship_id`),
+  KEY `FK_student_bank` (`bank_id`),
+  CONSTRAINT `FK_student_bank` FOREIGN KEY (`bank_id`) REFERENCES `bank` (`id`),
+  CONSTRAINT `FK_student_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
+  CONSTRAINT `FK_student_education` FOREIGN KEY (`education_id`) REFERENCES `education` (`id`),
+  CONSTRAINT `FK_student_sponsorship` FOREIGN KEY (`sponsorship_id`) REFERENCES `sponsorship` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
 
 CREATE TABLE IF NOT EXISTS `sponsors` (
   `id` int(11) not null auto_increment,
@@ -131,7 +157,3 @@ CREATE TABLE IF NOT EXISTS `bank` (
   `standingOrder` varchar(255) default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
-
-ALTER TABLE STUDENTS add column `profilePic` varchar(255);
-
-ALTER TABLE STUDENTS add column `sponsorshipType` varchar(255);
