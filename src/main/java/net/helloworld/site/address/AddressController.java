@@ -1,5 +1,6 @@
 package net.helloworld.site.address;
 
+import net.helloworld.InstitutionType;
 import net.helloworld.SponsorshipType;
 import net.helloworld.model.Address;
 import net.helloworld.model.Education;
@@ -57,6 +58,7 @@ public class AddressController {
             model.addAttribute("education", education);
             model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
             model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+            model.addAttribute("institutionTypeValues", InstitutionType.values());
             urlParent = "student";
         } else if (sponsorId != null) {
             id = Integer.parseInt(sponsorId);

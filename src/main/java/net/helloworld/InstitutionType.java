@@ -7,5 +7,9 @@ package net.helloworld;
 public enum InstitutionType {
     School,
     University,
-    Other
+    Other;
+
+    public String getInstitutionTypeName() {
+        return this.name();
+    }
 }

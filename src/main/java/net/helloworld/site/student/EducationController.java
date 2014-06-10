@@ -1,9 +1,12 @@
 package net.helloworld.site.student;
 
 import net.helloworld.InstitutionType;
+import net.helloworld.SponsorshipType;
 import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 import net.helloworld.service.EducationService;
+import net.helloworld.service.SponsorService;
+import net.helloworld.service.SponsorshipService;
 import net.helloworld.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class EducationController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private SponsorService sponsorService;
 
     private Logger log = Logger.getLogger(EducationController.class);
 
@@ -68,6 +74,8 @@ public class EducationController {
             model.addAttribute("activeTab", "education");
             model.addAttribute("student", studentService.getStudent(id));
             model.addAttribute("institutionTypeValues", InstitutionType.values());
+            model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+            model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
             model.addAttribute("message", message);
             model.addAttribute("updateMode", true);
         }

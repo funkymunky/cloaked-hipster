@@ -5,7 +5,9 @@
             <label class="control-label" for="institutionType">Type:</label>
             <div class="controls">
                 <spring-form:select path="institutionType" id="institutionType" type="text">
-                    <spring-form:options items="${institutionTypeValues}"/>
+                    <%--<spring-form:options items="${institutionTypeValues}"/>--%>
+                    <spring-form:option value="">-- Select an option --</spring-form:option>
+                    <spring-form:options items="${institutionTypeValues}" itemValue="institutionTypeName" itemLabel="institutionTypeName"/>
                 </spring-form:select>
             </div>
         </div>
