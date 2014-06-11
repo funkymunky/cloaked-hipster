@@ -30,37 +30,48 @@ public class AddressController {
 
     private static final Logger log = Logger.getLogger(AddressController.class);
 
-    @RequestMapping(value="/address/addOrUpdate", method = RequestMethod.POST)
-    public String submitForm( @RequestParam(value = "studentid", required = false) String studentId,
-                              @RequestParam(value = "sponsorid", required = false) String sponsorId,
+    @RequestMapping(value="/student/address/addOrUpdate", method = RequestMethod.POST)
+    public String submitAddressForStudentForm( @RequestParam(value = "studentid", required = false) String studentId,
                               @ModelAttribute AddressCommand addressCommand,
                               Model model) {
 
         String message = null, urlParent = null;
         int id;
         Education education;
-        if (studentId != null) {
-            id = Integer.parseInt(studentId);
-            education = studentService.getEducationForStudent(id);
+        id = Integer.parseInt(studentId);
+        education = studentService.getEducationForStudent(id);
 
-            Address currentAddress = studentService.getAddressForStudent(id);
-            Address updatedAddress = addressCommand.getAddress();
-            if (currentAddress != updatedAddress && currentAddress != null) {
-                addressService.updateAddress(updatedAddress, currentAddress.getId());
-                message = "Successfully updated address";
-            } else {
-                addressService.addAddress(updatedAddress);
-                studentService.updateAddressForStudent(id, updatedAddress);
-                message = "Successfully added address ";
-            }
+        Address currentAddress = studentService.getAddressForStudent(id);
+        Address updatedAddress = addressCommand.getAddress();
+        if (currentAddress != updatedAddress && currentAddress != null) {
+            addressService.updateAddress(updatedAddress, currentAddress.getId());
+            message = "Successfully updated address";
+        } else {
+            addressService.addAddress(updatedAddress);
+            studentService.updateAddressForStudent(id, updatedAddress);
+            message = "Successfully added address ";
+        }
 
-            model.addAttribute("student", studentService.getStudent(id));
-            model.addAttribute("education", education);
-            model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
-            model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
-            model.addAttribute("institutionTypeValues", InstitutionType.values());
-            urlParent = "student";
-        } else if (sponsorId != null) {
+        model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("education", education);
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
+        urlParent = "student";
+
+        model.addAttribute("activeTab", "address");
+        model.addAttribute("message", message);
+        model.addAttribute("updateMode", true);
+        return String.format("/%s/addOrUpdate", urlParent);
+    }
+
+    @RequestMapping(value="/sponsor/address/addOrUpdate", method = RequestMethod.POST)
+    public String submitAddressForSponsorForm(@RequestParam(value = "sponsorid", required = false) String sponsorId,
+                              @ModelAttribute AddressCommand addressCommand,
+                              Model model) {
+
+        String message = null, urlParent = null;
+        int id;
             id = Integer.parseInt(sponsorId);
 
             Address currentAddress = sponsorService.getAddressForSponsor(id);
@@ -76,7 +87,6 @@ public class AddressController {
 
             model.addAttribute("sponsor", sponsorService.getSponsor(id));
             urlParent = "sponsor";
-        }
 
         model.addAttribute("activeTab", "address");
         model.addAttribute("message", message);

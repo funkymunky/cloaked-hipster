@@ -23,7 +23,7 @@ public class BankController {
     private StudentService studentService;
 
 
-    @RequestMapping(value="/bank/addOrUpdate", method = RequestMethod.POST)
+    @RequestMapping(value="/student/bank/addOrUpdate", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute BankCommand bank,
                              @RequestParam(value="studentid") String studentId,
                              BindingResult bindingResult,

@@ -6,7 +6,6 @@ import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 import net.helloworld.service.EducationService;
 import net.helloworld.service.SponsorService;
-import net.helloworld.service.SponsorshipService;
 import net.helloworld.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class EducationController {
         binder.registerCustomEditor(Date.class, "endDate", new CustomDateEditor(dateFormat, true));
     }
 
-    @RequestMapping(value="/education/addOrUpdate", method = RequestMethod.POST)
+    @RequestMapping(value="/student/education/addOrUpdate", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute EducationCommand education,
                              @RequestParam(value="studentid") String studentId,
                              BindingResult bindingResult,
