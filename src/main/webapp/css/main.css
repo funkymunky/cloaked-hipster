@@ -31,7 +31,7 @@ div.ui-datepicker{
 .nav-side > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #000000;
+    background-color: #dea033;
 }
 
 .student-insert {
@@ -40,7 +40,7 @@ div.ui-datepicker{
 }
 
 li.myactive a {
-    background-color: #d3d3d3;
+    background-color: #dea033;
     color: black;
 }
 
