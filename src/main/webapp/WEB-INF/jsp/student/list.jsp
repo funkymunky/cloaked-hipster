@@ -20,9 +20,10 @@
             <div class="span10">
             <legend>Student list</legend>
 
-                <form class="navbar-search pull-right">
+                <div class="navbar-search pull-right">
                     <input type="text" class="search-query" placeholder="Search" id="searchStudent">
-                </form>
+                    <button class="btn btn-primary" id="edit" type="button">Edit</button>
+                </div>
 
                 <table class="table table-striped">
                     <thead><tr>
@@ -43,10 +44,41 @@
 </body>
 
 <script type="text/javascript">
-    $(function() { $("#searchStudent")
-            .autocomplete({source: [${students}]});
+    function lookupId(studentName) {
+        var lastName = studentName.split(",")[0].trim();
+        var firstName = studentName.split(",")[1].trim();
 
+        var studentId;
+        <c:forEach var="s" items="${students}">
+        if (lastName == "${s.lastName}") {
+            if (firstName == "${s.firstName}") {
+                studentId = "${s.id}";
+            }
+        }
+        </c:forEach>
+        return studentId;
+
+    }
+
+    $(function() {
+        var listOfAllStudents = [];
+        <c:forEach var="s" items="${students}">
+        listOfAllStudents.push("${s.lastName}" + ", " + "${s.firstName}");
+        </c:forEach>
+
+        $("#searchStudent").autocomplete({
+            source: listOfAllStudents
+        });
     });
+
+    $(function() {
+        $("#edit").click(function() {
+            var selectedStudent = $("#searchStudent").val();
+            var studentId = lookupId(selectedStudent);
+            window.location = "/HelloWorld/student/edit/"+studentId;
+        });
+    });
+
 
 </script>
 
