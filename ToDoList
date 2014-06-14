@@ -1,0 +1,13 @@
+- reports
+- search functionality
+- upload profile pic
+- write insert sql script to migrate data from access to mysql
+- fix profile page (default jsp fragment that is to be displayed).
+- default the application start date to today's date
+- remove year bound from application end date (and possibly start date)
+- on the 'view' page of education info, keep 'Degree name' set to disabled if institution type is school
+- fix head.jsp reference to jquery.js so that offline mode works
+- fix dependency and remove sl4j
+- cut out hibernate logging
+- login / security
+-
