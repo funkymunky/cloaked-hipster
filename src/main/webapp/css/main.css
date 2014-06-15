@@ -55,3 +55,8 @@ li.myactive a {
 .green {
     color: green;
 }
+
+input.search-query {
+    font-style: italic;
+    width: 250px;
+}

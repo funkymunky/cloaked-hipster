@@ -40,6 +40,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> getStudentByNameOrStandingOrder(String searchText) {
+        return studentDao.getStudentByNameOrStandingOrder(searchText);
+    }
+
+    @Override
     public Address getAddressForStudent(int id) {
         Address address = studentDao.getAddressForStudent(id);
         return address == null ? null : address;

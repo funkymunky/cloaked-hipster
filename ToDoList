@@ -1,5 +1,7 @@
 - reports
-- search functionality
+- DONE (check if this is the correct implementation) search functionality, by
+	last name, standing order (students)
+	last name (sponsor)
 - upload profile pic
 - write insert sql script to migrate data from access to mysql
 - fix profile page (default jsp fragment that is to be displayed).

@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring-form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -19,10 +20,14 @@
 
             <div class="span10">
             <legend>Student list</legend>
+                <c:if test="${showAllButton eq true}">
+                    <button id="allStudents" type="button" class="btn-info">Show all</button>
+                </c:if>
 
                 <div class="navbar-search pull-right">
-                    <input type="text" class="search-query" placeholder="Search" id="searchStudent">
-                    <button class="btn btn-primary" id="edit" type="button">Edit</button>
+                    <input id="searchStudent" type="text" class="search-query" placeholder="Search by first/last name or standing order" >
+                    <button id="search" type="button" class="btn btn-primary">Search</button>
+                    <%--<button class="btn btn-primary" id="edit" type="button">Edit</button>--%>
                 </div>
 
                 <table class="table table-striped">
@@ -60,16 +65,17 @@
 
     }
 
-    $(function() {
-        var listOfAllStudents = [];
-        <c:forEach var="s" items="${students}">
-        listOfAllStudents.push("${s.lastName}" + ", " + "${s.firstName}");
-        </c:forEach>
+    <%-- To autocomplete list of students based on name --%>
+    <%--$(function() {--%>
+        <%--var listOfAllStudents = [];--%>
+        <%--<c:forEach var="s" items="${students}">--%>
+        <%--listOfAllStudents.push("${s.lastName}" + ", " + "${s.firstName}");--%>
+        <%--</c:forEach>--%>
 
-        $("#searchStudent").autocomplete({
-            source: listOfAllStudents
-        });
-    });
+        <%--$("#searchStudent").autocomplete({--%>
+            <%--source: listOfAllStudents--%>
+        <%--});--%>
+    <%--});--%>
 
     $(function() {
         $("#edit").click(function() {
@@ -77,6 +83,20 @@
             var studentId = lookupId(selectedStudent);
             window.location = "/HelloWorld/student/edit/"+studentId;
         });
+    });
+
+    $(function() {
+        $("#allStudents").click(function() {
+            window.location = "/HelloWorld/student/list";
+        });
+    });
+
+    $(function() {
+        $("#search").click(function() {
+            var searchString = $("#searchStudent").val();
+            window.location = "/HelloWorld/student/search/" + searchString;
+
+        })
     });
 
 

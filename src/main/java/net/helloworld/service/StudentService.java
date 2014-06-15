@@ -14,6 +14,7 @@ public interface StudentService {
     void updateStudent(Student student);
     Student getStudent(int id);
     List<Student> getAllStudents();
+    List<Student> getStudentByNameOrStandingOrder(String searchText);
 
     Address getAddressForStudent(int id);
     void updateAddressForStudent(int id, Address address);

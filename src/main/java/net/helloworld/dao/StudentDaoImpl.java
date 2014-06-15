@@ -1,13 +1,15 @@
 package net.helloworld.dao;
 
 import net.helloworld.model.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.JoinType;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Date: 17/10/13
@@ -59,6 +61,39 @@ public class StudentDaoImpl implements StudentDao {
     @SuppressWarnings("unchecked")
     public List<Student> getAllStudents() {
         return sessionFactory.getCurrentSession().createQuery("from Student order by lastname").list();
+    }
+
+    @Override
+    public List<Student> getStudentByNameOrStandingOrder(String searchText) {
+        Query query = sessionFactory.getCurrentSession().createQuery("Select s from Student as s right outer join s.bank as b");
+        List list = query.list();
+
+
+//        Query q = sessionFactory.getCurrentSession().createQuery("select s from Student as s left join fetch s.bank");
+//        List list = q.list();
+
+//        Criteria c = sessionFactory.getCurrentSession().createCriteria(Student.class);
+//        c.createCriteria("Bank", "bank");
+//        c.add(Restrictions.eq("bank.id", "student.bank_id"));
+//        c.setFetchMode("bank", FetchMode.JOIN);
+//        List list = c.list();
+
+        System.out.println("legnth of list = " + list.size());
+        List<Student> studentsWithStandingOrder = list;
+        studentsWithStandingOrder.stream()
+                .filter(student ->
+                        student.getBank() != null &&
+                        student.getBank().getStandingOrder().contains(searchText))
+                .collect(Collectors.toList());
+
+        System.out.println("number of bank info = " + studentsWithStandingOrder.size());
+
+        List<Student> allStudents = getAllStudents();
+        return allStudents.stream()
+                .filter(student ->
+                        student.getLastName().toLowerCase().contains(searchText.toLowerCase()) ||
+                        student.getFirstName().toLowerCase().contains(searchText.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     @Override

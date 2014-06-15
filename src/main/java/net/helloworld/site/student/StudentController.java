@@ -93,7 +93,7 @@ public class StudentController {
         return "/student/addOrUpdate";
     }
 
-    @RequestMapping(value = "student/edit/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.POST)
     public String updateStudent(@ModelAttribute Student student, Model model) {
         studentService.updateStudent(student);
         String message = String.format("%s, %s's record was updated successfully.", student.getLastName().toUpperCase(), student.getFirstName());
@@ -105,6 +105,16 @@ public class StudentController {
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
+    }
+
+    @RequestMapping(value = "/student/search/{searchText}", method= RequestMethod.GET)
+    public String searchStudent(@PathVariable String searchText,
+                                Model model) {
+        List<Student> studentByNameOrStandingOrder = studentService.getStudentByNameOrStandingOrder(searchText);
+
+        model.addAttribute("students", studentByNameOrStandingOrder);
+        model.addAttribute("showAllButton", true);
+        return "/student/list";
     }
 
 }
