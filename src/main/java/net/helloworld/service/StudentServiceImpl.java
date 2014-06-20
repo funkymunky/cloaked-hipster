@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Date: 17/10/13
@@ -40,7 +41,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<Student> getStudentByNameOrStandingOrder(String searchText) {
+    public Set<Student> getStudentByNameOrStandingOrder(String searchText) {
         return studentDao.getStudentByNameOrStandingOrder(searchText);
     }
 

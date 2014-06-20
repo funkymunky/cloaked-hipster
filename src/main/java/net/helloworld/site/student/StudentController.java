@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Date: 27/10/13
@@ -110,7 +111,7 @@ public class StudentController {
     @RequestMapping(value = "/student/search/{searchText}", method= RequestMethod.GET)
     public String searchStudent(@PathVariable String searchText,
                                 Model model) {
-        List<Student> studentByNameOrStandingOrder = studentService.getStudentByNameOrStandingOrder(searchText);
+        Set<Student> studentByNameOrStandingOrder = studentService.getStudentByNameOrStandingOrder(searchText);
 
         model.addAttribute("students", studentByNameOrStandingOrder);
         model.addAttribute("showAllButton", true);

@@ -2,13 +2,12 @@ package net.helloworld.dao;
 
 import net.helloworld.model.*;
 import org.hibernate.*;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.JoinType;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -64,36 +63,13 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<Student> getStudentByNameOrStandingOrder(String searchText) {
-        Query query = sessionFactory.getCurrentSession().createQuery("Select s from Student as s right outer join s.bank as b");
-        List list = query.list();
+    public Set<Student> getStudentByNameOrStandingOrder(String searchText) {
+        List<Student> studentsMatchingStandingOrder = findStudentsWithStandingOrder(searchText);
+        List<Student> studentsMatchingNames = findStudentsWithName(searchText);
 
-
-//        Query q = sessionFactory.getCurrentSession().createQuery("select s from Student as s left join fetch s.bank");
-//        List list = q.list();
-
-//        Criteria c = sessionFactory.getCurrentSession().createCriteria(Student.class);
-//        c.createCriteria("Bank", "bank");
-//        c.add(Restrictions.eq("bank.id", "student.bank_id"));
-//        c.setFetchMode("bank", FetchMode.JOIN);
-//        List list = c.list();
-
-        System.out.println("legnth of list = " + list.size());
-        List<Student> studentsWithStandingOrder = list;
-        studentsWithStandingOrder.stream()
-                .filter(student ->
-                        student.getBank() != null &&
-                        student.getBank().getStandingOrder().contains(searchText))
-                .collect(Collectors.toList());
-
-        System.out.println("number of bank info = " + studentsWithStandingOrder.size());
-
-        List<Student> allStudents = getAllStudents();
-        return allStudents.stream()
-                .filter(student ->
-                        student.getLastName().toLowerCase().contains(searchText.toLowerCase()) ||
-                        student.getFirstName().toLowerCase().contains(searchText.toLowerCase()))
-                .collect(Collectors.toList());
+        studentsMatchingNames.addAll(studentsMatchingStandingOrder);
+        return studentsMatchingNames.stream()
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -156,5 +132,24 @@ public class StudentDaoImpl implements StudentDao {
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+    }
+
+    private List<Student> findStudentsWithName(String searchText) {
+        return getAllStudents().stream()
+                .filter(student ->
+                        student.getLastName().toLowerCase().contains(searchText.toLowerCase()) ||
+                                student.getFirstName().toLowerCase().contains(searchText.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    private List<Student> findStudentsWithStandingOrder(String searchText) {
+        Query query = sessionFactory.getCurrentSession().createQuery("Select s from Student as s right outer join s.bank as b");
+        List<Student> list = query.list();
+
+        return list.stream()
+                .filter(student ->
+                        student.getBank() != null &&
+                                student.getBank().getStandingOrder().contains(searchText))
+                .collect(Collectors.toList());
     }
 }

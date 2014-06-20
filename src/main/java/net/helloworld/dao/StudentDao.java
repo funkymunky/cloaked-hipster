@@ -3,6 +3,7 @@ package net.helloworld.dao;
 import net.helloworld.model.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Date: 17/10/13
@@ -14,7 +15,7 @@ public interface StudentDao {
     void updateStudent(Student student);
     Student getStudent(int id);
     List<Student> getAllStudents();
-    List<Student> getStudentByNameOrStandingOrder(String searchText);
+    Set<Student> getStudentByNameOrStandingOrder(String searchText);
 
     Address getAddressForStudent(int id);
     void updateAddress(Student student, Address address);
