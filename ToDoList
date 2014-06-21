@@ -8,7 +8,7 @@
 - DONE - default the application start date to today's date [21/06/14]
 - DONE - remove year bound from application end date (and possibly start date) : year bound set to 5 yrs in the future & 1 yr in the past [21/06/14]
 - DONE - disable left-hand menu options depending on which page you are on. e.g: when on the list page, address info should be disabled [21/06/14]
-- on the 'view' page of education info, keep 'Degree name' set to disabled if institution type is school
+- DONE - on the 'view' page of education info, keep 'Degree name' set to disabled if institution type is school [21/06/14]
 - fix head.jsp reference to jquery.js so that offline mode works
 - fix dependency and remove sl4j
 - cut out hibernate logging
