@@ -32,19 +32,19 @@
         <div class="control-group">
             <label class="control-label">Application date:</label>
             <div class="controls">
-                <spring-form:input path="applicationDate" class="datepicker" name="applicationDate" type="text"/>
+                <spring-form:input path="applicationDate" class="datepickerInfo" name="applicationDate" type="text"/>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">Start date:</label>
             <div class="controls">
-                <spring-form:input path="startDate" class="datepicker" name="startDate" type="text" />
+                <spring-form:input path="startDate" class="datepickerInfo" name="startDate" type="text" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label">End date:</label>
             <div class="controls">
-                <spring-form:input path="endDate" class="datepicker" name="endDate" type="text"/>
+                <spring-form:input path="endDate" class="datepickerInfo" name="endDate" type="text"/>
             </div>
         </div>
         <div class="control-group">
@@ -69,6 +69,7 @@
     </spring-form:form>
 </div>
 
+<%--<script src="<c:url value='/js/datepicker-defaults.js'/>"></script>--%>
 <script type="text/javascript">
 
     $(function() {
@@ -81,6 +82,15 @@
                 $('#degreeName').prop( "disabled", false );
             }
         })
-    })
+    });
+
+    $(function() {
+        $(".datepickerInfo").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            yearRange: '-1:+5'
+        });
+    });
 
 </script>
