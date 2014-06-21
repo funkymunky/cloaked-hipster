@@ -50,9 +50,6 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Student getStudent(int id) {
         Student student = (Student) getCurrentSession().get(Student.class, id);
-        if (student.getProfilePic() == null) {
-            student.setProfilePic("default_profile_icon.gif");
-        }
         return student;
     }
 

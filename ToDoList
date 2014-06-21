@@ -4,7 +4,7 @@
 	last name (sponsor) [21/06/14]
 - upload profile pic
 - write insert sql script to migrate data from access to mysql
-- fix profile page (default jsp fragment that is to be displayed).
+- DONE - fix profile page (default jsp fragment that is to be displayed) : this is now handled in the jsp and not in the dao [21/06/14]
 - DONE - default the application start date to today's date [21/06/14]
 - DONE - remove year bound from application end date (and possibly start date) : year bound set to 5 yrs in the future & 1 yr in the past [21/06/14]
 - DONE - disable left-hand menu options depending on which page you are on. e.g: when on the list page, address info should be disabled [21/06/14]

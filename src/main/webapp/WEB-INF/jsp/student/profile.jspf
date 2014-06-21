@@ -3,9 +3,16 @@
     <spring-form:form class="form-horizontal" method="post" enctype="multipart/form-data" action="/uploadfile">
         <fieldset>
             <div class="controls">
-                <c:if test="${not empty student.profilePic}" var="profilePic"/>
-                <img src="<c:url value="/images/${student.profilePic}"/>"/>
-                </br>
+                <c:choose>
+                <c:when test="${not empty student.profilePic}">
+                    <img src="<c:url value="/images/${student.profilePic}"/>"/>
+                    </br>
+                </c:when>
+                <c:otherwise>
+                    <img src="<c:url value="/images/default_profile_icon.gif"/>"/>
+                    </br>
+                </c:otherwise>
+                </c:choose>
             </div>
             <div class="control-group">
                 <label class="control-label" for="image">File</label>
