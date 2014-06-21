@@ -5,6 +5,7 @@ import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Date: 17/10/13
@@ -16,6 +17,7 @@ public interface SponsorService {
     public void updateSponsor(Sponsor sponsor);
     public Sponsor getSponsor(int id);
     public List<SponsorDTO> getAllSponsors();
+    public Set<SponsorDTO> getSponsorByName(String searchText);
 
     public Address getAddressForSponsor(int id);
     public void updateAddressForSponsor(int id, Address address);

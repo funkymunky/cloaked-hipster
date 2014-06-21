@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Date: 17/10/13
@@ -56,6 +53,18 @@ public class SponsorServiceImpl implements SponsorService {
         });
 
         return allSponsorsDTO;
+    }
+
+    @Override
+    public Set<SponsorDTO> getSponsorByName(String searchText) {
+        Set<SponsorDTO> listOfSponsorsDTO = new HashSet<>();
+
+        Set<Sponsor> listOfSponsors = sponsorDao.getAllSponsorsByName(searchText);
+        for (Sponsor sponsor : listOfSponsors) {
+            SponsorDTO sponsorDTO = new SponsorDTO(sponsor.getId(), sponsor.getFirstName(), sponsor.getLastName());
+            listOfSponsorsDTO.add(sponsorDTO);
+        }
+        return listOfSponsorsDTO;
     }
 
     @Override

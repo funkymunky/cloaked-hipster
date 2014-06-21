@@ -2,6 +2,7 @@ package net.helloworld.site.sponsor;
 
 import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Sponsor;
+import net.helloworld.model.Student;
 import net.helloworld.service.SponsorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Date: 27/10/13
@@ -74,6 +76,16 @@ public class SponsorController {
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);
         return "/sponsor/addOrUpdate";
+    }
+
+    @RequestMapping(value = "/sponsor/search/{searchText}", method= RequestMethod.GET)
+    public String searchSponsor(@PathVariable String searchText,
+                                Model model) {
+        Set<SponsorDTO> sponsorsByName = sponsorService.getSponsorByName(searchText);
+
+        model.addAttribute("sponsors", sponsorsByName);
+        model.addAttribute("showAllButton", true);
+        return "/sponsor/list";
     }
 
 }

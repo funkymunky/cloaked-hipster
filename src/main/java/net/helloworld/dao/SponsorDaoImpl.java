@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Date: 17/10/13
@@ -58,6 +60,15 @@ public class SponsorDaoImpl implements SponsorDao {
     @SuppressWarnings("unchecked")
     public List<Sponsor> getAllSponsors() {
         return sessionFactory.getCurrentSession().createQuery("from Sponsor order by lastname").list();
+    }
+
+    @Override
+    public Set<Sponsor> getAllSponsorsByName(String searchText) {
+        return getAllSponsors().stream()
+                .filter(sponsor ->
+                    sponsor.getFirstName().toLowerCase().contains(searchText.toLowerCase()) ||
+                    sponsor.getLastName().toLowerCase().contains(searchText.toLowerCase()))
+                .collect(Collectors.toSet());
     }
 
     @Override

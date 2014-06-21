@@ -4,6 +4,7 @@ import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Date: 17/10/13
@@ -15,6 +16,7 @@ public interface SponsorDao {
     public void updateSponsor(Sponsor sponsor);
     public Sponsor getSponsor(int id);
     public List<Sponsor> getAllSponsors();
+    public Set<Sponsor> getAllSponsorsByName(String searchText);
 
     public Address getAddressForSponsor(int id);
     public void updateAddress(Sponsor sponsor, Address address);

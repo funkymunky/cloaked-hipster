@@ -21,9 +21,14 @@
             <div class="span10">
             <legend>Spnsor list</legend>
 
-                <form class="navbar-search pull-right">
-                    <input type="text" class="search-query" placeholder="Search" id="searchSponsor">
-                </form>
+                <c:if test="${showAllButton eq true}">
+                    <button id="allSponsors" type="button" class="btn-info">Show all</button>
+                </c:if>
+
+                <div class="navbar-search pull-right">
+                    <input id="searchSponsor" type="text" class="search-query" placeholder="Search by first/last name" >
+                    <button id="search" type="button" class="btn btn-primary">Search</button>
+                </div>
 
                 <table class="table table-striped">
                     <thead><tr>
@@ -51,10 +56,25 @@
 </body>
 
 <script type="text/javascript">
-    $(function() { $("#searchSponsor")
-            .autocomplete({source: [${sponsors}]});
+    <%--$(function() { $("#searchSponsor")--%>
+            <%--.autocomplete({source: [${sponsors}]});--%>
 
+    <%--});--%>
+
+
+    $(function() {
+        $("#allSponsors").click(function() {
+            window.location = "/HelloWorld/sponsor/list";
+        });
     });
+
+    $(function() {
+        $("#search").click(function() {
+            var searchString = $("#searchSponsor").val();
+            window.location = "/HelloWorld/sponsor/search/" + searchString;
+        })
+    });
+
 
 </script>
 
