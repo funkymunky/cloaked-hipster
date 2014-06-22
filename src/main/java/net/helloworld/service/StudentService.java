@@ -31,4 +31,6 @@ public interface StudentService {
 
     String getProfilePicForStudent(int id);
     void updateProfilePicForStudent(int id, String profilePic);
+
+    List<String> getAllProfilePics();
 }

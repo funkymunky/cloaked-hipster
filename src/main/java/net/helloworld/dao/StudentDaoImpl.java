@@ -127,6 +127,18 @@ public class StudentDaoImpl implements StudentDao {
         getCurrentSession().update(studentToUpdate);
     }
 
+    @Override
+    public List<String> getAllProfilePictureNames() {
+        List<Student> allStudents = getAllStudents();
+        List<String> listOfProfilePictureNames = allStudents.stream()
+                .filter(student ->
+                        student.getProfilePic() != null)
+                .map(Student::getProfilePic)
+                .collect(Collectors.toList());
+
+        return listOfProfilePictureNames;
+    }
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

@@ -31,4 +31,6 @@ public interface StudentDao {
 
     String getProfilePicForStudent(int id);
     void updateProfilePicForStudent(Student student, String profilePic);
+
+    List<String> getAllProfilePictureNames();
 }

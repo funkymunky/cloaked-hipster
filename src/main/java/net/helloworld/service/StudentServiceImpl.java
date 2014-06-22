@@ -104,4 +104,9 @@ public class StudentServiceImpl implements StudentService {
         Student student = getStudent(id);
         studentDao.updateProfilePicForStudent(student, profilePic);
     }
+
+    @Override
+    public List<String> getAllProfilePics() {
+        return studentDao.getAllProfilePictureNames();
+    }
 }

@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class UploadFileController {
 
-      @Autowired
-      private StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
 
     @RequestMapping(value = "/student/profile/uploadFile", method = RequestMethod.POST)
@@ -26,6 +26,13 @@ public class UploadFileController {
                                     Model model) {
         int id = Integer.parseInt(studentId);
         String originalFilename = file.getOriginalFilename();
+        String message;
+
+        if (!isFileValid(originalFilename)) {
+            model.addAttribute("student", studentService.getStudent(id));
+            model.addAttribute("message", filenameExists(originalFilename) ? getStringForDuplicatFilename() : getStringForBadFileType());
+            return "/student/addOrUpdate";
+        }
 
         String dirPath = "/tmp/images";
         File dir = new File(dirPath);
@@ -34,44 +41,49 @@ public class UploadFileController {
         }
 
         String filePath = dir.getAbsolutePath() + File.separator + originalFilename;
-
         File dest = new File(filePath);
+
         try {
             file.transferTo(dest);
             studentService.updateProfilePicForStudent(id, originalFilename);
+            message = "Profile picture was successfully uploaded.";
         } catch (IllegalStateException e) {
             e.printStackTrace();
-            return "File uploaded failed:" + originalFilename;
+            message =  "File uploadfailed:" + originalFilename;
         } catch (IOException e) {
             e.printStackTrace();
-            return "File uploaded failed:" + originalFilename;
+            message = "File upload failed:" + originalFilename;
         }
 
         model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("message", message);
         return "/student/addOrUpdate";
     }
 
-
-
-    public class UploadItem {
-        private String filename;
-        private CommonsMultipartFile fileData;
-
-        public String getFilename() {
-            return filename;
+    private boolean isFileValid(String originalFilename) {
+        if (filenameExists(originalFilename)) {
+            return false;
+        } else if (!filenameValid(originalFilename)) {
+            return false;
         }
+        return true;
+    }
 
-        public void setFilename(String filename) {
-            this.filename = filename;
-        }
+    private String getStringForBadFileType() {
+        return "Please check the file you are uploading. Only image files will be accepted.";
+    }
 
-        public CommonsMultipartFile getFileData() {
-            return fileData;
-        }
+    private String getStringForDuplicatFilename() {
+        return "Filename is not unique. Please change the filename of the file you are trying to upload and try again. ";
+    }
 
-        public void setFileData(CommonsMultipartFile fileData) {
-            this.fileData = fileData;
-        }
+    private boolean filenameValid(String filename) {
+        return filename.contains(".jpg") || filename.contains(".png") || filename.contains(".jpeg");
+    }
+
+    private boolean filenameExists(String filename) {
+        List<String> allProfilePics = studentService.getAllProfilePics();
+        return allProfilePics.contains(filename);
     }
 
 }
