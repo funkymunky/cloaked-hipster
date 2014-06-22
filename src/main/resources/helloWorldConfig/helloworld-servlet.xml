@@ -31,6 +31,12 @@
     </bean>
 
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="100000" />
+    </bean>
+
+
     <!--<bean name="/login.htm" class="net.helloworld.site.LoginController" />-->
 <!--LoginController-->
     <!--<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->

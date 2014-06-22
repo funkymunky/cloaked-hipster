@@ -1,50 +1,57 @@
 package net.helloworld.site.student;
 
+import net.helloworld.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 
 @Controller
-@RequestMapping(value = "/uploadfile")
 public class UploadFileController {
-    private String uploadFolderPath = "../../../images/";
 
-    public String getUploadFolderPath() {
-        return uploadFolderPath;
-    }
+      @Autowired
+      private StudentService studentService;
 
-    public void setUploadFolderPath(String uploadFolderPath) {
-        this.uploadFolderPath = uploadFolderPath;
-    }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getUploadForm(Model model) {
-        model.addAttribute(new UploadItem());
-        return "/student/addOrUpdate";
-    }
+    @RequestMapping(value = "/student/profile/uploadFile", method = RequestMethod.POST)
+    public String uploadFileHandler(@RequestParam("studentid") String studentId,
+                                    @RequestParam("file") MultipartFile file,
+                                    Model model) {
+        int id = Integer.parseInt(studentId);
+        String originalFilename = file.getOriginalFilename();
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String create(@RequestParam CommonsMultipartFile[] fileUpload,
-                         Model model, BindingResult result) throws Exception {
-        if (fileUpload != null && fileUpload.length > 0) {
-            for (CommonsMultipartFile aFile : fileUpload){
-
-                System.out.println("Saving file: " + aFile.getOriginalFilename());
-
-                if (!aFile.getOriginalFilename().equals("")) {
-                    aFile.transferTo(new File(uploadFolderPath + aFile.getOriginalFilename()));
-                }
-            }
+        String dirPath = "/tmp/images";
+        File dir = new File(dirPath);
+        if (!dir.exists()) {
+            dir.mkdir();
         }
 
+        String filePath = dir.getAbsolutePath() + File.separator + originalFilename;
+
+        File dest = new File(filePath);
+        try {
+            file.transferTo(dest);
+            studentService.updateProfilePicForStudent(id, originalFilename);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return "File uploaded failed:" + originalFilename;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "File uploaded failed:" + originalFilename;
+        }
+
+        model.addAttribute("student", studentService.getStudent(id));
         return "/student/addOrUpdate";
     }
+
+
 
     public class UploadItem {
         private String filename;

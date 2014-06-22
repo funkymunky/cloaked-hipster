@@ -1,6 +1,6 @@
 <div id="profileInfo" class="student-insert">
     <input type="hidden" value="${student.id}" name="studentid" />
-    <spring-form:form class="form-horizontal" method="post" enctype="multipart/form-data" action="/uploadfile">
+    <spring-form:form class="form-horizontal" method="post" enctype="multipart/form-data" action="/HelloWorld/student/profile/uploadFile">
         <fieldset>
             <div class="controls">
                 <c:choose>
@@ -9,23 +9,25 @@
                     </br>
                 </c:when>
                 <c:otherwise>
-                    <img src="<c:url value="/images/default_profile_icon.gif"/>"/>
+                    <img src="<c:url value="/images/default.jpeg"/>"/>
                     </br>
                 </c:otherwise>
                 </c:choose>
             </div>
             <div class="control-group">
-                <label class="control-label" for="image">File</label>
                 <div class="controls">
-                    <input id="image" type="file" value="Select file"/>
+                    <br/>
+                    <input id="image" name="file" type="file" value="Select file"/>
                 </div>
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <button type="submit" class="btn btn-primary">Update info</button>
+                    <button type="submit" class="btn btn-primary">Update profile</button>
                 </div>
             </div>
 
         </fieldset>
+        <input type="hidden" value="${student.id}" name="studentid" />
+
     </spring-form:form>
 </div>

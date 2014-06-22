@@ -2,7 +2,8 @@
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]
-- upload profile pic
+- DONE - upload profile pic [22/06/14]
+- validation on profile pic. Can't store file with the same name, has to be jpg extension, and size of file
 - write insert sql script to migrate data from access to mysql
 - DONE - fix profile page (default jsp fragment that is to be displayed) : this is now handled in the jsp and not in the dao [21/06/14]
 - DONE - default the application start date to today's date [21/06/14]
