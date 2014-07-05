@@ -20,7 +20,8 @@
             <div class="span10">
                 <legend>Student information</legend>
                 <div class="row-fluid">
-                        <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
+                    <div id="alertFeedback" class="message warning"></div>
+                        <c:if test="${not empty message}"><div id="alertFeedback" class="message green">${message}</div></c:if>
                     <fieldset class="main-content">
                         <div class="span4">
                         <h4>Personal details</h4>
@@ -34,7 +35,7 @@
 
                             <label>Date of birth: <spring-form:errors path="dateOfBirth" class="alert-error"></spring-form:errors></label>
                             <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="dateOfBirth" class="datepickerDob" />
-
+                            <br/>
                             <c:choose>
                             <c:when test="${updateMode != true}">
                             <button type="submit" class="btn btn-primary">Add student</button>

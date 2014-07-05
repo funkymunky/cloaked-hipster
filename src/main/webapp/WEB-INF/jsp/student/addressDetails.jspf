@@ -40,6 +40,7 @@
         <div class="control-group">
             <div class="controls">
                 <button type="submit" class="btn btn-primary">Update info</button>
+                <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#addressInfo').hide()">Cancel</button>
             </div>
         </div>
     </fieldset>

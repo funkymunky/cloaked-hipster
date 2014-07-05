@@ -36,7 +36,7 @@
 
                             <label>Phone 2: <spring-form:errors path="phone2" class="alert-error"></spring-form:errors></label>
                             <spring-form:input path="phone2" placeholder="Phone 2" id="phone2"/>
-
+                            <br/>
                             <c:choose>
                             <c:when test="${updateMode != true}">
                             <button type="submit" class="btn btn-primary">Add sponsor</button>

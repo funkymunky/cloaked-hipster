@@ -24,6 +24,7 @@ div.ui-datepicker{
 }
 
 .nav-side > li > a {
+    text-decoration: none;
     background-color: #003399;
     color: #ffffff;
 }
@@ -32,6 +33,7 @@ div.ui-datepicker{
 .nav > li > a:focus {
     text-decoration: none;
     background-color: #dea033;
+    color: #000000;
 }
 
 .student-insert {
@@ -54,6 +56,10 @@ li.myactive a {
 
 .green {
     color: green;
+}
+
+.warning {
+    color: orangered;
 }
 
 input.search-query {

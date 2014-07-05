@@ -9,6 +9,7 @@ import net.helloworld.service.SponsorService;
 import net.helloworld.service.StudentService;
 import net.helloworld.validator.StudentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +35,9 @@ public class StudentController {
 
     @Autowired
     private StudentValidator studentValidator;
+
+    @Value("${max.upload.size}")
+    private String maxUploadSize;
 
     @InitBinder("student")
     private void initBinder(WebDataBinder binder) {
@@ -61,6 +65,7 @@ public class StudentController {
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", maxUploadSize);
         return "/student/addOrUpdate";
     }
 
@@ -91,6 +96,7 @@ public class StudentController {
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", maxUploadSize);
         return "/student/addOrUpdate";
     }
 

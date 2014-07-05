@@ -22,7 +22,7 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <button type="submit" class="btn btn-primary">Update profile</button>
+                    <button id="uploadBtn" type="submit" class="btn btn-primary">Update profile</button>
                 </div>
             </div>
 
@@ -31,3 +31,20 @@
 
     </spring-form:form>
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        $('#image').change(function(){
+            var f=this.files[0]
+            var selectedFileSize = f.size;
+            var allowedFileSize = ${maxUploadSize};
+            if (selectedFileSize > allowedFileSize) {
+                $('#alertFeedback').text("The file you have chosen exceeds the size limit of 2MB.");
+                $('#uploadBtn').attr('disabled', 'disabled');
+            } else {
+                $('#uploadBtn').removeAttr('disabled');
+            }
+
+        })
+    })
+</script>
