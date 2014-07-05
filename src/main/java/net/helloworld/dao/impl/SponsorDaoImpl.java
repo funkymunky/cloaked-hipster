@@ -1,5 +1,6 @@
-package net.helloworld.dao;
+package net.helloworld.dao.impl;
 
+import net.helloworld.dao.SponsorDao;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
 import org.hibernate.Session;

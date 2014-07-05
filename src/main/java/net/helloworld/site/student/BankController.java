@@ -1,8 +1,11 @@
 package net.helloworld.site.student;
 
+import net.helloworld.InstitutionType;
+import net.helloworld.SponsorshipType;
 import net.helloworld.model.Bank;
 import net.helloworld.model.Student;
 import net.helloworld.service.BankService;
+import net.helloworld.service.SponsorService;
 import net.helloworld.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,8 @@ public class BankController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private SponsorService sponsorService;
 
     @RequestMapping(value="/student/bank/addOrUpdate", method = RequestMethod.POST)
     public String submitForm(@ModelAttribute BankCommand bank,
@@ -46,6 +51,9 @@ public class BankController {
 
         model.addAttribute("activeTab", "bank");
         model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("message", message);
         model.addAttribute("updateMode", true);
 

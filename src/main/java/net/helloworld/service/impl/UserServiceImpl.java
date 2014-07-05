@@ -1,7 +1,8 @@
-package net.helloworld.service;
+package net.helloworld.service.impl;
 
 import net.helloworld.dao.UserDao;
 import net.helloworld.model.User;
+import net.helloworld.service.UserService;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package net.helloworld.site.student;
 
+import net.helloworld.InstitutionType;
 import net.helloworld.SponsorshipType;
 import net.helloworld.model.Sponsorship;
 import net.helloworld.service.SponsorService;
@@ -57,6 +58,7 @@ public class SponsorshipController {
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("sponsorship", studentService.getSponsorshipForStudent(id));
+        model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("activeTab", "sponsor");
         model.addAttribute("message", message);
         model.addAttribute("updateMode", true);

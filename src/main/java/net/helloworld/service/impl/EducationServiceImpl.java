@@ -1,7 +1,8 @@
-package net.helloworld.service;
+package net.helloworld.service.impl;
 
 import net.helloworld.dao.EducationDao;
 import net.helloworld.model.Education;
+import net.helloworld.service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

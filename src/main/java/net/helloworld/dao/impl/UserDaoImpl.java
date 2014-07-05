@@ -1,5 +1,6 @@
-package net.helloworld.dao;
+package net.helloworld.dao.impl;
 
+import net.helloworld.dao.UserDao;
 import net.helloworld.model.Authority;
 import net.helloworld.model.User;
 import org.springframework.orm.hibernate3.HibernateTemplate;

@@ -1,5 +1,6 @@
-package net.helloworld.dao;
+package net.helloworld.dao.impl;
 
+import net.helloworld.dao.StudentDao;
 import net.helloworld.model.*;
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;

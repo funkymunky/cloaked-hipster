@@ -1,5 +1,6 @@
-package net.helloworld.dao;
+package net.helloworld.dao.impl;
 
+import net.helloworld.dao.BankDao;
 import net.helloworld.model.Bank;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,6 +1,7 @@
-package net.helloworld.dao;
+package net.helloworld.dao.impl;
 
 import net.helloworld.InstitutionType;
+import net.helloworld.dao.EducationDao;
 import net.helloworld.model.Education;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

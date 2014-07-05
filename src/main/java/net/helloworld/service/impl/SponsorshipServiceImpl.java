@@ -1,7 +1,8 @@
-package net.helloworld.service;
+package net.helloworld.service.impl;
 
 import net.helloworld.dao.SponsorshipDao;
 import net.helloworld.model.Sponsorship;
+import net.helloworld.service.SponsorshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
