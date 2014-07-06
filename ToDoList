@@ -1,6 +1,9 @@
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
 - reports
+	- export to csv feature
+	- order by columns
+	- jasper vs something else?
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]
