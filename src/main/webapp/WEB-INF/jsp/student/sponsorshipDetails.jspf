@@ -6,7 +6,7 @@
                 <div class="controls">
                     <spring-form:select  path="sponsorshipType" id="sponsorshipType" type="text">
                         <spring-form:option value="">-- Select an option --</spring-form:option>
-                        <spring-form:options items="${sponsorshipTypeValues}" itemValue="sponsorshipTypeName" itemLabel="sponsorshipTypeValue"/>
+                        <spring-form:options items="${sponsorshipTypeValues}" itemValue="name" itemLabel="description"/>
                     </spring-form:select>
                 </div>
             </div>

@@ -27,9 +27,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr><td><a href="">Students by sponsorship type</a></td></tr>
-                        <tr><td><a href="">Students by institution type</a></td></tr>
-                        <tr><td><a href="">Students by organisation type</a></td></tr>
+                        <tr><td><a href="/HelloWorld/report/currentlySponsored">Currently sponsored students</a></td></tr>
+                        <tr><td><a href="/HelloWorld/report/awaitingSponsorship">Students awaiting sponsorship</a></td></tr>
                         <tr><td><a href="/HelloWorld/report/allStudents">All Students (non jasper)</a></td></tr>
                     </tbody>
                 </table>

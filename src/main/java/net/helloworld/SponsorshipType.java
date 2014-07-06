@@ -11,11 +11,11 @@ public enum SponsorshipType {
         this.description = description;
     }
 
-    public String getSponsorshipTypeValue() {
+    public String getDescription() {
         return this.description;
     }
 
-    public String getSponsorshipTypeName() {
+    public String getName() {
         return this.name();
     }
 }
