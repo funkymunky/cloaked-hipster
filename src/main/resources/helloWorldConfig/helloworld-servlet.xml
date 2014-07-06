@@ -21,19 +21,22 @@
         <property name="basename" value="messages" />
     </bean>
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <!--<property name="prefix" value="/"/>-->
-        <property name="suffix" value=".jsp"/>
-        <property name="order" value="0" />
+    <bean id="xmlResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="location" value="classpath:helloWorldConfig/jasper-view.xml"/>
+        <property name="order" value="0"/>
     </bean>
-
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- setting maximum upload size -->
         <property name="maxUploadSize" value="${max.upload.size}"/>
     </bean>
 
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--<property name="prefix" value="/"/>-->
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="0" />
+    </bean>
 
     <!--<bean name="/login.htm" class="net.helloworld.site.LoginController" />-->
 <!--LoginController-->

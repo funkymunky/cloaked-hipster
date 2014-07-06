@@ -18,6 +18,7 @@
     <context:component-scan base-package="net.helloworld.dao" />
 
     <import resource="helloWorldConfig/jmx.xml" />
+    <import resource="helloWorldConfig/jasper-view.xml"/>
     <!--<import resource="helloWorldConfig/helloworld-servlet.xml" />-->
     <!--<import resource="helloWorldConfig/helloworld-security.xml"/>-->
 
