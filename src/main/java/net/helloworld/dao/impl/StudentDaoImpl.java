@@ -1,5 +1,6 @@
 package net.helloworld.dao.impl;
 
+import net.helloworld.SponsorshipType;
 import net.helloworld.dao.StudentDao;
 import net.helloworld.model.*;
 import org.hibernate.*;
@@ -28,6 +29,11 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void addStudent(Student student) {
+        Sponsorship newSponsorship = new Sponsorship();
+        newSponsorship.setSponsorshipType(SponsorshipType.AwaitingSponsorship.getName());
+        getCurrentSession().save(newSponsorship);
+
+        student.setSponsorship(newSponsorship);
         getCurrentSession().save(student);
     }
 

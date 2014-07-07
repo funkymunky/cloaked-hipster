@@ -27,7 +27,6 @@
             </div>
 
         </fieldset>
-        <input type="hidden" value="${student.id}" name="studentid" />
 
     </spring-form:form>
 </div>
