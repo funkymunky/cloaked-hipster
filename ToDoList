@@ -1,6 +1,6 @@
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
-- default sponsorshiptType to 'Awaiting sponsorship' when student is added.
+- DONE - default sponsorshiptType to 'Awaiting sponsorship' when student is added. [07/07/14]
 - reports
 	- export to csv feature
 	- order by columns

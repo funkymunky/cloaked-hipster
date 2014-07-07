@@ -21,9 +21,10 @@
             <div class="span10">
             <legend>Students awaiting sponsorship</legend>
 
-                <a href="/HelloWorld/report/awaitingSponsorship/downloadCSV">Export to csv</a>
+                <a href="/HelloWorld/report/awaitingSponsorship/downloadCsv">Export to csv</a>
                 <table class="table table-striped">
                     <thead><tr>
+                        <th>Id</th>
                         <th>Student name</th>
                         <th>Year of study</th>
                         <th>Account name</th>
@@ -47,6 +48,7 @@
                                 </c:otherwise>
                             </c:choose>
                             <tr>
+                                <td>${student.id}</td>
                                 <td>${student.lastName}, ${student.firstName}</td>
                                 <td>${qualification}</td>
                                 <td>${student.bank.accountName}</td>
