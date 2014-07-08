@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span2">
-                <%--<%@ include file="/WEB-INF/jsp/include/student_navbar.jsp" %>--%>
+                <%@ include file="/WEB-INF/jsp/include/report_navbar.jsp" %>
             </div>
 
             <div class="span10">

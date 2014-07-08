@@ -1,11 +1,9 @@
 package net.helloworld.site.report;
 
-import net.helloworld.InstitutionType;
 import net.helloworld.SponsorshipType;
-import net.helloworld.model.Bank;
-import net.helloworld.model.Education;
 import net.helloworld.model.Student;
 import net.helloworld.service.StudentService;
+import net.helloworld.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +19,13 @@ import java.util.stream.Collectors;
 @Controller
 public class ReportController {
 
+    private static final String[] HEADER_ROW = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
+
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    WriterService writerService;
 
 
     @RequestMapping(value = "/report/list", method = RequestMethod.GET)
@@ -40,7 +43,7 @@ public class ReportController {
     @RequestMapping(value="/report/currentlySponsored/downloadCsv")
     public void downloadCsvForCurrentlySponsoredStudents(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
-        writeToCsv(response, listOfStudents);
+        writerService.writeCsvFile("currentlySponsoredStudents.csv", HEADER_ROW, listOfStudents, response);
     }
 
     @RequestMapping(value = "/report/awaitingSponsorship", method = RequestMethod.GET)
@@ -53,7 +56,7 @@ public class ReportController {
     @RequestMapping(value="/report/awaitingSponsorship/downloadCsv")
     public void downloadCsvForStudentsAwaitingSponsorshipt(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
-        writeToCsv(response, listOfStudents);
+        writerService.writeCsvFile("studentsAwaitingSponsorship.csv", HEADER_ROW, listOfStudents, response);
     }
 
     @RequestMapping(value = "/report/allStudents", method = RequestMethod.GET)
@@ -104,61 +107,4 @@ public class ReportController {
                 .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()))
                 .collect(Collectors.toList());
     }
-
-    private void writeToCsv(HttpServletResponse response, List<Student> listOfStudents) throws IOException {
-        String[] headerRow = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
-
-        BufferedWriter writer = new BufferedWriter(response.getWriter());
-        String fileName = "currentlySponsoredStudents.csv";
-
-        try {
-            response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", fileName));
-            for (String h : headerRow) {
-                writer.write(h);
-                writer.write(",");
-            }
-            writer.newLine();
-
-            for (Student aStudent : listOfStudents) {
-                writer.write(aStudent.getId().toString());
-                writer.write(", '");
-                writer.write(aStudent.getLastName());
-                writer.write(",");
-                writer.write(aStudent.getFirstName());
-                writer.write("',");
-
-                Education education = aStudent.getEducation();
-                if (education != null) {
-                    if (education.getInstitutionType().equals(InstitutionType.School.name())) {
-                        writer.write(education.getInstitutionName());
-                    } else {
-                        writer.write(education.getDegreeName());
-                    }
-                    writer.write(String.format(" (%s)", education.getYearOfStudy()));
-                }
-                writer.write(",");
-                Bank bank = aStudent.getBank();
-                if (bank != null) {
-                    writer.write(bank.getAccountName());
-                    writer.write(",");
-                    writer.write(bank.getBank());
-                    writer.write(",");
-                    writer.write(bank.getBranch());
-                    writer.write(",");
-                    writer.write(bank.getAccountNumber());
-                    writer.write(",");
-                    writer.write(bank.getStandingOrder());
-                } else {
-                    writer.write(",,,,");
-                }
-                writer.newLine();
-            }
-
-        } catch (IOException ex) {
-        } finally {
-            writer.flush();
-            writer.close();
-        }
-    }
-
 }

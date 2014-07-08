@@ -19,7 +19,7 @@
                 <li><a href="/HelloWorld/home">Home</a></li>
                 <li><a href="/HelloWorld/student/list">Students</a></li>
                 <li><a href="/HelloWorld/sponsor/list">Sponsors</a></li>
-                <li><a href="/HelloWorld/report/list">Reports</a></li>
+                <li><a href="/HelloWorld/report/awaitingSponsorship">Reports</a></li>
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -32,7 +32,6 @@
                     <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
-                <li><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
             </ul>
         <!--
         <form class="navbar-form pull-right">
