@@ -1,10 +1,11 @@
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
+- get dropdown menu working again (may need to upgrade to boostrap 3.x)
 - DONE - default sponsorshiptType to 'Awaiting sponsorship' when student is added. [07/07/14]
 - reports
-	- export to csv feature
+	-DONE - export to csv feature [08/07/2014]
 	- order by columns
-	- jasper vs something else?
+	-DONE - jasper vs something else? [08/07/2014] jasper reports seem like a lot of overhead at the moment. it's simpler to just use a streamWriter to write a csv file 
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]
