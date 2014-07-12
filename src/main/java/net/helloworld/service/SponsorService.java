@@ -3,6 +3,7 @@ package net.helloworld.service;
 import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
+import net.helloworld.model.Student;
 
 import java.util.List;
 import java.util.Set;
@@ -13,13 +14,13 @@ import java.util.Set;
  */
 public interface SponsorService {
 
-    public void addSponsor(Sponsor sponsor);
-    public void updateSponsor(Sponsor sponsor);
-    public Sponsor getSponsor(int id);
-    public List<SponsorDTO> getAllSponsors();
-    public Set<SponsorDTO> getSponsorByName(String searchText);
+    void addSponsor(Sponsor sponsor);
+    void updateSponsor(Sponsor sponsor);
+    Sponsor getSponsor(int id);
+    List<SponsorDTO> getAllSponsors();
+    Set<SponsorDTO> getSponsorByName(String searchText);
 
-    public Address getAddressForSponsor(int id);
-    public void updateAddressForSponsor(int id, Address address);
-
+    Address getAddressForSponsor(int id);
+    void updateAddressForSponsor(int id, Address address);
+    List<Student> getAllSponsoredKids(int sponsorId);
 }

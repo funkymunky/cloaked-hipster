@@ -66,3 +66,14 @@ input.search-query {
     font-style: italic;
     width: 250px;
 }
+
+.myinfo {
+    float: left;
+    padding-left: 20px;
+    margin-left: 150px;
+}
+
+.test {
+    clear: both;
+    display: block;
+}

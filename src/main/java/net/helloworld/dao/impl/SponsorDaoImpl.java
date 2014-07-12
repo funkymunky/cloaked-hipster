@@ -3,6 +3,8 @@ package net.helloworld.dao.impl;
 import net.helloworld.dao.SponsorDao;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
+import net.helloworld.model.Student;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,15 @@ public class SponsorDaoImpl implements SponsorDao {
         Sponsor sponsorToUpdate = getSponsor(sponsor.getId());
         sponsorToUpdate.setAddress(address);
         getCurrentSession().update(sponsorToUpdate);
+    }
+
+    @Override
+    public List<Student> getAllStudentsForSponsor(int id) {
+        String sql = String.format("Select s from Student as s right outer join s.sponsorship as sp where sp.sponsor_id = %s order by s.lastName", id);
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        List<Student> list = query.list();
+
+        return list;
     }
 
     @Override

@@ -4,6 +4,7 @@ import net.helloworld.dao.SponsorDao;
 import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
+import net.helloworld.model.Student;
 import net.helloworld.service.SponsorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,5 +79,11 @@ public class SponsorServiceImpl implements SponsorService {
     public void updateAddressForSponsor(int id, Address address) {
         Sponsor sponsor = getSponsor(id);
         sponsorDao.updateAddress(sponsor, address);
+    }
+
+    @Override
+    public List<Student> getAllSponsoredKids(int sponsorId) {
+        List<Student> allStudents = sponsorDao.getAllStudentsForSponsor(sponsorId);
+        return allStudents == null ? Collections.emptyList() : allStudents;
     }
 }

@@ -1,0 +1,53 @@
+<div id="sponsorDetailedInfo" class="sponsor-insert">
+    <spring-form:form method="POST" modelAttribute="sponsor" action="/HelloWorld/sponsor/x/x">
+        <fieldset>
+            <div class="control-group" style="padding-left: 10px; padding-right: 10px;">
+                <h4>Sponsorship summary</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Year of Study</th>
+                            <th>Amount sponsored</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="kid" items="${sponsoredKids}">
+                            <tr>
+                                <td>${kid.lastName}, ${kid.firstName}</td>
+                                <c:set var="kidEducation" value="${kid.education}"/>
+                                <c:choose>
+                                    <c:when test="${kidEducation.institutionType eq 'School'}">
+                                        <td>${kidEducation.institutionName} (${kidEducation.yearOfStudy})</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td>${kidEducation.degreeName} (${kidEducation.yearOfStudy})</td>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:set var="currency" value="${kid.sponsorship.electedCurrency}"/>
+                                <td>${currency} ${kidEducation.monthlyAllowance}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+            <div>
+                <span class="myinfo"><b>Fees due:</b> 07/07/2014</span>
+                <span class="myinfo"><b>Total owing:</b> 1800.00</span>
+            </div>
+
+            <div class="myinfo">
+                <span style="margin-right: 25px;"><b>Paid:</b></span>
+                <input type="radio" name="paid" value="yes">Yes
+                <input type="radio" name="paid" value="no">No
+            </div>
+
+            <div style="clear: both; padding: 20px 10px">
+                <button type="submit" class="btn btn-primary">Update info</button>
+            </div>
+        <%--</fieldset>--%>
+        <input type="hidden" value="${sponsor.id}" name="sponsorid" />
+    </spring-form:form>
+</div>

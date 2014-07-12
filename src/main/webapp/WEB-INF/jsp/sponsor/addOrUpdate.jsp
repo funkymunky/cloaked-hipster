@@ -50,6 +50,7 @@
                     </div>
 
                     <div class="span7" style="background-color: #EBE0D6; display:none; padding-bottom: 20px; border-radius: 10px 10px 10px 10px;">
+                        <%@ include file="/WEB-INF/jsp/sponsor/sponsorDetails.jspf" %>
                         <%@ include file="/WEB-INF/jsp/sponsor/addressDetails.jspf" %>
                     </div>
 
@@ -65,6 +66,8 @@
 
 
     <script type="text/javascript">
+        $("#sponsorDetailedInfo").show();
+        $('.span7').show();
 
         <c:if test="${activeTab == 'address'}">
             hideAllExceptThis("#addressInfo");
@@ -75,13 +78,8 @@
             $('.message').text("");
         }
 
-        function setActiveNavTab() {
-            var selectedItem = $('li.myactive');
-            selectedItem.removeClass();
-            $(this).parent().addClass('myactive');
-        }
-
         function hideAllExceptThis(divIdToShow) {
+            $('#sponsorDetailedInfo').hide();
             $('#addressInfo').hide();
 
             $(divIdToShow).show();

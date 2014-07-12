@@ -61,9 +61,11 @@ public class SponsorController {
     @RequestMapping(value = "/sponsor/edit/{id}", method = RequestMethod.GET)
     public String editSponsor(@PathVariable int id, Model model) {
         Sponsor sponsor = sponsorService.getSponsor(id);
+        List<Student> sponsoredKids = sponsorService.getAllSponsoredKids(id);
 
         model.addAttribute("sponsor", sponsor);
         model.addAttribute("updateMode", true);
+        model.addAttribute("sponsoredKids", sponsoredKids);
         return "/sponsor/addOrUpdate";
     }
 

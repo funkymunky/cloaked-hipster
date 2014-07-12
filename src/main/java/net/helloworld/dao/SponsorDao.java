@@ -2,6 +2,7 @@ package net.helloworld.dao;
 
 import net.helloworld.model.Address;
 import net.helloworld.model.Sponsor;
+import net.helloworld.model.Student;
 
 import java.util.List;
 import java.util.Set;
@@ -12,12 +13,13 @@ import java.util.Set;
  */
 public interface SponsorDao {
 
-    public void addSponsor(Sponsor sponsor);
-    public void updateSponsor(Sponsor sponsor);
-    public Sponsor getSponsor(int id);
-    public List<Sponsor> getAllSponsors();
-    public Set<Sponsor> getAllSponsorsByName(String searchText);
+    void addSponsor(Sponsor sponsor);
+    void updateSponsor(Sponsor sponsor);
+    Sponsor getSponsor(int id);
+    List<Sponsor> getAllSponsors();
+    Set<Sponsor> getAllSponsorsByName(String searchText);
 
-    public Address getAddressForSponsor(int id);
-    public void updateAddress(Sponsor sponsor, Address address);
+    Address getAddressForSponsor(int id);
+    void updateAddress(Sponsor sponsor, Address address);
+    List<Student> getAllStudentsForSponsor(int id);
 }
