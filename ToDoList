@@ -1,6 +1,11 @@
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
 - get dropdown menu working again (may need to upgrade to boostrap 3.x)
+- add feature to keep track of sponsor payments
+	- fees are due once a year
+	- report to show who has paid, and who's outstanding
+- feature to generate fee statement based on sponsor and their sponsored kids
+- fix highlight of reporting in the side navigation menu
 - DONE - default sponsorshiptType to 'Awaiting sponsorship' when student is added. [07/07/14]
 - reports
 	-DONE - export to csv feature [08/07/2014]

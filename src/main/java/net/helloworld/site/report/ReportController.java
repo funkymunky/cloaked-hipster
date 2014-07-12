@@ -37,6 +37,7 @@ public class ReportController {
     public String showCurrentlySponsoredStudents(Model model) {
         List<Student> sponsored = getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
         model.addAttribute("students", sponsored);
+        model.addAttribute("activeTab", "reportC");
         return "/reports/currentlySponsored";
     }
 
@@ -50,6 +51,7 @@ public class ReportController {
     public String showStudentsAwaitingSponsorship(Model model) {
         List<Student> awaitingSponsorship = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
         model.addAttribute("students", awaitingSponsorship);
+        model.addAttribute("activeTab", "reportA");
         return "/reports/awaitingSponsorship";
     }
 

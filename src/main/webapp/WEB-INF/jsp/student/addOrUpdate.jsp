@@ -99,12 +99,6 @@
             $('.message').text("");
         }
 
-        function setActiveNavTab() {
-            var selectedItem = $('li.myactive');
-            selectedItem.removeClass();
-            $(this).parent().addClass('myactive');
-        }
-
         function hideAllExceptThis(divIdToShow) {
             $('#profileInfo').hide();
             $('#bankInfo').hide();

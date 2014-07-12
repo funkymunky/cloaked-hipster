@@ -49,7 +49,7 @@
                             </c:choose>
                             <tr>
                                 <td>${student.id}</td>
-                                <td>${student.lastName}, ${student.firstName}</td>
+                                <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
                                 <td>${qualification}</td>
                                 <td>${student.bank.accountName}</td>
                                 <td>${student.bank.bank}</td>
@@ -65,9 +65,5 @@
         </div>
     </div>
 </body>
-
-<script type="text/javascript">
-
-</script>
 
 </html>
