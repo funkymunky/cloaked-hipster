@@ -7,7 +7,9 @@ $(document).ready(function() {
         navListItems.each(function () {
             var currentClass = $(this).parent().attr('class');
             $(this).parent().attr('class','enabled');
-            $(this).parent().addClass(currentClass);
+            if (currentClass != 'disabled') {
+                $(this).parent().addClass(currentClass);
+            }
         });
         return false;
     }
