@@ -21,8 +21,8 @@
             <div class="span10">
                 <legend>Set up fees</legend>
                 <spring-form:form method="POST" modelAttribute="fees">
-                    <span>Current fees issue date:</span> <spring-form:input type="text" path="issueDate" id="issueDate" class="datepickerFee" />
-                    <a href="">Edit date</a>
+                    <span>Current fees issue date:</span> <spring-form:input type="text" path="issueDate" id="issueDate" class="datepickerFee" readonly="true" />
+                    <a href="" id="editDate">Edit date</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </spring-form:form>
                 <div>
@@ -62,6 +62,13 @@
             changeYear: true,
             dateFormat: 'dd/mm/yy'
         });
+    });
+
+    $(function() {
+        $("#editDate").click(function(evt) {
+            evt.preventDefault();
+            $('.datepickerFee').removeAttr('readonly');
+        })
     });
 
 </script>
