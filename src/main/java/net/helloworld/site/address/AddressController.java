@@ -72,21 +72,21 @@ public class AddressController {
 
         String message = null, urlParent = null;
         int id;
-            id = Integer.parseInt(sponsorId);
+        id = Integer.parseInt(sponsorId);
 
-            Address currentAddress = sponsorService.getAddressForSponsor(id);
-            Address updatedAddress = addressCommand.getAddress();
-            if (currentAddress != updatedAddress && currentAddress != null) {
-                addressService.updateAddress(updatedAddress, currentAddress.getId());
-                message = "Successfully updated address";
-            } else {
-                addressService.addAddress(updatedAddress);
-                sponsorService.updateAddressForSponsor(id, updatedAddress);
-                message = "Successfully added address";
-            }
+        Address currentAddress = sponsorService.getAddressForSponsor(id);
+        Address updatedAddress = addressCommand.getAddress();
+        if (currentAddress != updatedAddress && currentAddress != null) {
+            addressService.updateAddress(updatedAddress, currentAddress.getId());
+            message = "Successfully updated address";
+        } else {
+            addressService.addAddress(updatedAddress);
+            sponsorService.updateAddressForSponsor(id, updatedAddress);
+            message = "Successfully added address";
+        }
 
-            model.addAttribute("sponsor", sponsorService.getSponsor(id));
-            urlParent = "sponsor";
+        model.addAttribute("sponsor", sponsorService.getSponsor(id));
+        urlParent = "sponsor";
 
         model.addAttribute("activeTab", "address");
         model.addAttribute("message", message);

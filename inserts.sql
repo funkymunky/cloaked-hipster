@@ -157,3 +157,23 @@ CREATE TABLE IF NOT EXISTS `bank` (
   `standingOrder` varchar(255) default null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+
+CREATE TABLE IF NOT EXISTS `fees` (
+  `id` int(11) not null auto_increment,
+  `issueDate` date default null,
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `sponsorshipFees` (
+  `id` int(11) not null auto_increment,
+  `issueDate` date default null,
+  `sponsor_id` int(11) default null,
+  `student_id` int(11) default null,
+  `amountOutstanding` decimal(65,2) default null,
+  `paidInFull` bit(1) default 0,
+  PRIMARY KEY (`id`),
+  KEY `FK_fees_sponsor` (`sponsor_id`),
+  KEY `FK_fees_student` (`student_id`),
+  CONSTRAINT `FK_fees_sponsor` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`),
+  CONSTRAINT `FK_fees_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
