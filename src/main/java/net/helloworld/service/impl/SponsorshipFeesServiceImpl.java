@@ -18,4 +18,9 @@ public class SponsorshipFeesServiceImpl implements SponsorshipFeesService {
     public void saveNewSponsorshipFees(SponsorshipFees sponsorshipFees) {
         sponsorshipFeesDao.saveNewSponsorshipFees(sponsorshipFees);
     }
+
+    @Override
+    public SponsorshipFees getOutstandingFees() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

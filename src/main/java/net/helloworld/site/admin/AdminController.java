@@ -1,6 +1,7 @@
 package net.helloworld.site.admin;
 
 import net.helloworld.service.FeesService;
+import net.helloworld.service.SponsorshipFeesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class AdminController {
     @Autowired
     private FeesService feesService;
 
+    @Autowired
+    private SponsorshipFeesService sponsorshipFeesService;
+
     @InitBinder("fees")
     private void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -31,6 +35,7 @@ public class AdminController {
     @RequestMapping(value = "/manage/fees", method = RequestMethod.GET)
     public String showAdminHomePage(Model model) {
         model.addAttribute("fees", feesService.getCurrentFees());
+//        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
         return "/manage/fees";
     }
 

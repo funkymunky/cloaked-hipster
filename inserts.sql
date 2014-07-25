@@ -105,7 +105,6 @@ CREATE TABLE `students` (
   `address_id` int(6) DEFAULT NULL,
   `education_id` int(6) DEFAULT NULL,
   `sponsorship_id` int(11) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
   `profilePic` varchar(255) DEFAULT NULL,
   `bank_id` int(11) DEFAULT NULL,
   `sponsorshipType` varchar(255) DEFAULT NULL,

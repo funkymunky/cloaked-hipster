@@ -11,11 +11,11 @@ public class SponsorshipFees implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SponsorshipFees(Date feeIssueDate, BigDecimal amountOutstanding, Long sponsor_id, Long student_id, Boolean paidInFull) {
+    public SponsorshipFees(Date feeIssueDate, BigDecimal amountOutstanding, Sponsor sponsor, Student student, Boolean paidInFull) {
         this.feeIssueDate = feeIssueDate;
         this.amountOutstanding = amountOutstanding;
-        this.sponsor_id = sponsor_id;
-        this.student_id = student_id;
+        this.sponsor = sponsor;
+        this.student = student;
         this.paidInFull = paidInFull;
     }
 
@@ -25,8 +25,12 @@ public class SponsorshipFees implements Serializable {
 
     private Date feeIssueDate;
     private BigDecimal amountOutstanding;
-    private Long sponsor_id;
-    private Long student_id;
+    @OneToOne
+    @JoinColumn(name = "sponsor_id")
+    private Sponsor sponsor;
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
     private Boolean paidInFull;
 
     public SponsorshipFees() {
@@ -56,20 +60,20 @@ public class SponsorshipFees implements Serializable {
         this.amountOutstanding = amountOutstanding;
     }
 
-    public Long getSponsor_id() {
-        return sponsor_id;
+    public Sponsor getSponsor() {
+        return sponsor;
     }
 
-    public void setSponsor_id(Long sponsor) {
-        this.sponsor_id = sponsor;
+    public void setSponsor(Sponsor sponsor) {
+        this.sponsor = sponsor;
     }
 
-    public Long getStudent_id() {
-        return student_id;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudent_id(Long student) {
-        this.student_id = student;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Boolean isPaidInFull() {
