@@ -1,16 +1,17 @@
 package net.helloworld.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "FEES")
-public class SponsorshipFees {
+@Table(name = "SPONSORSHIPFEES")
+public class SponsorshipFees implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SponsorshipFees(Date feeIssueDate, BigDecimal amountOutstanding, Long sponsor_id, Long student_id, boolean paidInFull) {
+    public SponsorshipFees(Date feeIssueDate, BigDecimal amountOutstanding, Long sponsor_id, Long student_id, Boolean paidInFull) {
         this.feeIssueDate = feeIssueDate;
         this.amountOutstanding = amountOutstanding;
         this.sponsor_id = sponsor_id;
@@ -26,7 +27,10 @@ public class SponsorshipFees {
     private BigDecimal amountOutstanding;
     private Long sponsor_id;
     private Long student_id;
-    private boolean paidInFull;
+    private Boolean paidInFull;
+
+    public SponsorshipFees() {
+    }
 
     public Integer getId() {
         return id;
@@ -68,11 +72,11 @@ public class SponsorshipFees {
         this.student_id = student;
     }
 
-    public boolean isPaidInFull() {
+    public Boolean isPaidInFull() {
         return paidInFull;
     }
 
-    public void setPaidInFull(boolean paidInFull) {
+    public void setPaidInFull(Boolean paidInFull) {
         this.paidInFull = paidInFull;
     }
 

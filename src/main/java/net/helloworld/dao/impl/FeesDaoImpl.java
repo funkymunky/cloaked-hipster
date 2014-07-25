@@ -1,8 +1,13 @@
 package net.helloworld.dao.impl;
 
+import net.helloworld.SponsorshipType;
 import net.helloworld.dao.FeesDao;
+import net.helloworld.dao.SponsorshipFeesDao;
+import net.helloworld.dao.StudentDao;
 import net.helloworld.model.Fees;
+import net.helloworld.model.SponsorshipFees;
 import net.helloworld.model.Student;
+import net.helloworld.service.SponsorshipFeesService;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,13 +27,19 @@ public class FeesDaoImpl implements FeesDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Autowired
+    private StudentDao studentDao;
+
+    @Autowired
+    private SponsorshipFeesService sponsorshipFeesService;
+
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 
     @Override
     public Fees getCurrentFeeIssueDate() {
-        List feeList = sessionFactory.getCurrentSession().createQuery("from Fees order by issueDate desc").list();
+        List feeList = sessionFactory.getCurrentSession().createQuery("from Fees order by id desc").list();
         return feeList.size() == 0 ? new Fees() : (Fees) feeList.get(0);
 
     }
@@ -36,6 +47,15 @@ public class FeesDaoImpl implements FeesDao {
     @Override
     public void setFeeIssueDate(Fees fees) {
         getCurrentSession().save(fees);
+        setSponsorshipFeesForSponsoredStudents(fees);
+    }
+
+    private void setSponsorshipFeesForSponsoredStudents(Fees fees) {
+        List<Student> currentlySponsoredStudents = studentDao.getAllStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
+        for (Student student : currentlySponsoredStudents) {
+            SponsorshipFees spFees = new SponsorshipFees(fees.getIssueDate(), student.getEducation().getMonthlyAllowance(), student.getSponsorship().getSponsor(), (long) student.getId(), Boolean.FALSE);
+            sponsorshipFeesService.saveNewSponsorshipFees(spFees);
+        }
     }
 
 

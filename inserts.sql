@@ -161,16 +161,16 @@ CREATE TABLE IF NOT EXISTS `bank` (
 CREATE TABLE IF NOT EXISTS `fees` (
   `id` int(11) not null auto_increment,
   `issueDate` date default null,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `sponsorshipFees` (
   `id` int(11) not null auto_increment,
-  `issueDate` date default null,
+  `feeIssueDate` date default null,
   `sponsor_id` int(11) default null,
   `student_id` int(11) default null,
   `amountOutstanding` decimal(65,2) default null,
-  `paidInFull` bit(1) default 0,
+  `paidInFull` tinyint(1) default 0,
   PRIMARY KEY (`id`),
   KEY `FK_fees_sponsor` (`sponsor_id`),
   KEY `FK_fees_student` (`student_id`),

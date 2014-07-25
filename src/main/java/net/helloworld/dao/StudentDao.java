@@ -1,5 +1,6 @@
 package net.helloworld.dao;
 
+import net.helloworld.SponsorshipType;
 import net.helloworld.model.*;
 
 import java.util.List;
@@ -33,4 +34,6 @@ public interface StudentDao {
     void updateProfilePicForStudent(Student student, String profilePic);
 
     List<String> getAllProfilePictureNames();
+
+    List<Student> getAllStudentsBySponsorshipType(SponsorshipType sponsorshipType);
 }

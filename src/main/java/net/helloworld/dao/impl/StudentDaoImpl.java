@@ -146,6 +146,11 @@ public class StudentDaoImpl implements StudentDao {
         return listOfProfilePictureNames;
     }
 
+    @Override
+    public List<Student> getAllStudentsBySponsorshipType(SponsorshipType sponsorshipType) {
+        return sessionFactory.getCurrentSession().createQuery("Select s from Student as s right outer join s.sponsorship as sp where sp.sponsorshipType = '" + sponsorshipType + "'" ).list();
+    }
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
