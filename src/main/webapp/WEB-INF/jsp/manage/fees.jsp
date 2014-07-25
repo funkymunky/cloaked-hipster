@@ -36,14 +36,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%--<c:forEach var="student" items="${sponsoredStudents}">--%>
+                            <c:forEach var="sponsorshipFee" items="${sponsoredStudents}">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>${sponsorshipFee.id}</td>
+                                    <td><a href="/HelloWorld/sponsor/edit/${sponsorshipFee.sponsor.id}">${sponsorshipFee.sponsor.firstName} ${sponsorshipFee.sponsor.lastName}</a></td>
+                                    <td>${sponsorshipFee.student.firstName} ${sponsorshipFee.student.lastName}</td>
+                                    <td>${sponsorshipFee.amountOutstanding}</td>
                                 </tr>
-                            <%--</c:forEach>--%>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

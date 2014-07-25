@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class SponsorshipFeesServiceImpl implements SponsorshipFeesService {
@@ -20,7 +22,7 @@ public class SponsorshipFeesServiceImpl implements SponsorshipFeesService {
     }
 
     @Override
-    public SponsorshipFees getOutstandingFees() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<SponsorshipFees> getOutstandingFees() {
+        return sponsorshipFeesDao.getOutstandingFees();
     }
 }

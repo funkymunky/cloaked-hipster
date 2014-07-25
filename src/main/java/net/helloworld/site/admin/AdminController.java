@@ -35,7 +35,7 @@ public class AdminController {
     @RequestMapping(value = "/manage/fees", method = RequestMethod.GET)
     public String showAdminHomePage(Model model) {
         model.addAttribute("fees", feesService.getCurrentFees());
-//        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
         return "/manage/fees";
     }
 
