@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -36,6 +37,7 @@ public class AdminController {
     public String showAdminHomePage(Model model) {
         model.addAttribute("fees", feesService.getCurrentFees());
         model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        model.addAttribute("outstandingPayments", new OutstandingPayments());
         return "/manage/fees";
     }
 
@@ -43,6 +45,16 @@ public class AdminController {
     public String saveNewFeeIssueDate(@ModelAttribute FeesCommand feesCommand, Model model) {
         feesService.updateFeeIssueDate(feesCommand.getIssueDate());
         model.addAttribute("fees", feesCommand);
+        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        return "/manage/fees";
+    }
+
+    @RequestMapping(value="/manage/payments", method= RequestMethod.POST)
+    public String updatePaymentsReceived(@ModelAttribute OutstandingPayments outstandingPayments, Model model) {
+        sponsorshipFeesService.updatePaymentsReceived(outstandingPayments.getPaidFees());
+        model.addAttribute("fees", feesService.getCurrentFees());
+        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        model.addAttribute("outstandingPayments", new OutstandingPayments());
         return "/manage/fees";
     }
 
@@ -57,6 +69,17 @@ public class AdminController {
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(issueDate);
             this.issueDate = date;
         }
+    }
 
+    private static class OutstandingPayments {
+        private List<String> paidFees;
+
+        public List<String> getPaidFees() {
+            return paidFees;
+        }
+
+        public void setPaidFees(List<String> paidFees) {
+            this.paidFees = paidFees;
+        }
     }
 }

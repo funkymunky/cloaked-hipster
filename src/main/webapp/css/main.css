@@ -77,3 +77,7 @@ input.search-query {
     clear: both;
     display: block;
 }
+
+.mytable {
+    width: 70%;
+}

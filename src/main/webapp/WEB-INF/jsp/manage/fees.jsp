@@ -26,26 +26,31 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                 </spring-form:form>
                 <div>
-                    <table class="table table-striped">
+                    <table class="table table-striped mytable">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Sponsor</th>
-                                <th>Student</th>
-                                <th>Amount outstanding</th>
+                                <th class="span1">Id</th>
+                                <th class="span2">Sponsor</th>
+                                <th class="span4">Student</th>
+                                <th class="span2" style="text-align: right">Amount outstanding</th>
+                                <th class="span1" style="text-align: center">Paid</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <spring-form:form method="POST" action="/HelloWorld/manage/payments" modelAttribute="outstandingPayments">
                             <c:forEach var="sponsorshipFee" items="${sponsoredStudents}">
                                 <tr>
                                     <td>${sponsorshipFee.id}</td>
                                     <td><a href="/HelloWorld/sponsor/edit/${sponsorshipFee.sponsor.id}">${sponsorshipFee.sponsor.firstName} ${sponsorshipFee.sponsor.lastName}</a></td>
                                     <td>${sponsorshipFee.student.firstName} ${sponsorshipFee.student.lastName}</td>
-                                    <td>${sponsorshipFee.amountOutstanding}</td>
+                                    <td style="text-align: right">${sponsorshipFee.amountOutstanding}</td>
+                                    <td style="text-align: center"><spring-form:checkbox path="paidFees" id="paymentReceived" value="${sponsorshipFee.id}"/></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
+                        <button type="submit" class="btn btn-primary">Update payments</button>
+                        </spring-form:form>
                 </div>
             </div>
 

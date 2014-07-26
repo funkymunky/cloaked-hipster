@@ -8,4 +8,6 @@ public interface SponsorshipFeesDao {
     void saveNewSponsorshipFees(SponsorshipFees sponsorshipFees);
 
     List<SponsorshipFees> getOutstandingFees();
+
+    void updatePaymentsMade(List<String> paidFees);
 }

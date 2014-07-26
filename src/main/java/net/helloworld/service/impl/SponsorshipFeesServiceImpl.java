@@ -25,4 +25,9 @@ public class SponsorshipFeesServiceImpl implements SponsorshipFeesService {
     public List<SponsorshipFees> getOutstandingFees() {
         return sponsorshipFeesDao.getOutstandingFees();
     }
+
+    @Override
+    public void updatePaymentsReceived(List<String> paidFees) {
+        sponsorshipFeesDao.updatePaymentsMade(paidFees);
+    }
 }
