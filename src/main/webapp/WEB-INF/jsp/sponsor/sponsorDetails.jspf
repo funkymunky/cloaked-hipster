@@ -6,11 +6,16 @@
     <fieldset>
         <div class="control-group" style="padding-left: 10px; padding-right: 5px;">
             <h4>Sponsorship summary</h4>
+            <div>
+                <span class="myinfo left"><b class="info">Current fee issue date:</b> ${feeDueDate}</span>
+                <span class="myinfo right"><b class="info">Total fees:</b> ${totalFees}</span>
+            </div>
+
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th class="span3">Student Name</th>
-                    <th>Year of Study</th>
+                    <th class="span3">Student</th>
+                    <th>Year of study</th>
                     <th style="text-align: right">Amount sponsored</th>
                     <th>Paid</th>
                 </tr>
@@ -51,11 +56,6 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </div>
-        <hr>
-        <div>
-            <span class="myinfo"><b>Fees issue date:</b> ${feeDueDate}</span>
-            <span class="myinfo"><b>Total:</b> ${totalFees}</span>
         </div>
     </fieldset>
 </div>

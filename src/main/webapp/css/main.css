@@ -67,10 +67,25 @@ input.search-query {
     width: 250px;
 }
 
-.myinfo {
+.myinfo.left {
     float: left;
+    margin-left: 180px;
+    font-style: italic;
     padding-left: 20px;
-    margin-left: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.myinfo.right {
+    float: right;
+    font-style: italic;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.info {
+    color: darkslateblue;
 }
 
 .test {

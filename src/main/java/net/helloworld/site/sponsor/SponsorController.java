@@ -18,8 +18,10 @@ import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -123,7 +125,9 @@ public class SponsorController {
             totalAllowance = totalAllowance.add(monthlyAllowance);
         }
         totalAllowance.setScale(2, RoundingMode.UP);
-        return totalAllowance.toString();
+        Locale locale = new Locale("en", "AU");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        return nf.format(totalAllowance);
     }
 
     private List<SponsorshipFees> prepareFeesForStudents(int sponsorId, List<Student> students) {
