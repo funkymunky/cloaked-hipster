@@ -2,8 +2,11 @@ package net.helloworld.site.sponsor;
 
 import net.helloworld.data.SponsorDTO;
 import net.helloworld.model.Sponsor;
+import net.helloworld.model.SponsorshipFees;
 import net.helloworld.model.Student;
+import net.helloworld.service.FeesService;
 import net.helloworld.service.SponsorService;
+import net.helloworld.service.SponsorshipFeesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +31,12 @@ public class SponsorController {
 
     @Autowired
     private SponsorService sponsorService;
+
+    @Autowired
+    private FeesService feesService;
+
+    @Autowired
+    private SponsorshipFeesService sponsorshipFeesService;
 
     @InitBinder("sponsor")
     private void initBinder(WebDataBinder binder) {
@@ -61,11 +74,10 @@ public class SponsorController {
     @RequestMapping(value = "/sponsor/edit/{id}", method = RequestMethod.GET)
     public String editSponsor(@PathVariable int id, Model model) {
         Sponsor sponsor = sponsorService.getSponsor(id);
-        List<Student> sponsoredKids = sponsorService.getAllSponsoredKids(id);
 
         model.addAttribute("sponsor", sponsor);
         model.addAttribute("updateMode", true);
-        model.addAttribute("sponsoredKids", sponsoredKids);
+        prepareModelWithSummaryInfo(id, model);
         return "/sponsor/addOrUpdate";
     }
 
@@ -77,6 +89,7 @@ public class SponsorController {
         model.addAttribute("message", message);
         model.addAttribute("showLink", true);
         model.addAttribute("updateMode", true);
+        prepareModelWithSummaryInfo(sponsor.getId(), model);
         return "/sponsor/addOrUpdate";
     }
 
@@ -88,6 +101,54 @@ public class SponsorController {
         model.addAttribute("sponsors", sponsorsByName);
         model.addAttribute("showAllButton", true);
         return "/sponsor/list";
+    }
+
+    private void prepareModelWithSummaryInfo(int id, Model model) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        List<Student> sponsoredKids = sponsorService.getAllSponsoredKids(id);
+
+        model.addAttribute("sponsoredKids", sponsoredKids);
+        model.addAttribute("feeDueDate", df.format(feesService.getCurrentFees().getIssueDate()));
+        model.addAttribute("totalFees", calculateTotalFees(sponsoredKids));
+        model.addAttribute("feesPerStudent", prepareFeesForStudents(id, sponsoredKids));
+    }
+
+    private String calculateTotalFees(List<Student> students) {
+        BigDecimal totalAllowance = BigDecimal.ZERO;
+        for (Student student : students) {
+            BigDecimal monthlyAllowance = student.getEducation().getMonthlyAllowance();
+            if (monthlyAllowance == null) {
+                monthlyAllowance = BigDecimal.ZERO;
+            }
+            totalAllowance = totalAllowance.add(monthlyAllowance);
+        }
+        totalAllowance.setScale(2, RoundingMode.UP);
+        return totalAllowance.toString();
+    }
+
+    private List<SponsorshipFees> prepareFeesForStudents(int sponsorId, List<Student> students) {
+        List<SponsorshipFees> sponsorFees = sponsorshipFeesService.getFeesForSponsor(sponsorId);
+        if (sponsorFees.size() != students.size()) {
+            for (Student student : students) {
+                if (!feeForStudentExists(sponsorFees, student.getId())) {
+                    SponsorshipFees blankFee = new SponsorshipFees(null, null, null, student, null);
+                    sponsorFees.add(blankFee);
+                    break;
+                }
+            }
+        }
+
+        return sponsorFees;
+    }
+
+    private boolean feeForStudentExists(List<SponsorshipFees> sponsorFees, Integer studentId) {
+        boolean found = false;
+        for (SponsorshipFees fee : sponsorFees) {
+            if (fee.getStudent().getId().equals(studentId)) {
+                return true;
+            }
+        }
+        return found;
     }
 
 }

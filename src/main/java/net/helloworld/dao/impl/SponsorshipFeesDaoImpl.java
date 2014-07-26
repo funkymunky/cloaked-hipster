@@ -1,14 +1,16 @@
 package net.helloworld.dao.impl;
 
 import net.helloworld.dao.SponsorshipFeesDao;
+import net.helloworld.model.Sponsor;
 import net.helloworld.model.SponsorshipFees;
-import net.helloworld.model.Student;
+import net.helloworld.service.FeesService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -17,6 +19,9 @@ public class SponsorshipFeesDaoImpl implements SponsorshipFeesDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private FeesService feesService;
 
     private Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
@@ -39,6 +44,13 @@ public class SponsorshipFeesDaoImpl implements SponsorshipFeesDao {
             sponsorshipFee.setPaidInFull(true);
             getCurrentSession().update(sponsorshipFee);
         }
+    }
+
+    @Override
+    public List<SponsorshipFees> getFeesForSponsor(int id) {
+        Sponsor currentSponsor = (Sponsor) getCurrentSession().get(Sponsor.class, id);
+        Date issueDate = feesService.getCurrentFees().getIssueDate();
+        return sessionFactory.getCurrentSession().createQuery("from SponsorshipFees where sponsor = " + currentSponsor.getId() + " and feeIssueDate = '" + issueDate + "'").list();
     }
 
 }

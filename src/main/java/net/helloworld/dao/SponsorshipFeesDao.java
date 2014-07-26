@@ -10,4 +10,6 @@ public interface SponsorshipFeesDao {
     List<SponsorshipFees> getOutstandingFees();
 
     void updatePaymentsMade(List<String> paidFees);
+
+    List<SponsorshipFees> getFeesForSponsor(int id);
 }

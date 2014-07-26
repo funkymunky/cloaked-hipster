@@ -76,7 +76,7 @@ public class SponsorshipFees implements Serializable {
         this.student = student;
     }
 
-    public Boolean isPaidInFull() {
+    public Boolean getPaidInFull() {
         return paidInFull;
     }
 

@@ -30,4 +30,9 @@ public class SponsorshipFeesServiceImpl implements SponsorshipFeesService {
     public void updatePaymentsReceived(List<String> paidFees) {
         sponsorshipFeesDao.updatePaymentsMade(paidFees);
     }
+
+    @Override
+    public List<SponsorshipFees> getFeesForSponsor(int id) {
+        return sponsorshipFeesDao.getFeesForSponsor(id);
+    }
 }

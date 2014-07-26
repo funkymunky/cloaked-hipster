@@ -12,4 +12,6 @@ public interface SponsorshipFeesService {
     List<SponsorshipFees> getOutstandingFees();
 
     void updatePaymentsReceived(List<String> paidFees);
+
+    List<SponsorshipFees> getFeesForSponsor(int id);
 }
