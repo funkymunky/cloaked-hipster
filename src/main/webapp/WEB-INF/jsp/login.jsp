@@ -14,22 +14,30 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Page</title>
 
+        <style type="text/css">
+            .form-signin {
+                max-width: 230px;
+                margin: 0 auto;
+            }
+
+        </style>
+
     </head>
     <body>
     <div class="container">
-        <div class="hero-unit">
+        <div class="jumbotron">
         <h1><span class="something">Awesome responsive layout</span></h1>
         <p>Hello guys i am a ".hero-unit" and you can use me if you wanna say something important.</p>
-        <p><a class="btn btn-primary btn-large">Super important &raquo;</a></p>
+        <p><a class="btn btn-default">Super important &raquo;</a></p>
         </div><!-- .hero-unit -->
 
         <form class="form-signin" action="j_spring_security_check" method="POST" >
-            <input type="text" class="input-block-level" name="j_username" id="j_username" placeholder="Username"/>
-            <input type="password" class="input-block-level" name="j_password" id="j_password" placeholder="Password" />
+            <input type="text" class="form-control" name="j_username" id="j_username" placeholder="Username"/>
+            <input type="password" class="form-control" name="j_password" id="j_password" placeholder="Password" />
             <label class="checkbox">
                 <input type="checkbox" name="_spring_security_remember_me" value="remember-me"/> Remember me on this computer.
             </label>
-            <button class="btn btn-large btn-primary" type="submit" id="submit">Login</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">Login</button>
             <br/>
             <c:if test="${not empty message}"><span class="error">${message}</span></c:if>
         </form>

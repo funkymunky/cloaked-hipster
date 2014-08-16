@@ -1,6 +1,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<div class="row-fluid">
-    <ul class="nav nav-tabs nav-stacked nav-side">
+
+<div class="row">
+    <ul class="nav nav-pills nav-stacked nav-side">
         <sec:authorize ifAllGranted="ROLE_ADMIN">
             <li><a href="/HelloWorld/student/add">Add</a></li>
         </sec:authorize>

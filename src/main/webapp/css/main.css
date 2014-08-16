@@ -27,6 +27,7 @@ div.ui-datepicker{
     text-decoration: none;
     background-color: #003399;
     color: #ffffff;
+    margin-left: 10px;
 }
 
 .nav-side > li > a:hover,
@@ -64,7 +65,7 @@ li.myactive a {
 
 input.search-query {
     font-style: italic;
-    width: 250px;
+    width: 300px;
 }
 
 .myinfo.left {

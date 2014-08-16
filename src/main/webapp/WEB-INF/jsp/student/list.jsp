@@ -13,12 +13,12 @@
 <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
     <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+        <div class="row">
+            <div class="col-md-2">
                 <%@ include file="/WEB-INF/jsp/include/student_navbar.jsp" %>
             </div>
 
-            <div class="span10">
+            <div class="col-md-10">
             <legend>Student list</legend>
                 <c:if test="${showAllButton eq true}">
                     <button id="allStudents" type="button" class="btn-info">Show all</button>
@@ -26,7 +26,7 @@
 
                 <div class="navbar-search pull-right">
                     <input id="searchStudent" type="text" class="search-query" placeholder="Search by first/last name or standing order" >
-                    <button id="search" type="button" class="btn btn-primary">Search</button>
+                    <button id="search" type="button" class="btn btn-sm">Search</button>
                     <%--<button class="btn btn-primary" id="edit" type="button">Edit</button>--%>
                 </div>
 
