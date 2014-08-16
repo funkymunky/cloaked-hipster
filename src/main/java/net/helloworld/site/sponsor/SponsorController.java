@@ -20,6 +20,7 @@ import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -110,7 +111,8 @@ public class SponsorController {
         List<Student> sponsoredKids = sponsorService.getAllSponsoredKids(id);
 
         model.addAttribute("sponsoredKids", sponsoredKids);
-        model.addAttribute("feeDueDate", df.format(feesService.getCurrentFees().getIssueDate()));
+        Date issueDate = feesService.getCurrentFees().getIssueDate();
+        model.addAttribute("feeDueDate", issueDate == null ? "" : df.format(issueDate));
         model.addAttribute("totalFees", calculateTotalFees(sponsoredKids));
         model.addAttribute("feesPerStudent", prepareFeesForStudents(id, sponsoredKids));
     }

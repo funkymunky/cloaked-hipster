@@ -46,6 +46,7 @@ public class AdminController {
         feesService.updateFeeIssueDate(feesCommand.getIssueDate());
         model.addAttribute("fees", feesCommand);
         model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        model.addAttribute("outstandingPayments", new OutstandingPayments());
         return "/manage/fees";
     }
 

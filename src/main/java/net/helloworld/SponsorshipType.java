@@ -3,7 +3,8 @@ package net.helloworld;
 public enum SponsorshipType {
     AwaitingSponsorship("Awaiting sponsorship"),
     CurrentlySponsored("Currently sponsored"),
-    FormerlySponsored("Formerly sponsored");
+    FormerlySponsored("Formerly sponsored"),
+    ApplicationExpired("ApplicationExpired");
 
     private String description;
 

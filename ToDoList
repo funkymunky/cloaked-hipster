@@ -20,6 +20,8 @@
 - DONE - upload profile pic [22/06/14]
 - DONE - validation on profile pic. Can't store file with the same name, has to be jpg extension, and size of file [06/07/14]
 - write insert sql script to migrate data from access to mysql
+	- update scripts to not insert NULL for Grade (should be 0)
+	- should not insert 0000-00-00 timestamps in education and sponsorship tables
 - DONE - fix profile page (default jsp fragment that is to be displayed) : this is now handled in the jsp and not in the dao [21/06/14]
 - DONE - default the application start date to today's date [21/06/14]
 - DONE - remove year bound from application end date (and possibly start date) : year bound set to 5 yrs in the future & 1 yr in the past [21/06/14]

@@ -20,7 +20,9 @@ public class UploadFileAspect {
 
             Path source = Paths.get(filePath);
             Path target = Paths.get(newFilePath);
-            Files.copy(source, target);
+            if (!Files.exists(target)) {
+                Files.copy(source, target);
+            }
 
             Files.delete(source);
         }
