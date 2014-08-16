@@ -20,7 +20,6 @@
     <import resource="helloWorldConfig/jmx.xml" />
     <!--<import resource="helloWorldConfig/helloworld-servlet.xml" />-->
     <!--<import resource="helloWorldConfig/helloworld-security.xml"/>-->
-
     <!-- ========================= DATASOURCE ======================== -->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -84,12 +83,17 @@
     <bean name="uploadFileAspect" class="net.helloworld.aspects.UploadFileAspect"/>
 
     <!-- ========================= SECURITY ======================== -->
-
-    <sec:http auto-config="true">
-        <!-- <sec:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
-        <sec:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
-        <sec:intercept-url pattern="/member/**" access="ROLE_MEMBER,ROLE_ADMIN" />
-        <sec:form-login login-page="/login" default-target-url="/home" authentication-failure-url="/loginFail"/>
+    <sec:global-method-security pre-post-annotations="enabled"/>
+    <sec:http auto-config="false" use-expressions="true">
+        <sec:intercept-url pattern="/login*" access="permitAll" />
+        <sec:intercept-url pattern="/home*" access="permitAll" />
+        <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
+        <sec:intercept-url pattern="/css/main.css" access="permitAll" />
+        <sec:intercept-url pattern="/bootstrap/**" access="permitAll" />
+        <sec:intercept-url pattern="/resources/**" access="permitAll" />
+        <sec:intercept-url pattern="/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_MEMBER'})" />
+        <sec:form-login login-page="/login" authentication-success-handler-ref="mySuccessHandler" default-target-url="/home" authentication-failure-url="/loginFail"/>
         <sec:access-denied-handler ref ="myAccessDeniedHandlerImpl"/>
         <sec:logout logout-success-url="/goodbye.jsp" />
     </sec:http>
@@ -100,6 +104,10 @@
     -->
     <bean id="myAccessDeniedHandlerImpl" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
         <property name="errorPage" value="/accessDenied"/>
+    </bean>
+
+    <bean id="mySuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <property name="defaultTargetUrl" value="/home"/>
     </bean>
 
     <sec:authentication-manager>

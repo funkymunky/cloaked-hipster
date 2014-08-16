@@ -21,6 +21,7 @@
                 <li><a href="/HelloWorld/sponsor/list">Sponsors</a></li>
                 <li><a href="/HelloWorld/report/awaitingSponsorship">Reports</a></li>
                 <li><a href="/HelloWorld/manage/fees">Admin</a></li>
+                <li><a href="/HelloWorld/logout">Logout</a></li>
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">

@@ -41,7 +41,9 @@
                             <button type="submit" class="btn btn-primary">Add student</button>
                             </c:when>
                             <c:otherwise>
-                            <button type="submit" class="btn btn-primary">Update student</button>
+                                <sec:authorize ifAllGranted="ROLE_ADMIN">
+                                    <button type="submit" class="btn btn-primary">Update student</button>
+                                </sec:authorize>
                             </c:otherwise>
                             </c:choose>
                             <button type="button" class="btn" onclick="location.href='/HelloWorld/student/list'">Cancel</button>
