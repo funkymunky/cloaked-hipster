@@ -1,43 +1,41 @@
 <div id="bankInfo" class="student-insert">
-    <spring-form:form method="POST" modelAttribute="student.bank" class="form-horizontal" action="/HelloWorld/student/bank/addOrUpdate">
-        <fieldset>
-            <div class="control-group">
-                <label class="control-label" for="accountName">Account name:</label>
-                <div class="controls">
-                    <spring-form:input path="accountName" id="accountName" type="text" />
+    <fieldset>
+        <spring-form:form method="POST" modelAttribute="student.bank" class="form-horizontal" action="/HelloWorld/student/bank/addOrUpdate">
+            <div class="form-group">
+                <label class="control-label col-md-3" for="accountName">Account name:</label>
+                <div class="col-md-5">
+                    <spring-form:input  class="form-control" path="accountName" id="accountName" type="text" />
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="accountNumber">Account number:</label>
-                <div class="controls">
-                    <spring-form:input path="accountNumber" id="accountNumber" type="text" />
+            <div class="form-group">
+                <label class="control-label col-md-3" for="accountNumber">Account number:</label>
+                <div class="col-md-5">
+                    <spring-form:input  class="form-control" path="accountNumber" id="accountNumber" type="text" />
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="bank">Bank</label>
-                <div class="controls">
-                    <spring-form:input path="bank" id="bank" type="text" />
+            <div class="form-group">
+                <label class="control-label col-md-3" for="bank">Bank</label>
+                <div class="col-md-5">
+                    <spring-form:input  class="form-control" path="bank" id="bank" type="text" />
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="branch">Branch</label>
-                <div class="controls">
-                    <spring-form:input path="branch" id="branch" type="text" />
+            <div class="form-group">
+                <label class="control-label col-md-3" for="branch">Branch</label>
+                <div class="col-md-5">
+                    <spring-form:input  class="form-control" path="branch" id="branch" type="text" />
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="standingOrder">Standing order</label>
-                <div class="controls">
-                    <spring-form:input path="standingOrder" id="standingOrder" type="text" />
+            <div class="form-group">
+                <label class="control-label col-md-3" for="standingOrder">Standing order</label>
+                <div class="col-md-5">
+                    <spring-form:input  class="form-control" path="standingOrder" id="standingOrder" type="text" />
                 </div>
             </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button type="submit" class="btn btn-primary">Update bank details</button>
-                    <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#bankInfo').hide()">Cancel</button>
-                </div>
+            <div class="form-group" style="margin-left: 160px;">
+                <button type="submit" class="btn btn-primary">Update bank details</button>
+                <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#bankInfo').hide()">Cancel</button>
             </div>
-        </fieldset>
-        <input type="hidden" value="${student.id}" name="studentid"/>
-    </spring-form:form>
+            <input type="hidden" value="${student.id}" name="studentid"/>
+        </spring-form:form>
+    </fieldset>
 </div>

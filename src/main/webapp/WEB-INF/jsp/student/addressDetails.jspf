@@ -1,49 +1,35 @@
 <div id="addressInfo" class="student-insert">
-    <spring-form:form method="POST" modelAttribute="student.address" class="form-horizontal" action="/HelloWorld/student/address/addOrUpdate">
     <fieldset>
-        <div class="control-group">
-            <label class="control-label" for="inputLine1">Address line 1:</label>
-            <div class="controls">
-                <spring-form:input path="addressLine1" id="inputLine1" type="text" />
-            </div>
+    <spring-form:form role="form" method="POST" modelAttribute="student.address" class="form-horizontal" action="/HelloWorld/student/address/addOrUpdate">
+        <div class="form-group">
+            <label for="inputLine1" class="control-label col-md-3">Address line 1:</label>
+            <div class="col-md-5"><spring-form:input class="form-control" path="addressLine1" id="inputLine1" type="text" /></div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputLine2">Address line 2:</label>
-            <div class="controls">
-                <spring-form:input path="addressLine2" id="inputLine2" type="text"/>
-            </div>
+        <div class="form-group">
+            <label class="control-label col-md-3" for="inputLine2">Address line 2:</label>
+            <div class="col-md-5"><spring-form:input class="form-control" path="addressLine2" id="inputLine2" type="text"/></div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputSuburb">Suburb:</label>
-            <div class="controls">
-                <spring-form:input path="suburb" id="inputSuburb" type="text" />
-            </div>
+        <div class="form-group">
+            <label class="control-label col-md-3" for="inputSuburb">Suburb:</label>
+            <div class="col-md-5"><spring-form:input class="form-control" path="suburb" id="inputSuburb" type="text" /></div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputPostcode">Postcode:</label>
-            <div class="controls">
-                <spring-form:input path="postcode" id="inputPostcode" type="text"/>
-            </div>
+        <div class="form-group">
+            <label class="control-label col-md-3" for="inputPostcode">Postcode:</label>
+            <div class="col-md-5"><spring-form:input class="form-control" path="postcode" id="inputPostcode" type="text"/></div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputState">State:</label>
-            <div class="controls">
-                <spring-form:input path="state" id="inputState" type="text"/>
-            </div>
+        <div class="form-group">
+            <label class="control-label col-md-3" for="inputState">State:</label>
+            <div class="col-md-5"><spring-form:input class="form-control" path="state" id="inputState" type="text"/></div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputCountry">Country:</label>
-            <div class="controls">
-                <spring-form:input path="country" id="inputCountry" type="text"/>
-            </div>
+        <div class="form-group">
+            <label class="control-label col-md-3" for="inputCountry">Country:</label>
+            <div class="col-md-5"><spring-form:input class="form-control" path="country" id="inputCountry" type="text"/></div>
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn btn-primary">Update info</button>
-                <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#addressInfo').hide()">Cancel</button>
-            </div>
+        <div class="form-group" style="margin-left: 160px">
+            <button type="submit" class="btn btn-primary">Update info</button>
+            <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#addressInfo').hide()">Cancel</button>
         </div>
-    </fieldset>
         <input type="hidden" value="${student.id}" name="studentid" />
     </spring-form:form>
+    </fieldset>
 </div>

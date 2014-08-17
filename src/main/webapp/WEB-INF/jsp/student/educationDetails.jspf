@@ -1,73 +1,71 @@
     <div id="educationInfo" class="student-insert">
+    <fieldset>
     <spring-form:form method="POST" modelAttribute="student.education" class="form-horizontal" action="/HelloWorld/student/education/addOrUpdate">
-        <fieldset>
-        <div class="control-group">
-            <label class="control-label" for="institutionType">Type:</label>
-            <div class="controls">
-                <spring-form:select path="institutionType" id="institutionType" type="text">
+        <div class="form-group">
+            <label class="control-label col-md-4" for="institutionType">Type:</label>
+            <div class="col-md-5">
+                <spring-form:select class="form-control" path="institutionType" id="institutionType" type="text">
                     <%--<spring-form:options items="${institutionTypeValues}"/>--%>
                     <spring-form:option value="">-- Select an option --</spring-form:option>
                     <spring-form:options items="${institutionTypeValues}" itemValue="institutionTypeName" itemLabel="institutionTypeName"/>
                 </spring-form:select>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="institutionName">Name:</label>
-            <div class="controls">
-                <spring-form:input path="institutionName" id="institutionName" type="text"/>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="institutionName">Name:</label>
+            <div class="col-md-5">
+                <spring-form:input class="form-control" path="institutionName" id="institutionName" type="text"/>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="degreeName">Degree name:</label>
-            <div class="controls">
-                <spring-form:input path="degreeName" id="degreeName" type="text"/>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="degreeName">Degree name:</label>
+            <div class="col-md-5">
+                <spring-form:input class="form-control" path="degreeName" id="degreeName" type="text"/>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="yearOfStudy">Year of study:</label>
-            <div class="controls">
-                <spring-form:input path="yearOfStudy" id="yearOfStudy" type="text" />
+        <div class="form-group">
+            <label class="control-label col-md-4" for="yearOfStudy">Year of study:</label>
+            <div class="col-md-5">
+                <spring-form:input class="form-control" path="yearOfStudy" id="yearOfStudy" type="text" />
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label">Application date:</label>
-            <div class="controls">
-                <spring-form:input path="applicationDate" class="datepickerInfo" name="applicationDate" type="text"/>
+        <div class="form-group">
+            <label class="control-label col-md-4">Application date:</label>
+            <div class="col-md-5">
+                <spring-form:input path="applicationDate" class="datepickerInfo form-control" name="applicationDate" type="text"/>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label">Start date:</label>
-            <div class="controls">
-                <spring-form:input path="startDate" class="datepickerInfo" name="startDate" type="text" />
+        <div class="form-group">
+            <label class="control-label col-md-4">Start date:</label>
+            <div class="col-md-5">
+                <spring-form:input path="startDate" class="datepickerInfo form-control" name="startDate" type="text" />
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label">End date:</label>
-            <div class="controls">
-                <spring-form:input path="endDate" class="datepickerInfo" name="endDate" type="text"/>
+        <div class="form-group">
+            <label class="control-label col-md-4">End date:</label>
+            <div class="col-md-5">
+                <spring-form:input path="endDate" class="datepickerInfo form-control" name="endDate" type="text"/>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="monthlyAllowance">Monthly allowance (Rs):</label>
-            <div class="controls">
-                <spring-form:input path="monthlyAllowance" name="monthlyAllowance" id="monthlyAllowance" type="text" />
+        <div class="form-group">
+            <label class="control-label col-md-4" for="monthlyAllowance">Monthly allowance (Rs):</label>
+            <div class="col-md-5">
+                <spring-form:input class="form-control" path="monthlyAllowance" name="monthlyAllowance" id="monthlyAllowance" type="text" />
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="agent">Agent:</label>
-            <div class="controls">
-                <spring-form:input path="agent" id="agent" type="text"/>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="agent">Agent:</label>
+            <div class="col-md-5">
+                <spring-form:input class="form-control" path="agent" id="agent" type="text"/>
             </div>
         </div>
-        <div class="control-group">
-            <div class="controls">
+        <div class="form-group" style="margin-left: 215px;">
                 <button id="updateEducation" type="submit" class="btn btn-primary">Update info</button>
                 <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#educationInfo').hide()">Cancel</button>
-            </div>
         </div>
-        </fieldset>
         <input type="hidden" value="${student.id}" name="studentid" />
     </spring-form:form>
+    </fieldset>
 </div>
 
 <script type="text/javascript">
