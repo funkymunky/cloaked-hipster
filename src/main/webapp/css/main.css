@@ -12,8 +12,8 @@ div.ui-datepicker{
 
 .main-content {
     padding-top: 3%;
-    padding-left: 3%;
-    padding-bottom: 10%;
+    padding-left: 1%;
+    padding-bottom: 5%;
     background-color: #f3f3f3;
     border-radius: 10px 10px 10px 10px;
 }
@@ -28,6 +28,7 @@ div.ui-datepicker{
     background-color: #003399;
     color: #ffffff;
     margin-left: 10px;
+    margin-right: 20px;
 }
 
 .nav-side > li > a:hover,
@@ -39,6 +40,7 @@ div.ui-datepicker{
 
 .student-insert {
     display: none;
+    padding: inherit;
     padding-top: 40px;
 }
 

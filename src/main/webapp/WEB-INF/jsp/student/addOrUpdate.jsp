@@ -12,57 +12,56 @@
     <body>
         <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
         <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+        <div class="row">
+            <div class="col-md-2">
                 <%@ include file="/WEB-INF/jsp/include/student_navbar.jsp" %>
             </div>
 
-            <div class="span10">
+            <div class="col-md-10">
                 <legend>Student information</legend>
-                <div class="row-fluid">
-                    <div id="alertFeedback" class="message warning"></div>
-                        <c:if test="${not empty message}"><div id="alertFeedback" class="message green">${message}</div></c:if>
-                    <fieldset class="main-content">
-                        <div class="span4">
-                        <h4>Personal details</h4>
-                        <spring-form:form method="POST" modelAttribute="student">
-                        <%--<fieldset>--%>
-                            <label>First name: <spring-form:errors path="firstName" class="alert-error"></spring-form:errors></label>
-                            <spring-form:input path="firstName" placeholder="First name" />
+                <div id="alertFeedback" class="message warning"></div>
+                <c:if test="${not empty message}"><div id="alertFeedback" class="message green">${message}</div></c:if>
+                <fieldset class="main-content">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Personal details</h4>
+                            <spring-form:form role="form" method="POST" modelAttribute="student">
+                                <div class="form-group">
+                                    <label for="inputFirstName">First name: <spring-form:errors path="firstName" class="alert-error"></spring-form:errors></label>
+                                    <spring-form:input id="inputFirstName" class="form-control" path="firstName" placeholder="First name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputLastName">Last name: <spring-form:errors path="lastName" class="alert-error"></spring-form:errors></label>
+                                    <spring-form:input id="inputLastName" class="form-control" path="lastName" placeholder="Last name"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of birth: <spring-form:errors path="dateOfBirth" class="alert-error"></spring-form:errors></label>
+                                    <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="dateOfBirth" class="form-control datepickerDob" />
+                                </div>
+                                <br/>
+                                <c:choose>
+                                    <c:when test="${updateMode != true}">
+                                        <button type="submit" class="btn btn-primary">Add student</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <sec:authorize ifAllGranted="ROLE_ADMIN">
+                                            <button type="submit" class="btn btn-primary">Update student</button>
+                                        </sec:authorize>
+                                    </c:otherwise>
+                                </c:choose>
+                                <button type="button" class="btn" onclick="location.href='/HelloWorld/student/list'">Cancel</button>
+                            </spring-form:form>
+                        </div>
 
-                            <label>Last name: <spring-form:errors path="lastName" class="alert-error"></spring-form:errors></label>
-                            <spring-form:input path="lastName" placeholder="Last name"/>
-
-                            <label>Date of birth: <spring-form:errors path="dateOfBirth" class="alert-error"></spring-form:errors></label>
-                            <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="dateOfBirth" class="datepickerDob" />
-                            <br/>
-                            <c:choose>
-                            <c:when test="${updateMode != true}">
-                            <button type="submit" class="btn btn-primary">Add student</button>
-                            </c:when>
-                            <c:otherwise>
-                                <sec:authorize ifAllGranted="ROLE_ADMIN">
-                                    <button type="submit" class="btn btn-primary">Update student</button>
-                                </sec:authorize>
-                            </c:otherwise>
-                            </c:choose>
-                            <button type="button" class="btn" onclick="location.href='/HelloWorld/student/list'">Cancel</button>
-                        <%--</fieldset>--%>
-                        </spring-form:form>
+                        <div class="col-md-7" style="background-color: #EBE0D6; display:none; padding-bottom: 20px; border-radius: 10px 10px 10px 10px;">
+                            <%@ include file="/WEB-INF/jsp/student/profile.jspf" %>
+                            <%@ include file="/WEB-INF/jsp/student/addressDetails.jspf" %>
+                            <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
+                            <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
+                            <%@ include file="/WEB-INF/jsp/student/sponsorshipDetails.jspf" %>
+                        </div>
                     </div>
-
-                    <div class="span7" style="background-color: #EBE0D6; display:none; padding-bottom: 20px; border-radius: 10px 10px 10px 10px;">
-                        <%@ include file="/WEB-INF/jsp/student/profile.jspf" %>
-                        <%@ include file="/WEB-INF/jsp/student/addressDetails.jspf" %>
-                        <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
-                        <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
-                        <%@ include file="/WEB-INF/jsp/student/sponsorshipDetails.jspf" %>
-                    </div>
-
-                    </fieldset>
-                </div>
-                <div class="row-fluid">
-                </div>
+                </fieldset>
             </div>
         </div>
 
@@ -75,7 +74,7 @@
     <script type="text/javascript">
 
         $("#profileInfo").show();
-        $('.span7').show();
+        $('.col-md-7').show();
 
         <c:if test="${activeTab == 'education'}">
             hideAllExceptThis("#educationInfo");
@@ -109,7 +108,7 @@
             $('#educationInfo').hide();
 
             $(divIdToShow).show();
-            $('.span7').show();
+            $('.col-md-7').show();
 //            event.preventDefault();
         }
 

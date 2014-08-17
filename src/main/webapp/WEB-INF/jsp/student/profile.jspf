@@ -1,34 +1,32 @@
 <div id="profileInfo" class="student-insert">
+    <fieldset class="text-center">
     <input type="hidden" value="${student.id}" name="studentid" />
-    <spring-form:form class="form-horizontal" method="post" enctype="multipart/form-data" action="/HelloWorld/student/profile/uploadFile">
-        <fieldset>
-            <div class="controls">
-                <c:choose>
-                <c:when test="${not empty student.profilePic}">
-                    <img src="<c:url value="/images/${student.profilePic}"/>"/>
-                    </br>
-                </c:when>
-                <c:otherwise>
-                    <img src="<c:url value="/images/default.jpeg"/>"/>
-                    </br>
-                </c:otherwise>
-                </c:choose>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <br/>
-                    <input id="image" name="file" type="file" value="Select file"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button id="uploadBtn" type="submit" class="btn btn-primary">Update profile</button>
-                </div>
-            </div>
+    <spring-form:form role="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="/HelloWorld/student/profile/uploadFile">
 
-        </fieldset>
+        <div class="form-group">
+            <label for="image">Profile picture</label>
+            <br/>
+            <c:choose>
+            <c:when test="${not empty student.profilePic}">
+                <img src="<c:url value="/images/${student.profilePic}"/>"/>
+                </br>
+            </c:when>
+            <c:otherwise>
+                <img src="<c:url value="/images/default.jpeg"/>"/>
+                </br>
+            </c:otherwise>
+            </c:choose>
+
+
+            <input id="image" name="file" type="file" value="Select file" style="margin: 20px auto; padding-left: 100px;"/>
+
+            <button id="uploadBtn" type="submit" class="btn btn-primary">Update profile</button>
+        </div>
+
         <input type="hidden" value="${student.id}" name="studentid" />
     </spring-form:form>
+    </fieldset>
+
 </div>
 
 <script type="text/javascript">
