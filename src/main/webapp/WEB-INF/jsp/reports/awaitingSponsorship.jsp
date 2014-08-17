@@ -13,12 +13,12 @@
 <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
     <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+        <div class="row">
+            <div class="col-md-2">
                 <%@ include file="/WEB-INF/jsp/include/report_navbar.jsp" %>
             </div>
 
-            <div class="span10">
+            <div class="col-md-10">
             <legend>Students awaiting sponsorship</legend>
 
                 <a href="/HelloWorld/report/awaitingSponsorship/downloadCsv">Export to csv</a>

@@ -1,5 +1,5 @@
-<div class="row-fluid">
-    <ul class="nav nav-tabs nav-stacked nav-side">
+<div class="row">
+    <ul class="nav nav-pills nav-stacked nav-side">
         <li class=""><a href="/HelloWorld/report/awaitingSponsorship" class="reportA">Awaiting Sponsorship</a></li>
         <li class=""><a href="/HelloWorld/report/currentlySponsored" class="reportC">Currently Sponsored</a></li>
     </ul>
