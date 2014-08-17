@@ -4,7 +4,7 @@
 
 <div id="sponsorDetailedInfo" class="sponsor-insert">
     <fieldset>
-        <div class="control-group" style="padding-left: 10px; padding-right: 5px;">
+        <div class="form-group" style="padding-left: 10px; padding-right: 5px;">
             <h4>Sponsorship summary</h4>
             <div>
                 <span class="myinfo left"><b class="info">Current fee issue date:</b> ${feeDueDate}</span>
@@ -40,13 +40,13 @@
                                 <c:when test="${currentFee.student.id eq kid.id}">
                                     <c:choose>
                                         <c:when test="${currentFee.paidInFull eq true}">
-                                            <td style="text-align: center"><i class="icon-ok"></i></td>
+                                            <td style="text-align: center"><span class="glyphicon glyphicon-ok"></span> </td>
                                         </c:when>
                                         <c:when test="${currentFee.paidInFull eq false}">
-                                            <td style="text-align: center"><i class="icon-remove"></i></td>
+                                            <td style="text-align: center"><span class="glyphicon glyphicon-remove"></span></td>
                                         </c:when>
                                         <c:otherwise>
-                                            <td style="text-align: center"><i class="icon-minus-sign"/></td>
+                                            <td style="text-align: center"><span class="glyphicon glyphicon-minus-sign"/></td>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>
