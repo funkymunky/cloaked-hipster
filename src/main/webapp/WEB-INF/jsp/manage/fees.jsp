@@ -8,22 +8,31 @@
 <head>
     <%@ include file="/WEB-INF/jsp/include/head.jsp" %>
     <title>Fees</title>
+
+    <style type="text/css">
+        .focusedInput {
+            border-color: rgba(82,168,236,.8);
+            outline: 0;
+            box-shadow: 0 0 8px rgba(82,168,236,.6) !important;
+        }
+
+    </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
     <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2">
+        <div class="row">
+            <div class="col-md-2">
                 <%--<%@ include file="/WEB-INF/jsp/include/report_navbar.jsp" %>--%>
             </div>
 
-            <div class="span10">
+            <div class="col-md-10">
                 <legend>Set up fees</legend>
-                <spring-form:form method="POST" modelAttribute="fees">
-                    <span>Current fees issue date:</span> <spring-form:input type="text" path="issueDate" id="issueDate" class="datepickerFee" readonly="true" />
+                <spring-form:form role="form" method="POST" modelAttribute="fees">
+                    <span>Current fees issue date:</span> <spring-form:input type="text" path="issueDate" id="issueDate" class="datepickerFee" disabled="true"/>
                     <a href="" id="editDate">Edit date</a>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-sm">Save</button>
                 </spring-form:form>
                 <div>
                     <table class="table table-striped mytable">
@@ -37,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <spring-form:form method="POST" action="/HelloWorld/manage/payments" modelAttribute="outstandingPayments">
+                        <spring-form:form role="form" method="POST" action="/HelloWorld/manage/payments" modelAttribute="outstandingPayments">
                             <c:forEach var="sponsorshipFee" items="${sponsoredStudents}">
                                 <tr>
                                     <td>${sponsorshipFee.id}</td>
@@ -72,7 +81,8 @@
     $(function() {
         $("#editDate").click(function(evt) {
             evt.preventDefault();
-            $('.datepickerFee').removeAttr('readonly');
+            $('.datepickerFee').removeAttr('disabled');
+            $('.datepickerFee').addClass('focusedInput');
         })
     });
 

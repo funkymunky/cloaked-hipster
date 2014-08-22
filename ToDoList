@@ -1,6 +1,6 @@
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
-- get dropdown menu working again (may need to upgrade to boostrap 3.x)
+- DONE - get dropdown menu working again (may need to upgrade to boostrap 3.x) [17/08/14] Using 3.2
 - add feature to keep track of sponsor payments
 	- fees are due once a year
 	- report to show who has paid,
