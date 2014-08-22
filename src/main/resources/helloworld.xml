@@ -89,7 +89,9 @@
         <sec:intercept-url pattern="/home*" access="permitAll" />
         <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
-        <sec:intercept-url pattern="/css/main.css" access="permitAll" />
+        <sec:intercept-url pattern="/js/**" access="permitAll" />
+        <sec:intercept-url pattern="/css/**" access="permitAll" />
+        <sec:intercept-url pattern="/images/**" access="permitAll" />
         <sec:intercept-url pattern="/bootstrap/**" access="permitAll" />
         <sec:intercept-url pattern="/resources/**" access="permitAll" />
         <sec:intercept-url pattern="/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_MEMBER'})" />
