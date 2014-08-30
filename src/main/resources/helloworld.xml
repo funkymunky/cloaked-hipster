@@ -113,8 +113,14 @@
     </bean>
 
     <sec:authentication-manager>
-        <sec:authentication-provider user-service-ref="userUserDetailsService"/>
+        <sec:authentication-provider user-service-ref="userUserDetailsService">
+            <sec:password-encoder ref="encoder"/>
+        </sec:authentication-provider>
     </sec:authentication-manager>
+
+    <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg name="strength" value="10"/>
+    </bean>
 
     <bean id="userUserDetailsService" class="net.helloworld.service.UserUserDetailsService">
         <constructor-arg ref="userService"/>
