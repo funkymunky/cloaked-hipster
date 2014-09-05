@@ -1,3 +1,7 @@
+- clean up xml config files
+- implement UserService in the same way as the rest of the service classes.
+- change packages/artifact-id/database names from HelloWorld to something appropriate
+- encrypt password and bank information in database
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
 - DONE - get dropdown menu working again (may need to upgrade to boostrap 3.x) [17/08/14] Using 3.2

@@ -3,6 +3,9 @@ package net.helloworld.service.impl;
 import net.helloworld.dao.UserDao;
 import net.helloworld.model.User;
 import net.helloworld.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -10,8 +13,11 @@ import java.util.List;
  * Date: 15/06/13
  * Time: 7:27 PM
  */
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     UserDao userDao;
 
     @Override
@@ -24,8 +30,9 @@ public class UserServiceImpl implements UserService {
         return userDao.getAuthoritiesByUserName(userName);
     }
 
-    public UserDao getUserDao() {
-        return userDao;
+    @Override
+    public void updateUserPassword(String userName, String newPassword) {
+        userDao.updatePasswordForUser(userName, newPassword);
     }
 
     public void setUserDao(UserDao userDao) {

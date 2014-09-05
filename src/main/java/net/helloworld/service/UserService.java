@@ -14,4 +14,6 @@ public interface UserService {
 
     List<String> getAuthoritiesByUserName(String userName);
 
+    void updateUserPassword(String userName, String newPassword);
+
 }
