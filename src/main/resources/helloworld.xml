@@ -2,12 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:sec="http://www.springframework.org/schema/security"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
@@ -19,7 +17,7 @@
 
     <import resource="helloWorldConfig/jmx.xml" />
     <!--<import resource="helloWorldConfig/helloworld-servlet.xml" />-->
-    <!--<import resource="helloWorldConfig/helloworld-security.xml"/>-->
+    <import resource="helloWorldConfig/helloworld-security.xml"/>
     <!-- ========================= DATASOURCE ======================== -->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -81,49 +79,5 @@
     <!--</bean>-->
 
     <bean name="uploadFileAspect" class="net.helloworld.aspects.UploadFileAspect"/>
-
-    <!-- ========================= SECURITY ======================== -->
-    <sec:global-method-security pre-post-annotations="enabled"/>
-    <sec:http auto-config="false" use-expressions="true">
-        <sec:intercept-url pattern="/login*" access="permitAll" />
-        <sec:intercept-url pattern="/home*" access="permitAll" />
-        <sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <sec:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
-        <sec:intercept-url pattern="/js/**" access="permitAll" />
-        <sec:intercept-url pattern="/css/**" access="permitAll" />
-        <sec:intercept-url pattern="/images/**" access="permitAll" />
-        <sec:intercept-url pattern="/bootstrap/**" access="permitAll" />
-        <sec:intercept-url pattern="/resources/**" access="permitAll" />
-        <sec:intercept-url pattern="/**" access="hasAnyRole({'ROLE_ADMIN','ROLE_MEMBER'})" />
-        <sec:form-login login-page="/login" authentication-success-handler-ref="mySuccessHandler" default-target-url="/home" authentication-failure-url="/loginFail"/>
-        <sec:access-denied-handler ref ="myAccessDeniedHandlerImpl"/>
-        <sec:logout logout-success-url="/goodbye.jsp" />
-    </sec:http>
-
-    <!--
-       This is a modified AccessDeniedHandler that performs a redirect instead of a forward.
-       This way, the address bar updates to the access denied page's URL.
-    -->
-    <bean id="myAccessDeniedHandlerImpl" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
-        <property name="errorPage" value="/accessDenied"/>
-    </bean>
-
-    <bean id="mySuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-        <property name="defaultTargetUrl" value="/home"/>
-    </bean>
-
-    <sec:authentication-manager>
-        <sec:authentication-provider user-service-ref="userUserDetailsService">
-            <sec:password-encoder ref="encoder"/>
-        </sec:authentication-provider>
-    </sec:authentication-manager>
-
-    <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-        <constructor-arg name="strength" value="10"/>
-    </bean>
-
-    <bean id="userUserDetailsService" class="net.helloworld.service.UserUserDetailsService">
-        <constructor-arg ref="userService"/>
-    </bean>
 
 </beans>
