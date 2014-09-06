@@ -15,21 +15,20 @@
         <title>Login Page</title>
 
         <style type="text/css">
+            h1 {
+                text-align: center;
+            }
             .form-signin {
                 max-width: 230px;
                 margin: 0 auto;
             }
-
         </style>
 
     </head>
     <body>
     <div class="container">
         <div class="jumbotron">
-        <h1><span class="something">Awesome responsive layout</span></h1>
-        <p>Hello guys i am a ".hero-unit" and you can use me if you wanna say something important.</p>
-        <p><a class="btn btn-default">Super important &raquo;</a></p>
-        </div><!-- .hero-unit -->
+        <h1><span class="lsf-jumbo">LSF Sponsorships</span></h1>
 
         <form class="form-signin" action="j_spring_security_check" method="POST" >
             <input type="text" class="form-control" name="j_username" id="j_username" placeholder="Username"/>

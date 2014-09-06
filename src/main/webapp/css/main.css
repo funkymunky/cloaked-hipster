@@ -1,5 +1,30 @@
 .something {
-    color: orchid;
+    color: #DC5C05;
+}
+
+.lsf-jumbo {
+    color: darkorange;
+}
+
+div.navbar-collapse.collapse {
+    margin-left: 100px;
+    /*background-color: #000000; */
+}
+
+.navbar-inverse .navbar-brand {
+    color: #DC5C05;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #dea033;
+    /*background-color: black; */
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-nav > .active > a {
+    color: #6EC5B8;
+    /*background-color: #000000;*/
 }
 
 .mytest {
@@ -25,8 +50,8 @@ div.ui-datepicker{
 
 .nav-side > li > a {
     text-decoration: none;
-    background-color: #003399;
-    color: #ffffff;
+    background-color: #C7BAA7;
+    color: #000000;
     margin-left: 10px;
     margin-right: 20px;
 }
@@ -34,7 +59,7 @@ div.ui-datepicker{
 .nav-side > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #dea033;
+    background-color: #ffac00;
     color: #000000;
 }
 
@@ -45,7 +70,7 @@ div.ui-datepicker{
 }
 
 li.myactive a {
-    background-color: #dea033;
+    background-color: #ffac00;
     color: black;
 }
 
