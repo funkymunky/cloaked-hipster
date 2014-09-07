@@ -1,4 +1,4 @@
-- clean up xml config files
+- clean up xml config files [07/09/14 - partially done.. security xml in place]
 - implement UserService in the same way as the rest of the service classes.
 - change packages/artifact-id/database names from HelloWorld to something appropriate
 - encrypt password and bank information in database

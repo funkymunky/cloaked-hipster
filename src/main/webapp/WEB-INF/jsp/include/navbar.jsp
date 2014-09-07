@@ -9,21 +9,21 @@
    <div class="container">
        <div class="navbar-collapse collapse">
            <ul class="nav navbar-nav">
-               <li><a href="/HelloWorld/home">Home</a></li>
-               <li><a href="/HelloWorld/student/list">Students</a></li>
-               <li><a href="/HelloWorld/sponsor/list">Sponsors</a></li>
-               <li><a href="/HelloWorld/report/awaitingSponsorship">Reports</a></li>
-               <li><a href="/HelloWorld/manage/fees">Fees</a></li>
+               <li><a href="/lsf/home">Home</a></li>
+               <li><a href="/lsf/student/list">Students</a></li>
+               <li><a href="/lsf/sponsor/list">Sponsors</a></li>
+               <li><a href="/lsf/report/awaitingSponsorship">Reports</a></li>
+               <li><a href="/lsf/manage/fees">Fees</a></li>
                <li class="dropdown">
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>
                    <ul class="dropdown-menu" role="menu">
-                       <li><a href="/HelloWorld/admin/resetPassword">Reset password</a></li>
+                       <li><a href="/lsf/admin/resetPassword">Reset password</a></li>
                        <li class="divider"></li>
                        <li class="dropdown-header">Nav header</li>
                        <li><a href="#">Separated link</a></li>
                    </ul>
                </li>
-               <li><a href="/HelloWorld/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+               <li><a href="/lsf/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
            </ul>
        </div><!--/.nav-collapse -->
    </div>

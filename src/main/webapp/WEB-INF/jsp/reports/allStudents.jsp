@@ -21,7 +21,7 @@
             <div class="col-md-10">
             <legend>All Students report</legend>
 
-                <a href="/HelloWorld/report/allStudents/downloadCSV">Export to csv</a>
+                <a href="/lsf/report/allStudents/downloadCSV">Export to csv</a>
                 <table class="table table-striped">
                     <thead><tr>
                         <th>First name</th>

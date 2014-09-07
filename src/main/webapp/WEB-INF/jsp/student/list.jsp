@@ -38,7 +38,7 @@
                     <tbody>
                     <c:forEach var="student" items ="${students}">
                         <tr>
-                            <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+                            <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -81,20 +81,20 @@
         $("#edit").click(function() {
             var selectedStudent = $("#searchStudent").val();
             var studentId = lookupId(selectedStudent);
-            window.location = "/HelloWorld/student/edit/"+studentId;
+            window.location = "/lsf/student/edit/"+studentId;
         });
     });
 
     $(function() {
         $("#allStudents").click(function() {
-            window.location = "/HelloWorld/student/list";
+            window.location = "/lsf/student/list";
         });
     });
 
     $(function() {
         $("#search").click(function() {
             var searchString = $("#searchStudent").val();
-            window.location = "/HelloWorld/student/search/" + searchString;
+            window.location = "/lsf/student/search/" + searchString;
 
         })
     });

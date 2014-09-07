@@ -21,7 +21,7 @@
             <div class="col-md-10">
             <legend>Students awaiting sponsorship</legend>
 
-                <a href="/HelloWorld/report/awaitingSponsorship/downloadCsv">Export to csv</a>
+                <a href="/lsf/report/awaitingSponsorship/downloadCsv">Export to csv</a>
                 <table class="table table-striped">
                     <thead><tr>
                         <th>Id</th>
@@ -49,7 +49,7 @@
                             </c:choose>
                             <tr>
                                 <td>${student.id}</td>
-                                <td><a href="/HelloWorld/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+                                <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
                                 <td>${qualification}</td>
                                 <td>${student.bank.accountName}</td>
                                 <td>${student.bank.bank}</td>

@@ -25,7 +25,7 @@
             <a href="${accountPage}">List accounts</a>
         </span>
         <br/>
-        <a href="/HelloWorld/login">Back to login page </a>
+        <a href="/lsf/login">Back to login page </a>
 </div>
 </body>
 </html>

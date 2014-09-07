@@ -9,7 +9,7 @@ package util;
  */
 public class WebTestUtil {
     private static final String DEFAULT_SERVER = "http://localhost:8080/";
-    private static final String DEFAULT_CONTEXT_NAME = "HelloWorld";
+    private static final String DEFAULT_CONTEXT_NAME = "lsf";
     public static final String CONTEXT = DEFAULT_SERVER + DEFAULT_CONTEXT_NAME + "/";
     public static final String LOGIN_PAGE_ID = "login";
 

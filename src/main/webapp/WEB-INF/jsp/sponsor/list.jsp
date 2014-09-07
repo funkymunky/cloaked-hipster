@@ -43,7 +43,7 @@
                         <c:otherwise>
                             <c:forEach var="sponsor" items ="${sponsors}">
                                 <tr>
-                                    <td><a href="/HelloWorld/sponsor/edit/${sponsor.sponsorId}">${sponsor.lastName}, ${sponsor.firstName}</a></td>
+                                    <td><a href="/lsf/sponsor/edit/${sponsor.sponsorId}">${sponsor.lastName}, ${sponsor.firstName}</a></td>
                                 </tr>
                             </c:forEach>
                         </c:otherwise>
@@ -64,14 +64,14 @@
 
     $(function() {
         $("#allSponsors").click(function() {
-            window.location = "/HelloWorld/sponsor/list";
+            window.location = "/lsf/sponsor/list";
         });
     });
 
     $(function() {
         $("#search").click(function() {
             var searchString = $("#searchSponsor").val();
-            window.location = "/HelloWorld/sponsor/search/" + searchString;
+            window.location = "/lsf/sponsor/search/" + searchString;
         })
     });
 

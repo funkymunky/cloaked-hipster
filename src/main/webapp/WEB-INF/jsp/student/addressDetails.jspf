@@ -1,6 +1,6 @@
 <div id="addressInfo" class="student-insert">
     <fieldset>
-    <spring-form:form role="form" method="POST" modelAttribute="student.address" class="form-horizontal" action="/HelloWorld/student/address/addOrUpdate">
+    <spring-form:form role="form" method="POST" modelAttribute="student.address" class="form-horizontal" action="/lsf/student/address/addOrUpdate">
         <div class="form-group">
             <label for="inputLine1" class="control-label col-md-3">Address line 1:</label>
             <div class="col-md-5"><spring-form:input class="form-control" path="addressLine1" id="inputLine1" type="text" /></div>

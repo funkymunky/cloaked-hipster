@@ -27,9 +27,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr><td><a href="/HelloWorld/report/currentlySponsored">Currently sponsored students</a></td></tr>
-                        <tr><td><a href="/HelloWorld/report/awaitingSponsorship">Students awaiting sponsorship</a></td></tr>
-                        <tr><td><a href="/HelloWorld/report/allStudents">All Students (non jasper)</a></td></tr>
+                        <tr><td><a href="/lsf/report/currentlySponsored">Currently sponsored students</a></td></tr>
+                        <tr><td><a href="/lsf/report/awaitingSponsorship">Students awaiting sponsorship</a></td></tr>
+                        <tr><td><a href="/lsf/report/allStudents">All Students (non jasper)</a></td></tr>
                     </tbody>
                 </table>
 

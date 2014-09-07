@@ -50,7 +50,7 @@
                                     <button type="submit" class="btn btn-primary">Update sponsor</button>
                                 </c:otherwise>
                             </c:choose>
-                            <button type="button" class="btn" onclick="location.href='/HelloWorld/sponsor/list'">Cancel</button>
+                            <button type="button" class="btn" onclick="location.href='/lsf/sponsor/list'">Cancel</button>
                         </spring-form:form>
                     </div>
 
@@ -62,7 +62,7 @@
                     </fieldset>
                 </div>
                 <div class="row">
-                    <c:if test="${not empty showLink}"><div id="link"><a href="/HelloWorld/sponsor/list">Return to Sponsors page</a></div></c:if>
+                    <c:if test="${not empty showLink}"><div id="link"><a href="/lsf/sponsor/list">Return to Sponsors page</a></div></c:if>
                 </div>
             </div>
         </div>

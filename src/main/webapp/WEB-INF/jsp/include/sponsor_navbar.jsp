@@ -1,6 +1,6 @@
 <div class="row">
     <ul class="nav nav-pills nav-stacked nav-side">
-        <li><a href="/HelloWorld/sponsor/add">Add</a></li>
+        <li><a href="/lsf/sponsor/add">Add</a></li>
         <li class="disabled"><a href="" class="addressInfo">Address Info</a></li>
     </ul>
 </div>

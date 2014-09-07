@@ -49,7 +49,7 @@
                                         </sec:authorize>
                                     </c:otherwise>
                                 </c:choose>
-                                <button type="button" class="btn" onclick="location.href='/HelloWorld/student/list'">Cancel</button>
+                                <button type="button" class="btn" onclick="location.href='/lsf/student/list'">Cancel</button>
                             </spring-form:form>
                         </div>
 
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-            <c:if test="${not empty showLink}"><div id="link"><a href="/HelloWorld/student">Return to Students page</a></div></c:if>
+            <c:if test="${not empty showLink}"><div id="link"><a href="/lsf/student">Return to Students page</a></div></c:if>
 
         </div>
     </body>

@@ -11,8 +11,8 @@
 
     <div class="container">
         <p class="lead">${message}</p>
-        <p><a href="/HelloWorld/member/userHome">Go to Member page 1</a></p>
-        <p><a href="/HelloWorld/admin/userHome">Go to Admin page 1</a></p>
+        <p><a href="/lsf/member/userHome">Go to Member page 1</a></p>
+        <p><a href="/lsf/admin/userHome">Go to Admin page 1</a></p>
     </div>
 </body>
 </html>

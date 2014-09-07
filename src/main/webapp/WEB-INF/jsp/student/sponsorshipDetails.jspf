@@ -4,7 +4,7 @@
 
 <div id="sponsorInfo" class="student-insert">
     <fieldset>
-        <spring-form:form method="POST" modelAttribute="student.sponsorship" class="form-horizontal" action="/HelloWorld/student/sponsorship/addOrUpdate">
+        <spring-form:form method="POST" modelAttribute="student.sponsorship" class="form-horizontal" action="/lsf/student/sponsorship/addOrUpdate">
             <div class="form-group">
                 <label class="control-label col-md-3" for="sponsorshipType">Sponsorship type:</label>
                 <div class="col-md-5">

@@ -24,7 +24,7 @@ public class WelcomePageWebTest {
     @Before
     public void setUp() throws Exception {
         driver = new FirefoxDriver();
-        driver.get("http://localhost:8080/HelloWorld");
+        driver.get("http://localhost:8080/lsf");
         this.welcomePage = WelcomePage.open(driver);
     }
 

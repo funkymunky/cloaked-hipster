@@ -20,7 +20,7 @@ public class LoginPageWebTest {
     @Before
     public void setUp() throws Exception {
         driver = new FirefoxDriver();
-        driver.get("http://localhost:8080/HelloWorld/login");
+        driver.get("http://localhost:8080/lsf/login");
         this.loginPage = new LoginPage(driver);
     }
 

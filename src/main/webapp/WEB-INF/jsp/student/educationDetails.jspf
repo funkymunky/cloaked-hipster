@@ -1,6 +1,6 @@
     <div id="educationInfo" class="student-insert">
     <fieldset>
-    <spring-form:form method="POST" modelAttribute="student.education" class="form-horizontal" action="/HelloWorld/student/education/addOrUpdate">
+    <spring-form:form method="POST" modelAttribute="student.education" class="form-horizontal" action="/lsf/student/education/addOrUpdate">
         <div class="form-group">
             <label class="control-label col-md-4" for="institutionType">Type:</label>
             <div class="col-md-5">
