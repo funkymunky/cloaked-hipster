@@ -1,6 +1,7 @@
+- DONE - convert db username and password to properties [14/09/14]
 - clean up xml config files [07/09/14 - partially done.. security xml in place]
 - implement UserService in the same way as the rest of the service classes.
-- change packages/artifact-id/database names from HelloWorld to something appropriate
+- DONE - change packages/artifact-id/database names from HelloWorld to something appropriate [07/09/14]
 - encrypt password and bank information in database
 - try to use ajax .post method for .jspf actions
 - add link to go back to list pages
