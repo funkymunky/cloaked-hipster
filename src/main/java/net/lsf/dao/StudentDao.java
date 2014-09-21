@@ -41,4 +41,6 @@ public interface StudentDao {
     List<Student> getAllStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType);
 
     List<Student> getAllStudentsWithBank(SponsorshipType sponsorshipType, String bankName);
+
+    void updateCommentsForStudent(Student student, Comments comments);
 }

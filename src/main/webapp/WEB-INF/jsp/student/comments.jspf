@@ -1,0 +1,24 @@
+
+
+<div id="commentInfo" class="student-insert">
+    <fieldset>
+        <spring-form:form method="POST" modelAttribute="student.comments" class="form-horizontal" action="/lsf/student/comments/addOrUpdate">
+            <div class="form-group">
+                <label class="control-label col-md-2" for="comments">Comments:</label>
+                <div class="col-md-10">
+                    <spring-form:textarea class="form-control" path="comments" id="comments" rows="10" />
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-left: 160px">
+                <button type="submit" class="btn btn-primary">Update comments</button>
+                <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#commentInfo').hide()">Cancel</button>
+            </div>
+            <input type="hidden" value="${student.id}" name="studentid" />
+        </spring-form:form>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+
+</script>

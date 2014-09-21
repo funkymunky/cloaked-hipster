@@ -1,4 +1,4 @@
-- add Comment section to Student
+- DONE - add Comment section to Student [21/09/2014]
 - add link somewhere on Student to go back to profile tab 
 - DONE - convert db username and password to properties [14/09/14]
 - clean up xml config files [07/09/14 - partially done.. security xml in place]

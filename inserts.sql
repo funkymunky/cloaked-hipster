@@ -130,3 +130,12 @@ CREATE TABLE IF NOT EXISTS `sponsorshipFees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table `sponsorship` modify column `startDate` date default null, modify column `endDate` date default null;
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) not null auto_increment,
+  `comments` mediumtext default null,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+alter table `students` add column comments_id int(11) default null;
+alter table `students` add constraint FK_comments_id FOREIGN KEY  (comments_id) references comments (id);

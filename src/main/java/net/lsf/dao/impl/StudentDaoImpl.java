@@ -176,6 +176,13 @@ public class StudentDaoImpl implements StudentDao {
         return studentsByBank;
     }
 
+    @Override
+    public void updateCommentsForStudent(Student student, Comments comments) {
+        Student studentToUpdate = getStudent(student.getId());
+        studentToUpdate.setComments(comments);
+        getCurrentSession().update(studentToUpdate);
+    }
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

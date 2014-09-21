@@ -59,6 +59,7 @@
                             <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
                             <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
                             <%@ include file="/WEB-INF/jsp/student/sponsorshipDetails.jspf" %>
+                            <%@ include file="/WEB-INF/jsp/student/comments.jspf" %>
                         </div>
                     </div>
                 </fieldset>
@@ -96,6 +97,11 @@
             setActiveNavTab.call($(".sponsorInfo"));
         </c:if>
 
+        <c:if test="${activeTab == 'comment'}">
+            hideAllExceptThis("#commentInfo");
+            setActiveNavTab.call($(".commentInfo"));
+        </c:if>
+
         function clearMessages() {
             $('.message').text("");
         }
@@ -106,6 +112,7 @@
             $('#sponsorInfo').hide();
             $('#addressInfo').hide();
             $('#educationInfo').hide();
+            $('#commentInfo').hide();
 
             $(divIdToShow).show();
             $('.col-md-7').show();
@@ -142,6 +149,14 @@
             $(".sponsorInfo").click( function(evt) {
                 evt.preventDefault();
                 hideAllExceptThis("#sponsorInfo");
+                setActiveNavTab.call(this);
+            });
+        });
+
+        $(function() {
+            $(".commentInfo").click( function(evt) {
+                evt.preventDefault();
+                hideAllExceptThis("#commentInfo");
                 setActiveNavTab.call(this);
             });
         });

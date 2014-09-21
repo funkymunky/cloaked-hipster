@@ -42,6 +42,10 @@ public class Student implements Serializable {
     @JoinColumn(name = "bank_id")
     private Bank bank;
 
+    @OneToOne
+    @JoinColumn(name = "comments_id")
+    private Comments comments;
+
     private String profilePic;
 
     public String getLastName() {
@@ -114,6 +118,14 @@ public class Student implements Serializable {
 
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
+    }
+
+    public Comments getComments() {
+        return comments;
+    }
+
+    public void setComments(Comments comments) {
+        this.comments = comments;
     }
 
     @Override

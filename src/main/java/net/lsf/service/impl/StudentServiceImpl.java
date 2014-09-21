@@ -122,4 +122,10 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getAllStudentsWithBank(SponsorshipType sponsorshipType, String bankName) {
         return studentDao.getAllStudentsWithBank(sponsorshipType, bankName);
     }
+
+    @Override
+    public void updateCommentsForStudent(int id, Comments comments) {
+        Student student = studentDao.getStudent(id);
+        studentDao.updateCommentsForStudent(student, comments);
+    }
 }

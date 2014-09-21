@@ -39,4 +39,6 @@ public interface StudentService {
     List<Student> getAllStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType);
 
     List<Student> getAllStudentsWithBank(SponsorshipType awaitingSponsorship, String bankName);
+
+    void updateCommentsForStudent(int id, Comments comments);
 }
