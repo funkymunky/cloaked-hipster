@@ -43,11 +43,10 @@ public class EducationDaoImpl implements EducationDao {
         if (!educationToUpdate.getInstitutionType().equals(InstitutionType.School)) {
             educationToUpdate.setDegreeName(education.getDegreeName());
         }
+        educationToUpdate.setApplicationDate(education.getApplicationDate());
+        educationToUpdate.setYearOfStudyAsAtApplicationDate(education.getYearOfStudyAsAtApplicationDate());
         educationToUpdate.setYearOfStudy(education.getYearOfStudy());
         educationToUpdate.setMonthlyAllowance(education.getMonthlyAllowance());
-        educationToUpdate.setApplicationDate(education.getApplicationDate());
-        educationToUpdate.setStartDate(education.getStartDate());
-        educationToUpdate.setEndDate(education.getEndDate());
         educationToUpdate.setAgent(education.getAgent());
     }
 

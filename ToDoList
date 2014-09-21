@@ -1,3 +1,5 @@
+- add Comment section to Student
+- add link somewhere on Student to go back to profile tab 
 - DONE - convert db username and password to properties [14/09/14]
 - clean up xml config files [07/09/14 - partially done.. security xml in place]
 - implement UserService in the same way as the rest of the service classes.
@@ -22,6 +24,7 @@
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]
+	account number
 - DONE - upload profile pic [22/06/14]
 - DONE - validation on profile pic. Can't store file with the same name, has to be jpg extension, and size of file [06/07/14]
 - write insert sql script to migrate data from access to mysql

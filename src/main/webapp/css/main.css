@@ -124,3 +124,9 @@ input.search-query {
 .mytable {
     width: 70%;
 }
+
+/* example of how to override all style */
+.control-label.col-md-4.top-label {
+    padding-top: 0px;
+    vertical-align: top;
+}

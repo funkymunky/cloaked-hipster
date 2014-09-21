@@ -24,21 +24,44 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="control-label col-md-3">Application dates:</label>
+                <div class="col-md-5">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <spring-form:input size="10" path="startDate" class="datepickerInfo form-control" name="startDate" type="text" placeholder="From"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <spring-form:input size="11" path="endDate" class="datepickerInfo form-control" name="endDate" type="text" placeholder="To"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="control-label col-md-3" for="electedCurrency">Elected currency:</label>
                 <div class="col-md-5">
                     <spring-form:input class="form-control" path="electedCurrency" id="electedCurrency" type="text" />
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="control-label col-md-3" for="paymentFrom">Payment from:</label>
+                <label class="control-label col-md-3">Payment dates:</label>
                 <div class="col-md-5">
-                    <spring-form:input path="paymentFrom" class="datepickerInfo form-control" id="paymentFrom" type="text" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-3" for="paymentTill">Payment till:</label>
-                <div class="col-md-5">
-                    <spring-form:input path="paymentTill" class="datepickerInfo form-control" id="paymentTill" type="text" />
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <spring-form:input size="10" path="paymentFrom" class="datepickerInfo form-control" id="paymentFrom" type="text" placeholder="From"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                <spring-form:input size="11" path="paymentTill" class="datepickerInfo form-control" id="paymentTill" type="text" placeholder="To"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group" style="margin-left: 160px;">

@@ -24,27 +24,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-4" for="yearOfStudy">Year of study:</label>
-            <div class="col-md-5">
-                <spring-form:input class="form-control" path="yearOfStudy" id="yearOfStudy" type="text" />
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label col-md-4">Application date:</label>
             <div class="col-md-5">
                 <spring-form:input path="applicationDate" class="datepickerInfo form-control" name="applicationDate" type="text"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-4">Start date:</label>
+            <label class="control-label col-md-4 top-label">Year of study (as at application date):</label>
             <div class="col-md-5">
-                <spring-form:input path="startDate" class="datepickerInfo form-control" name="startDate" type="text" />
+                <spring-form:input path="yearOfStudyAsAtApplicationDate" class="form-control" id="yearOfStudyAsAtApplicationDate" type="text"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-4">End date:</label>
+            <label class="control-label col-md-4" for="yearOfStudy">Current year of study:</label>
             <div class="col-md-5">
-                <spring-form:input path="endDate" class="datepickerInfo form-control" name="endDate" type="text"/>
+                <spring-form:input class="form-control" path="yearOfStudy" name="yearOfStudy" id="yearOfStudy" type="text" readonly="true"/>
             </div>
         </div>
         <div class="form-group">
@@ -96,6 +90,16 @@
             changeYear: true,
             dateFormat: 'dd/mm/yy',
             yearRange: '-1:+5'
+        });
+    });
+
+    $(function() {
+        $('#yearOfStudyAsAtApplicationDate').change(function() {
+            var applicationDate = $("input[name='education.applicationDate']").val().split("/");
+            var applicationDateAsDate = new Date(applicationDate[2], applicationDate[1], applicationDate[0]);
+            var today = new Date();
+            var yearDiff = applicationDateAsDate.getFullYear() - today.getFullYear();
+            $('#yearOfStudy').val(parseInt($('#yearOfStudyAsAtApplicationDate').val()) + parseInt(yearDiff));
         });
     });
 

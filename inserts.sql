@@ -128,3 +128,5 @@ CREATE TABLE IF NOT EXISTS `sponsorshipFees` (
   CONSTRAINT `FK_fees_sponsor` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`),
   CONSTRAINT `FK_fees_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table `sponsorship` modify column `startDate` date default null, modify column `endDate` date default null;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 @Controller
 public class SponsorshipController {
@@ -32,6 +32,8 @@ public class SponsorshipController {
     private void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        binder.registerCustomEditor(Date.class, "startDate", new CustomDateEditor(dateFormat, true));
+        binder.registerCustomEditor(Date.class, "endDate", new CustomDateEditor(dateFormat, true));
     }
 
     @RequestMapping(value="/student/sponsorship/addOrUpdate", method= RequestMethod.POST)

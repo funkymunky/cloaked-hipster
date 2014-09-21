@@ -36,6 +36,8 @@ public class SponsorshipDaoImpl implements SponsorshipDao {
         sponsorshipToUpdate.setSponsor(sponsorship.getSponsor());
         sponsorshipToUpdate.setStudent(sponsorship.getStudent());
         sponsorshipToUpdate.setSponsorshipType(sponsorship.getSponsorshipType());
+        sponsorshipToUpdate.setStartDate(sponsorship.getStartDate());
+        sponsorshipToUpdate.setEndDate(sponsorship.getEndDate());
         sponsorshipToUpdate.setElectedCurrency(sponsorship.getElectedCurrency());
         sponsorshipToUpdate.setPaymentFrom(sponsorship.getPaymentFrom());
         sponsorshipToUpdate.setPaymentTill(sponsorship.getPaymentTill());

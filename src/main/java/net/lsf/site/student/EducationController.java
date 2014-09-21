@@ -40,8 +40,6 @@ public class EducationController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         // true passed to CustomDateEditor constructor means convert empty String to null
         binder.registerCustomEditor(Date.class, "applicationDate", new CustomDateEditor(dateFormat, true));
-        binder.registerCustomEditor(Date.class, "startDate", new CustomDateEditor(dateFormat, true));
-        binder.registerCustomEditor(Date.class, "endDate", new CustomDateEditor(dateFormat, true));
     }
 
     @RequestMapping(value="/student/education/addOrUpdate", method = RequestMethod.POST)

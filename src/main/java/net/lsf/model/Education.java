@@ -21,13 +21,10 @@ public class Education implements Serializable {
     private String institutionType;
     private String institutionName;
     private String degreeName;
-    private int yearOfStudy;
     @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date applicationDate;
-    @DateTimeFormat(pattern="dd/MM/yyyy")
-    private Date startDate;
-    @DateTimeFormat(pattern="dd/MM/yyyy")
-    private Date endDate;
+    private int yearOfStudyAsAtApplicationDate;
+    private int yearOfStudy;
     private BigDecimal monthlyAllowance;
     private String agent;
 
@@ -64,6 +61,14 @@ public class Education implements Serializable {
         this.degreeName = degreeName;
     }
 
+    public int getYearOfStudyAsAtApplicationDate() {
+        return yearOfStudyAsAtApplicationDate;
+    }
+
+    public void setYearOfStudyAsAtApplicationDate(int yearOfStudyAsAtApplicationDate) {
+        this.yearOfStudyAsAtApplicationDate = yearOfStudyAsAtApplicationDate;
+    }
+
     public int getYearOfStudy() {
         return yearOfStudy;
     }
@@ -78,22 +83,6 @@ public class Education implements Serializable {
 
     public void setApplicationDate(Date applicationDate) {
         this.applicationDate = applicationDate;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public BigDecimal getMonthlyAllowance() {

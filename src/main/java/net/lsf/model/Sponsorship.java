@@ -19,7 +19,10 @@ public class Sponsorship implements Serializable {
 
     private String sponsorshipType;
     private String electedCurrency;
-
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private Date startDate;
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private Date endDate;
     @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date paymentFrom;
 
@@ -50,6 +53,22 @@ public class Sponsorship implements Serializable {
 
     public void setElectedCurrency(String electedCurrency) {
         this.electedCurrency = electedCurrency;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public Date getPaymentFrom() {
