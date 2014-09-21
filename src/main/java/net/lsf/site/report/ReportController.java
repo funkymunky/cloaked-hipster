@@ -1,5 +1,6 @@
 package net.lsf.site.report;
 
+import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Student;
 import net.lsf.service.StudentService;
@@ -7,6 +8,7 @@ import net.lsf.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,6 +43,32 @@ public class ReportController {
         return "/reports/currentlySponsored";
     }
 
+    @RequestMapping(value = "/report/currentlySponsored/school", method = RequestMethod.GET)
+    public String showOnlySchoolStudents(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.School);
+
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportC");
+        return "/reports/currentlySponsored";
+    }
+
+    @RequestMapping(value = "/report/currentlySponsored/university", method = RequestMethod.GET)
+    public String showOnlyUniversityStudents(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.University);
+
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportC");
+        return "/reports/currentlySponsored";
+    }
+
+    @RequestMapping(value="/report/currentlySponsored/bank/{bankName}", method = RequestMethod.GET)
+    public String showOnlySponsoredStudentsWithBank(@PathVariable String bankName, Model model) {
+        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.CurrentlySponsored, bankName);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportC");
+        return "/reports/currentlySponsored";
+    }
+
     @RequestMapping(value="/report/currentlySponsored/downloadCsv")
     public void downloadCsvForCurrentlySponsoredStudents(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
@@ -51,6 +79,30 @@ public class ReportController {
     public String showStudentsAwaitingSponsorship(Model model) {
         List<Student> awaitingSponsorship = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
         model.addAttribute("students", awaitingSponsorship);
+        model.addAttribute("activeTab", "reportA");
+        return "/reports/awaitingSponsorship";
+    }
+
+    @RequestMapping(value = "/report/awaitingSponsorship/school", method = RequestMethod.GET)
+    public String showOnlySchoolStudentsAwaitingSponsorship(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.School);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportA");
+        return "/reports/awaitingSponsorship";
+    }
+
+    @RequestMapping(value = "/report/awaitingSponsorship/university", method = RequestMethod.GET)
+    public String showOnlyUniveristyStudentsAwaitingSponsorship(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.University);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportA");
+        return "/reports/awaitingSponsorship";
+    }
+
+    @RequestMapping(value="/report/awaitingSponsorship/bank/{bankName}", method = RequestMethod.GET)
+    public String showOnlyAwaitingStudentsWithBank(@PathVariable String bankName, Model model) {
+        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.AwaitingSponsorship, bankName);
+        model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
         return "/reports/awaitingSponsorship";
     }

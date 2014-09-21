@@ -130,3 +130,14 @@ input.search-query {
     padding-top: 0px;
     vertical-align: top;
 }
+
+.reportTotal {
+    font-style: italic;
+    color: darkslategrey;
+}
+
+.filterError {
+    display: inline;
+    font-style: italic;
+    color: red;
+}

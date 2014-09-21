@@ -1,5 +1,6 @@
 package net.lsf.dao;
 
+import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.*;
 
@@ -36,4 +37,8 @@ public interface StudentDao {
     List<String> getAllProfilePictureNames();
 
     List<Student> getAllStudentsBySponsorshipType(SponsorshipType sponsorshipType);
+
+    List<Student> getAllStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType);
+
+    List<Student> getAllStudentsWithBank(SponsorshipType sponsorshipType, String bankName);
 }

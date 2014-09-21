@@ -1,5 +1,7 @@
 package net.lsf.service.impl;
 
+import net.lsf.InstitutionType;
+import net.lsf.SponsorshipType;
 import net.lsf.dao.StudentDao;
 import net.lsf.model.*;
 import net.lsf.service.StudentService;
@@ -109,5 +111,15 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<String> getAllProfilePics() {
         return studentDao.getAllProfilePictureNames();
+    }
+
+    @Override
+    public List<Student> getAllStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType) {
+        return studentDao.getAllStudentsByInstitutionType(sponsorshipType, institutionType);
+    }
+
+    @Override
+    public List<Student> getAllStudentsWithBank(SponsorshipType sponsorshipType, String bankName) {
+        return studentDao.getAllStudentsWithBank(sponsorshipType, bankName);
     }
 }

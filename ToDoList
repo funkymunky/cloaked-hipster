@@ -21,6 +21,11 @@
 	- order by columns
 	-DONE - jasper vs something else? [08/07/2014] jasper reports seem like a lot of overhead at the moment. 
 		it's simpler to just use a streamWriter to write a csv file 
+	- DONE - add filter by institution type (uni/school) [21/09/2014]
+	- DONE = add filter by bank [21/09/2014]
+	- include count of total students displayed per report
+	- add report for 'Formerly sponsored'
+	- add report for 'Expired applications'
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]

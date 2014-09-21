@@ -1,5 +1,6 @@
 package net.lsf.dao.impl;
 
+import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.dao.StudentDao;
 import net.lsf.model.*;
@@ -149,6 +150,30 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> getAllStudentsBySponsorshipType(SponsorshipType sponsorshipType) {
         return sessionFactory.getCurrentSession().createQuery("Select s from Student as s right outer join s.sponsorship as sp where sp.sponsorshipType = '" + sponsorshipType + "'" ).list();
+    }
+
+    @Override
+    public List<Student> getAllStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType) {
+        List<Student> allStudents = getAllStudentsBySponsorshipType(sponsorshipType);
+        List<Student> studentsByInstitutionType = allStudents.stream()
+                .filter(student ->
+                        student.getEducation() != null &&
+                                student.getEducation().getInstitutionType().equals(institutionType.name()))
+                .collect(Collectors.toList());
+
+        return studentsByInstitutionType;
+    }
+
+    @Override
+    public List<Student> getAllStudentsWithBank(SponsorshipType sponsorshipType, String bankName) {
+        List<Student> allStudents = getAllStudentsBySponsorshipType(sponsorshipType);
+        List<Student> studentsByBank = allStudents.stream()
+                .filter(student ->
+                        student.getBank() != null &&
+                                student.getBank().getBank().equalsIgnoreCase(bankName))
+                .collect(Collectors.toList());
+
+        return studentsByBank;
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

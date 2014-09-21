@@ -1,5 +1,7 @@
 package net.lsf.service;
 
+import net.lsf.InstitutionType;
+import net.lsf.SponsorshipType;
 import net.lsf.model.*;
 
 import java.util.List;
@@ -33,4 +35,8 @@ public interface StudentService {
     void updateProfilePicForStudent(int id, String profilePic);
 
     List<String> getAllProfilePics();
+
+    List<Student> getAllStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType);
+
+    List<Student> getAllStudentsWithBank(SponsorshipType awaitingSponsorship, String bankName);
 }
