@@ -44,8 +44,9 @@ public class StudentDaoImpl implements StudentDao {
         studentToUpdate.setFirstName(student.getFirstName());
         studentToUpdate.setLastName(student.getLastName());
         studentToUpdate.setDateOfBirth(student.getDateOfBirth());
+        studentToUpdate.setEmail(student.getEmail());
+        studentToUpdate.setTelephone(student.getTelephone());
         getCurrentSession().update(studentToUpdate);
-
     }
 
     @Override

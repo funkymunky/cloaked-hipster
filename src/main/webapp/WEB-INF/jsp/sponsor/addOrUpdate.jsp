@@ -34,6 +34,10 @@
                                 <spring-form:input class="form-control" path="lastName" placeholder="Last name"/>
                             </div>
                             <div class="form-group">
+                                <label for="email">Email:</label>
+                                <spring-form:input path="email" id="email" class="form-control" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
                                 <label>Phone 1: <spring-form:errors path="phone1" class="alert-error"></spring-form:errors></label>
                                 <spring-form:input class="form-control" path="phone1" placeholder="Phone 1" id="phone1"/>
                             </div>

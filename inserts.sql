@@ -139,3 +139,5 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 alter table `students` add column comments_id int(11) default null;
 alter table `students` add constraint FK_comments_id FOREIGN KEY  (comments_id) references comments (id);
+alter table `students` add column email varchar(255) default null;
+alter table `students` add column telephone varchar(255) default null;

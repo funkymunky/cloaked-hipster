@@ -23,6 +23,7 @@ public class Sponsor implements Serializable {
     private String firstName;
     private String phone1;
     private String phone2;
+    private String email;
 
     @OneToOne
     @JoinColumn(name = "address_id")
@@ -74,6 +75,14 @@ public class Sponsor implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

@@ -42,6 +42,7 @@ public class SponsorDaoImpl implements SponsorDao {
         sponsorToUpdate.setLastName(sponsor.getLastName());
         sponsorToUpdate.setPhone1(sponsor.getPhone1());
         sponsorToUpdate.setPhone2(sponsor.getPhone2());
+        sponsorToUpdate.setEmail(sponsor.getEmail());
         getCurrentSession().update(sponsorToUpdate);
 
     }

@@ -38,6 +38,14 @@
                                     <label for="dateOfBirth">Date of birth: <spring-form:errors path="dateOfBirth" class="alert-error"></spring-form:errors></label>
                                     <spring-form:input path="dateOfBirth" placeholder="Date of birth" id="dateOfBirth" class="form-control datepickerDob" />
                                 </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <spring-form:input path="email" id="email" class="form-control" placeholder="Email"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone">Telephone:</label>
+                                    <spring-form:input path="telephone" id="telephone" class="form-control" placeholder="Telephone"/>
+                                </div>
                                 <br/>
                                 <c:choose>
                                     <c:when test="${updateMode != true}">
