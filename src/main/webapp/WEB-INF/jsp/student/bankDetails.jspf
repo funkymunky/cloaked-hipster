@@ -16,7 +16,10 @@
             <div class="form-group">
                 <label class="control-label col-md-3" for="bank">Bank</label>
                 <div class="col-md-5">
-                    <spring-form:input  class="form-control" path="bank" id="bank" type="text" />
+                    <spring-form:select class="form-control" path="bank" id="bank" type="text">
+                        <spring-form:option value="">-- Select an option --</spring-form:option>
+                        <spring-form:options items="${bankValues}" itemValue="name" itemLabel="description"/>
+                    </spring-form:select>
                 </div>
             </div>
             <div class="form-group">

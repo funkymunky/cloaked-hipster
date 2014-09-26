@@ -1,5 +1,6 @@
 package net.lsf.site.student;
 
+import net.lsf.BankInstiution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Address;
@@ -64,6 +65,7 @@ public class StudentController {
         model.addAttribute("student", new Student());
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", maxUploadSize);
         return "/student/addOrUpdate";
@@ -83,6 +85,7 @@ public class StudentController {
         model.addAttribute("updateMode", false);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }
@@ -95,6 +98,7 @@ public class StudentController {
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", maxUploadSize);
         return "/student/addOrUpdate";
@@ -110,6 +114,7 @@ public class StudentController {
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         return "/student/addOrUpdate";
     }

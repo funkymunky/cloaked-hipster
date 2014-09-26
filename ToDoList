@@ -1,3 +1,19 @@
++-----------------------------------+
+| BUGS								|
++-----------------------------------+
+- Education info: year of study is 0 (impacting current yr of study).
+- Education info: agent details are missing.
+- Address info: tel no & email address missing (students and sponsors).
+- Bank info: bank appears as 1, 2, 3 etc
+- Comments: not all comments shown latest ones missing.
+- Reports: Does not separat uni/school student counts. Total only is shown.
+- Making changes to any form and exiting does not prompt to save before leaving. 
+
+
+
++-----------------------------------+
+| FEATURES							|
++-----------------------------------+
 - DONE - add Comment section to Student [21/09/2014]
 - add link somewhere on Student to go back to profile tab 
 - DONE - convert db username and password to properties [14/09/14]
