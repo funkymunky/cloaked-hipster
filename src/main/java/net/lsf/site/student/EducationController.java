@@ -1,5 +1,6 @@
 package net.lsf.site.student;
 
+import net.lsf.AgentType;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Education;
@@ -73,6 +74,7 @@ public class EducationController {
             model.addAttribute("institutionTypeValues", InstitutionType.values());
             model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
             model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+            model.addAttribute("agentTypeValues", AgentType.values());
             model.addAttribute("message", message);
             model.addAttribute("updateMode", true);
         }

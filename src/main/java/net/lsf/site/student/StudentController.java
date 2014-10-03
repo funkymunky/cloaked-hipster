@@ -1,5 +1,6 @@
 package net.lsf.site.student;
 
+import net.lsf.AgentType;
 import net.lsf.BankInstiution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
@@ -68,6 +69,7 @@ public class StudentController {
         model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", maxUploadSize);
+        model.addAttribute("agentTypeValues", AgentType.values());
         return "/student/addOrUpdate";
     }
 
@@ -87,6 +89,7 @@ public class StudentController {
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("agentTypeValues", AgentType.values());
         return "/student/addOrUpdate";
     }
 
@@ -101,6 +104,7 @@ public class StudentController {
         model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", maxUploadSize);
+        model.addAttribute("agentTypeValues", AgentType.values());
         return "/student/addOrUpdate";
     }
 
@@ -116,6 +120,7 @@ public class StudentController {
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("agentTypeValues", AgentType.values());
         return "/student/addOrUpdate";
     }
 
