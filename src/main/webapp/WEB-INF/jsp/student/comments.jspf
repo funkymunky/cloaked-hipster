@@ -12,7 +12,7 @@
 
             <div class="form-group" style="margin-left: 160px">
                 <button type="submit" class="btn btn-primary">Update comments</button>
-                <button type="button" class="btn" onclick="$('#profileInfo').show(); $('#commentInfo').hide()">Cancel</button>
+                <button type="button" class="btn" onclick="location.href='/lsf/student/edit/${student.id}'">Cancel</button>
             </div>
             <input type="hidden" value="${student.id}" name="studentid" />
         </spring-form:form>

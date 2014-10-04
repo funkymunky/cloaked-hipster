@@ -39,7 +39,7 @@
         </div>
         <div class="form-group" style="margin-left: 160px;">
             <button type="submit" class="btn btn-primary">Update info</button>
-            <button type="button" class="btn" onclick="$('#sponsorDetailedInfo').show(); $('#addressInfo').hide()">Cancel</button>
+            <button type="button" class="btn" onclick="location.href='/lsf/sponsor/edit/${sponsor.sponsorId}'">Cancel</button>
         </div>
         <input type="hidden" value="${sponsor.id}" name="sponsorid" />
     </spring-form:form>
