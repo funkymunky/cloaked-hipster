@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -27,6 +28,7 @@ public class UploadFileController {
         int id = Integer.parseInt(studentId);
         String originalFilename = file.getOriginalFilename();
         String message;
+        boolean warn = false;
 
         if (!isFileValid(originalFilename)) {
             model.addAttribute("student", studentService.getStudent(id));
@@ -50,13 +52,19 @@ public class UploadFileController {
         } catch (IllegalStateException e) {
             e.printStackTrace();
             message =  "File uploadfailed:" + originalFilename;
+            warn = true;
         } catch (IOException e) {
             e.printStackTrace();
-            message = "File upload failed:" + originalFilename;
+            message = "File upload failed - check configured temp folders.";
+            warn = true;
+        } catch (MaxUploadSizeExceededException e) {
+            message = "File upload failed - file size is too large.";
+            warn = true;
         }
 
         model.addAttribute("student", studentService.getStudent(id));
         model.addAttribute("message", message);
+        model.addAttribute("warn", warn);
         return "/student/addOrUpdate";
     }
 

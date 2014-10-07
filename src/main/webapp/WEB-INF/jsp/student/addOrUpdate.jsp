@@ -19,8 +19,14 @@
 
             <div class="col-md-10">
                 <legend>Student information</legend>
-                <div id="alertFeedback" class="message warning"></div>
-                <c:if test="${not empty message}"><div id="alertFeedback" class="message green">${message}</div></c:if>
+                <c:choose>
+                    <c:when test="${warn eq true}">
+                        <div id="alertFeedback" class="message warning">${message}</div>
+                    </c:when>
+                    <c:otherwise>
+                        <div id="alertFeedback" class="message green">${message}</div>
+                    </c:otherwise>
+                </c:choose>
                 <fieldset class="main-content">
                     <div class="row">
                         <div class="col-md-4">

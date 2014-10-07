@@ -37,6 +37,7 @@
             var allowedFileSize = ${maxUploadSize};
             if (selectedFileSize > allowedFileSize) {
                 $('#alertFeedback').text("The file you have chosen exceeds the size limit of 2MB.");
+                $('#alertFeedback').attr("class", "message warning");
                 $('#uploadBtn').attr('disabled', 'disabled');
             } else {
                 $('#uploadBtn').removeAttr('disabled');
