@@ -7,7 +7,7 @@
 - DONE - Bank info: bank appears as 1, 2, 3 etc [26/09/2014]
 - DONE - Comments: not all comments shown latest ones missing. [06/10/2014]
 - Reports: Does not separat uni/school student counts. Total only is shown.
-- Making changes to any form and exiting does not prompt to save before leaving. 
+- DONE - Making changes to any form and exiting does not prompt to save before leaving. [07/10/2014] 
 
 
 
@@ -39,13 +39,14 @@
 		it's simpler to just use a streamWriter to write a csv file 
 	- DONE - add filter by institution type (uni/school) [21/09/2014]
 	- DONE = add filter by bank [21/09/2014]
-	- include count of total students displayed per report
+	- DONE - include count of total students displayed per report
 	- add report for 'Formerly sponsored'
 	- add report for 'Expired applications'
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]
 	account number
+	account name ?
 - DONE - upload profile pic [22/06/14]
 - DONE - validation on profile pic. Can't store file with the same name, has to be jpg extension, and size of file [06/07/14]
 - write insert sql script to migrate data from access to mysql

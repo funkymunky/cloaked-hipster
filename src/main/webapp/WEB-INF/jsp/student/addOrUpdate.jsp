@@ -49,7 +49,7 @@
                                 <br/>
                                 <c:choose>
                                     <c:when test="${updateMode != true}">
-                                        <button type="submit" class="btn btn-primary">Add student</button>
+                                        <button type="submit" class="btn btn-primary submit">Add student</button>
                                     </c:when>
                                     <c:otherwise>
                                         <sec:authorize ifAllGranted="ROLE_ADMIN">
@@ -80,6 +80,8 @@
     </body>
 
     <%--<script src="<c:url value='/js/datepicker-defaults.js'/>"></script>--%>
+    <script src="<c:url value='/js/student-confirm-unsaved.js'/>"></script>
+
     <script type="text/javascript">
 
         $("#profileInfo").show();

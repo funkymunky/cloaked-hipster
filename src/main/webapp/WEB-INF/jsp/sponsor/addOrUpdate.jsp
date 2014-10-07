@@ -73,6 +73,7 @@
         </div>
     </body>
 
+    <script src="<c:url value='/js/sponsor-confirm-unsaved.js'/>"></script>
 
     <script type="text/javascript">
         $("#sponsorDetailedInfo").show();
