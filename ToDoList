@@ -5,7 +5,7 @@
 - DONE - Education info: agent details are missing. [04/10/2014]
 - DONE - Address info: tel no & email address missing (students and sponsors). [27/09/2014]
 - DONE - Bank info: bank appears as 1, 2, 3 etc [26/09/2014]
-- Comments: not all comments shown latest ones missing.
+- DONE - Comments: not all comments shown latest ones missing. [06/10/2014]
 - Reports: Does not separat uni/school student counts. Total only is shown.
 - Making changes to any form and exiting does not prompt to save before leaving. 
 
