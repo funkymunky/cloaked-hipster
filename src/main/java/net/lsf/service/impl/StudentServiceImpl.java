@@ -44,8 +44,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Set<Student> getStudentByNameOrStandingOrder(String searchText) {
-        return studentDao.getStudentByNameOrStandingOrder(searchText);
+    public Set<Student> getStudentByNameOrStandingOrderOrAccountNumber(String searchText) {
+        return studentDao.getStudentByNameOrStandingOrderOrAccountNumber(searchText);
     }
 
     @Override

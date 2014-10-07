@@ -45,8 +45,8 @@
 - DONE - search by
 	last name, standing order (students) [21/06/14]
 	last name (sponsor) [21/06/14]
-	account number
-	account name ?
+	account number [07/10/2014]
+	account name ? [07/10/2014 - doesn't make sense as names can be common to students as well..]
 - DONE - upload profile pic [22/06/14]
 - DONE - validation on profile pic. Can't store file with the same name, has to be jpg extension, and size of file [06/07/14]
 - write insert sql script to migrate data from access to mysql

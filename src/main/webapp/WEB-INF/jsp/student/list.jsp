@@ -25,7 +25,7 @@
                 </c:if>
 
                 <div class="navbar-search pull-right">
-                    <input id="searchStudent" type="text" class="search-query" placeholder="Search by first/last name or standing order" >
+                    <input id="searchStudent" type="text" class="search-query" placeholder="Search by first/last name or standing order or account number" >
                     <button id="search" type="button" class="btn btn-sm">Search</button>
                     <%--<button class="btn btn-primary" id="edit" type="button">Edit</button>--%>
                 </div>

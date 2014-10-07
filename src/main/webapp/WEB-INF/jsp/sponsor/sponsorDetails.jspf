@@ -23,7 +23,7 @@
                 <tbody>
                 <c:forEach var="kid" items="${sponsoredKids}">
                     <tr>
-                        <td>${kid.lastName}, ${kid.firstName}</td>
+                        <td><a href="/lsf/student/edit/${kid.id}">${kid.lastName}, ${kid.firstName}</a></td>
                         <c:set var="kidEducation" value="${kid.education}"/>
                         <c:choose>
                             <c:when test="${kidEducation.institutionType eq 'School'}">

@@ -17,7 +17,7 @@ public interface StudentDao {
     void updateStudent(Student student);
     Student getStudent(int id);
     List<Student> getAllStudents();
-    Set<Student> getStudentByNameOrStandingOrder(String searchText);
+    Set<Student> getStudentByNameOrStandingOrderOrAccountNumber(String searchText);
 
     Address getAddressForStudent(int id);
     void updateAddress(Student student, Address address);

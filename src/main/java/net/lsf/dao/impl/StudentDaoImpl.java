@@ -69,8 +69,8 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public Set<Student> getStudentByNameOrStandingOrder(String searchText) {
-        List<Student> studentsMatchingStandingOrder = findStudentsWithStandingOrder(searchText);
+    public Set<Student> getStudentByNameOrStandingOrderOrAccountNumber(String searchText) {
+        List<Student> studentsMatchingStandingOrder = findStudentsWithStandingOrderOrAccountNumber(searchText);
         List<Student> studentsMatchingNames = findStudentsWithName(searchText);
 
         studentsMatchingNames.addAll(studentsMatchingStandingOrder);
@@ -196,14 +196,16 @@ public class StudentDaoImpl implements StudentDao {
                 .collect(Collectors.toList());
     }
 
-    private List<Student> findStudentsWithStandingOrder(String searchText) {
+    private List<Student> findStudentsWithStandingOrderOrAccountNumber(String searchText) {
         Query query = sessionFactory.getCurrentSession().createQuery("Select s from Student as s right outer join s.bank as b");
         List<Student> list = query.list();
 
         return list.stream()
                 .filter(student ->
                         student.getBank() != null &&
-                                student.getBank().getStandingOrder().contains(searchText))
+                                student.getBank().getStandingOrder().contains(searchText) ||
+                                student.getBank().getAccountNumber().replace("-","").contains(searchText) ||
+                                student.getBank().getAccountNumber().replace(" ", "").contains(searchText))
                 .collect(Collectors.toList());
     }
 }
