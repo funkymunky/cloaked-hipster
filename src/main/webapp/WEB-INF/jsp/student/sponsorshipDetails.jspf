@@ -6,8 +6,8 @@
     <fieldset>
         <spring-form:form method="POST" modelAttribute="student.sponsorship" class="form-horizontal" action="/lsf/student/sponsorship/addOrUpdate">
             <div class="form-group">
-                <label class="control-label col-md-3" for="sponsorshipType">Sponsorship type:</label>
-                <div class="col-md-5">
+                <label class="control-label col-md-4" for="sponsorshipType">Sponsorship type:</label>
+                <div class="col-md-6">
                     <spring-form:select class="form-control" path="sponsorshipType" id="sponsorshipType" type="text">
                         <spring-form:option value="">-- Select an option --</spring-form:option>
                         <spring-form:options items="${sponsorshipTypeValues}" itemValue="name" itemLabel="description"/>
@@ -15,8 +15,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-3" for="sponsor">Sponsor:</label>
-                <div class="col-md-5">
+                <label class="control-label col-md-4" for="sponsor">Sponsor:</label>
+                <div class="col-md-6">
                     <spring-form:select class="form-control" path="sponsor" id="sponsor" type="text">
                         <spring-form:option value="">-- Select a sponsor --</spring-form:option>
                         <spring-form:options items="${listOfSponsors}" itemValue="sponsorId" itemLabel="name"/>
@@ -24,41 +24,47 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-3">Application dates:</label>
-                <div class="col-md-5">
+                <label class="control-label col-md-4" for="applicationDate">Application date:</label>
+                <div class="col-md-6">
+                    <input class="form-control" id="applicationDate" type="text" value="<c:out value="${applicationDate}" />" readonly="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Sponsorship dates:</label>
+                <div class="col-md-6">
                     <div class="form-inline">
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="10" path="startDate" class="datepickerInfo form-control" name="startDate" type="text" placeholder="From"/>
+                                <spring-form:input size="12" path="startDate" class="datepickerInfo form-control" name="startDate" type="text" placeholder="From"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="11" path="endDate" class="datepickerInfo form-control" name="endDate" type="text" placeholder="To"/>
+                                <spring-form:input size="13" path="endDate" class="datepickerInfo form-control" name="endDate" type="text" placeholder="To"/>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-3" for="electedCurrency">Elected currency:</label>
-                <div class="col-md-5">
+                <label class="control-label col-md-4" for="electedCurrency">Elected currency:</label>
+                <div class="col-md-6">
                     <spring-form:input class="form-control" path="electedCurrency" id="electedCurrency" type="text" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-3">Payment dates:</label>
-                <div class="col-md-5">
+                <label class="control-label col-md-4">Payment dates:</label>
+                <div class="col-md-6">
                     <div class="form-inline">
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="10" path="paymentFrom" class="datepickerInfo form-control" id="paymentFrom" type="text" placeholder="From"/>
+                                <spring-form:input size="12" path="paymentFrom" class="datepickerInfo form-control" id="paymentFrom" type="text" placeholder="From"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="11" path="paymentTill" class="datepickerInfo form-control" id="paymentTill" type="text" placeholder="To"/>
+                                <spring-form:input size="13" path="paymentTill" class="datepickerInfo form-control" id="paymentTill" type="text" placeholder="To"/>
                             </div>
                         </div>
                     </div>

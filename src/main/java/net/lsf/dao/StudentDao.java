@@ -43,4 +43,6 @@ public interface StudentDao {
     List<Student> getAllStudentsWithBank(SponsorshipType sponsorshipType, String bankName);
 
     void updateCommentsForStudent(Student student, Comments comments);
+
+    String getApplicationDateForStudent(int id);
 }

@@ -128,4 +128,9 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentDao.getStudent(id);
         studentDao.updateCommentsForStudent(student, comments);
     }
+
+    @Override
+    public String getApplicationDateForStudent(int id) {
+        return studentDao.getApplicationDateForStudent(id);
+    }
 }

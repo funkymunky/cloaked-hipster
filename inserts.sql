@@ -141,3 +141,10 @@ alter table `students` add column comments_id int(11) default null;
 alter table `students` add constraint FK_comments_id FOREIGN KEY  (comments_id) references comments (id);
 alter table `students` add column email varchar(255) default null;
 alter table `students` add column telephone varchar(255) default null;
+
+alter table `sponsorship` change paymentFrom sponsorshipStartDate date;
+alter table `sponsorship` change paymentTill sponsorshipEndDate date;
+alter table `sponsorship` change startDate paymentFrom date;
+alter table `sponsorship` change endDate paymentTill date;
+alter table `sponsorship` change sponsorshipStartDate  startDate date;
+alter table `sponsorship` change sponsorshipEndDate endDate date;

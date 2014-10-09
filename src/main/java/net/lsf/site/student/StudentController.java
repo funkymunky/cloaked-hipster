@@ -105,6 +105,7 @@ public class StudentController {
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("applicationDate", studentService.getApplicationDateForStudent(id));
         return "/student/addOrUpdate";
     }
 

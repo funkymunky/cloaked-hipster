@@ -4,6 +4,7 @@ import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -41,4 +42,6 @@ public interface StudentService {
     List<Student> getAllStudentsWithBank(SponsorshipType awaitingSponsorship, String bankName);
 
     void updateCommentsForStudent(int id, Comments comments);
+
+    String getApplicationDateForStudent(int id);
 }

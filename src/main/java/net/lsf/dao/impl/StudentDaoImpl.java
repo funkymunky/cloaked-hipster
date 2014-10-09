@@ -6,9 +6,12 @@ import net.lsf.dao.StudentDao;
 import net.lsf.model.*;
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -182,6 +185,14 @@ public class StudentDaoImpl implements StudentDao {
         Student studentToUpdate = getStudent(student.getId());
         studentToUpdate.setComments(comments);
         getCurrentSession().update(studentToUpdate);
+    }
+
+    @Override
+    public String getApplicationDateForStudent(int id) {
+        Student student = getStudent(id);
+        Date applicationDate = student.getEducation().getApplicationDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(applicationDate);
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {
