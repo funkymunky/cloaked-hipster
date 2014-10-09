@@ -2,6 +2,7 @@ package net.lsf.site.student;
 
 import net.lsf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,8 @@ public class UploadFileController {
     @Autowired
     private StudentService studentService;
 
+    @Value("${lsf.picture.tempFolder}")
+    private String tempDirectory;
 
     @RequestMapping(value = "/student/profile/uploadFile", method = RequestMethod.POST)
     public String uploadFileHandler(@RequestParam("studentid") String studentId,
@@ -36,8 +39,7 @@ public class UploadFileController {
             return "/student/addOrUpdate";
         }
 
-        String dirPath = "/tmp/images";
-        File dir = new File(dirPath);
+        File dir = new File(tempDirectory);
         if (!dir.exists()) {
             dir.mkdir();
         }
