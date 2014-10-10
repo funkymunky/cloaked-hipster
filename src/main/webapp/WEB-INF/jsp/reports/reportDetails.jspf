@@ -1,0 +1,38 @@
+<table class="table table-striped">
+<thead><tr>
+    <th>Id</th>
+    <th>Student name</th>
+    <th>Year of study</th>
+    <th>Account name</th>
+    <th>Bank</th>
+    <th>Branch</th>
+    <th>Account number</th>
+    <th>Standing order number</th>
+</tr>
+</thead>
+<tbody>
+<c:forEach var="student" items="${students}">
+    <c:choose>
+        <c:when test="${student.education.institutionType eq null}">
+            <c:set var="qualification" value=""/>
+        </c:when>
+        <c:when test="${student.education.institutionType eq 'School'}">
+            <c:set var="qualification" value="${student.education.institutionName} (${student.education.yearOfStudy})"/>
+        </c:when>
+        <c:otherwise>
+            <c:set var="qualification" value="${student.education.degreeName} (${student.education.yearOfStudy})"/>
+        </c:otherwise>
+    </c:choose>
+    <tr>
+        <td>${student.id}</td>
+        <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+        <td>${qualification}</td>
+        <td>${student.bank.accountName}</td>
+        <td>${student.bank.bank}</td>
+        <td>${student.bank.branch}</td>
+        <td>${student.bank.accountNumber}</td>
+        <td>${student.bank.standingOrder}</td>
+    </tr>
+</c:forEach>
+</tbody>
+</table>

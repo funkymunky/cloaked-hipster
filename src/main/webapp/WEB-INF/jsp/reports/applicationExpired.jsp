@@ -20,32 +20,35 @@
             </div>
 
             <div class="col-md-10">
-            <legend>Students awaiting sponsorship</legend>
-                <a href="/lsf/report/awaitingSponsorship/school"><button type="button" class="btn btn-primary" id="filterSchool">Filter by school</button></a>
-                <a href="/lsf/report/awaitingSponsorship/university"><button type="button" class="btn btn-primary" id="filterUniversity">Filter by university</button></a>
+            <legend>Students with expired applications</legend>
+
+                <a href="/lsf/report/applicationExpired/school"><button type="button" class="btn btn-primary" id="filterSchool">Filter by school</button></a>
+                <a href="/lsf/report/applicationExpired/university"><button type="button" class="btn btn-primary" id="filterUniversity">Filter by university</button></a>
                 <a href="#">
                     <button type="button" class="btn btn-primary" id="filterBank">Filter by bank</button></a>
                 <input id="bankName" type="text" size="30"/>
                 <p class="filterError" id="errorText"></p>
                     <%@ include file="/WEB-INF/jsp/reports/reportDetails.jspf" %>
                 <p class="reportTotal">Total students: ${fn:length(students)}</p>
-                <a href="/lsf/report/awaitingSponsorship/downloadCsv">Export to csv</a>
+                <a href="/lsf/report/applicationExpired/downloadCsv">Export to csv</a>
+
             </div>
         </div>
     </div>
 </body>
-<script type="text/javascript">
-        $(function(){
-            $('#filterBank').click(function() {
-                var anchor = $(this).parent();
-                var bankName = $('#bankName').val();
-                if (!bankName.trim()) {
-                    $('#errorText').text("Please enter a bank name to filter by");
-                } else {
-                    anchor.attr("href", "/lsf/report/awaitingSponsorship/bank/"+bankName);
-                }
 
-            })
+<script type="text/javascript">
+    $(function(){
+        $('#filterBank').click(function() {
+            var anchor = $(this).parent();
+            var bankName = $('#bankName').val();
+            if (!bankName.trim()) {
+                $('#errorText').text("Please enter a bank name to filter by")
+            } else {
+                anchor.attr("href", "/lsf/report/applicationExpired/bank/"+bankName);
+            }
         })
+    })
 </script>
+
 </html>

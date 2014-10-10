@@ -108,9 +108,85 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/awaitingSponsorship/downloadCsv")
-    public void downloadCsvForStudentsAwaitingSponsorshipt(HttpServletResponse response) throws IOException {
+    public void downloadCsvForStudentsAwaitingSponsorship(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
         writerService.writeCsvFile("studentsAwaitingSponsorship.csv", HEADER_ROW, listOfStudents, response);
+    }
+
+    @RequestMapping(value = "/report/formerlySponsored", method = RequestMethod.GET)
+    public String showStudentsFormerlySponsored(Model model) {
+        List<Student> formerlySponsored = getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
+        model.addAttribute("students", formerlySponsored);
+        model.addAttribute("activeTab", "reportF");
+        return "/reports/formerlySponsored";
+    }
+
+    @RequestMapping(value = "/report/formerlySponsored/school", method = RequestMethod.GET)
+    public String showOnlySchoolStudentsFormerlySponsored(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.FormerlySponsored, InstitutionType.School);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportF");
+        return "/reports/formerlySponsored";
+    }
+
+    @RequestMapping(value = "/report/formerlySponsored/university", method = RequestMethod.GET)
+    public String showOnlyUniveristyStudentsFormerlySponsored(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.FormerlySponsored, InstitutionType.University);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportF");
+        return "/reports/formerlySponsored";
+    }
+
+    @RequestMapping(value="/report/formerlySponsored/bank/{bankName}", method = RequestMethod.GET)
+    public String showOnlyFormerlySponsoredWithBank(@PathVariable String bankName, Model model) {
+        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.FormerlySponsored, bankName);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportF");
+        return "/reports/formerlySponsored";
+    }
+
+    @RequestMapping(value="/report/formerlySponsored/downloadCsv")
+    public void downloadCsvForStudentsFormerlySponsored(HttpServletResponse response) throws IOException {
+        List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
+        writerService.writeCsvFile("studentsFormerlySponsored.csv", HEADER_ROW, listOfStudents, response);
+    }
+
+    @RequestMapping(value = "/report/applicationExpired", method = RequestMethod.GET)
+    public String showStudentsWhereApplicationExpired(Model model) {
+        List<Student> students = getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAE");
+        return "/reports/applicationExpired";
+    }
+
+    @RequestMapping(value = "/report/applicationExpired/school", method = RequestMethod.GET)
+    public String showOnlySchoolStudentsWhereApplicationExpired(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.ApplicationExpired, InstitutionType.School);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAE");
+        return "/reports/applicationExpired";
+    }
+
+    @RequestMapping(value = "/report/applicationExpired/university", method = RequestMethod.GET)
+    public String showOnlyUniveristyStudentsWhereApplicationExpired(Model model) {
+        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.ApplicationExpired, InstitutionType.University);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAE");
+        return "/reports/applicationExpired";
+    }
+
+    @RequestMapping(value="/report/applicationExpired/bank/{bankName}", method = RequestMethod.GET)
+    public String showOnlyApplicationExpiredWithBank(@PathVariable String bankName, Model model) {
+        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.ApplicationExpired, bankName);
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAE");
+        return "/reports/applicationExpired";
+    }
+
+    @RequestMapping(value="/report/applicationExpired/downloadCsv")
+    public void downloadCsvForStudentsWhereApplicationExpired(HttpServletResponse response) throws IOException {
+        List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
+        writerService.writeCsvFile("studentsApplicationExpired.csv", HEADER_ROW, listOfStudents, response);
     }
 
     @RequestMapping(value = "/report/allStudents", method = RequestMethod.GET)

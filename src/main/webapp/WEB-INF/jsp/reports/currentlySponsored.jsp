@@ -28,44 +28,7 @@
                     <button type="button" class="btn btn-primary" id="filterBank">Filter by bank</button></a>
                 <input id="bankName" type="text" size="30"/>
                 <p class="filterError" id="errorText"></p>
-                <table class="table table-striped">
-                    <thead><tr>
-                        <th>Id</th>
-                        <th>Student name</th>
-                        <th>Year of study</th>
-                        <th>Account name</th>
-                        <th>Bank</th>
-                        <th>Branch</th>
-                        <th>Account number</th>
-                        <th>Standing order number</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="student" items="${students}">
-                            <c:choose>
-                                <c:when test="${student.education.institutionType eq null}">
-                                    <c:set var="qualification" value=""/>
-                                </c:when>
-                                <c:when test="${student.education.institutionType eq 'School'}">
-                                    <c:set var="qualification" value="${student.education.institutionName} (${student.education.yearOfStudy})"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:set var="qualification" value="${student.education.degreeName} (${student.education.yearOfStudy})"/>
-                                </c:otherwise>
-                            </c:choose>
-                            <tr>
-                                <td>${student.id}</td>
-                                <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
-                                <td>${qualification}</td>
-                                <td>${student.bank.accountName}</td>
-                                <td>${student.bank.bank}</td>
-                                <td>${student.bank.branch}</td>
-                                <td>${student.bank.accountNumber}</td>
-                                <td>${student.bank.standingOrder}</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                    <%@ include file="/WEB-INF/jsp/reports/reportDetails.jspf" %>
                 <p class="reportTotal">Total students: ${fn:length(students)}</p>
                 <a href="/lsf/report/currentlySponsored/downloadCsv">Export to csv</a>
 
