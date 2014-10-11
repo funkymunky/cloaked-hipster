@@ -1,6 +1,7 @@
 package net.lsf.site.student;
 
 import net.lsf.service.StudentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ import java.util.List;
 
 @Controller
 public class UploadFileController {
+
+    private static final Logger log = Logger.getLogger(UploadFileController.class);
 
     @Autowired
     private StudentService studentService;
@@ -53,13 +56,16 @@ public class UploadFileController {
             message = "Profile picture was successfully uploaded.";
         } catch (IllegalStateException e) {
             e.printStackTrace();
+            log.warn("File upload failed: " + e);
             message =  "File uploadfailed:" + originalFilename;
             warn = true;
         } catch (IOException e) {
             e.printStackTrace();
+            log.warn("File upload failed IOException: " + e);
             message = "File upload failed - check configured temp folders.";
             warn = true;
         } catch (MaxUploadSizeExceededException e) {
+            log.warn("File upload failed - max upload file exceeded: " + e);
             message = "File upload failed - file size is too large.";
             warn = true;
         }
@@ -87,7 +93,8 @@ public class UploadFileController {
         return "Filename is not unique. Please change the filename of the file you are trying to upload and try again. ";
     }
 
-    private boolean filenameValid(String filename) {
+    private boolean filenameValid(String name) {
+        String filename = name.toLowerCase();
         return filename.contains(".jpg") || filename.contains(".png") || filename.contains(".jpeg");
     }
 

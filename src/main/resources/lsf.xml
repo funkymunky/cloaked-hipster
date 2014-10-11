@@ -15,7 +15,7 @@
     <context:component-scan base-package="net.lsf.service" />  <!-- needed to have 2 base-package scans to get hibernate to work properly-->
     <context:component-scan base-package="net.lsf.dao" />
 
-    <import resource="lsfConfig/jmx.xml" />
+    <!--<import resource="lsfConfig/jmx.xml" />-->
     <!--<import resource="lsfConfig/lsf-servlet.xml" />-->
     <import resource="lsfConfig/lsf-security.xml"/>
     <import resource="properties.xml"/>

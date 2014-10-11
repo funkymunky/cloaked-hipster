@@ -191,6 +191,9 @@ public class StudentDaoImpl implements StudentDao {
     public String getApplicationDateForStudent(int id) {
         Student student = getStudent(id);
         Date applicationDate = student.getEducation().getApplicationDate();
+        if (applicationDate  == null) {
+            return null;
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return dateFormat.format(applicationDate);
     }
