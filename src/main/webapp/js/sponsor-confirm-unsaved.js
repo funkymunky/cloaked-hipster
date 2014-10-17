@@ -1,4 +1,3 @@
-
 var originalSponsor
 var originalAddressContent
 
@@ -7,15 +6,19 @@ $(document).ready(function() {
     originalAddressContent = jQuery('#sponsor\\.address input[type=text]').serialize()
 });
 
+submitClicked=false;
 
-
-function onClose() {
+function anyChanges() {
     var sponsorContent = jQuery('#sponsor input[type=text]').serialize()
     var addressContent = jQuery('#sponsor\\.address input[type=text]').serialize()
     if ( (sponsorContent != originalSponsor) ||
          (addressContent != originalAddressContent)) {
-        return "There are some unsaved changes.";
+        return true;
     }
 }
 
-window.onbeforeunload = onClose;
+window.onbeforeunload = function(myEvt) {
+    if (anyChanges() && !submitClicked) {
+        return "You have some unsaved changes.";
+    }
+}

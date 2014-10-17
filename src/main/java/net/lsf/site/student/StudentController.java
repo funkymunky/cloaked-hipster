@@ -38,9 +38,6 @@ public class StudentController {
     @Autowired
     private StudentValidator studentValidator;
 
-    @Value("${max.upload.size}")
-    private String maxUploadSize;
-
     @InitBinder("student")
     private void initBinder(WebDataBinder binder) {
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd//MM/yyyy");
@@ -56,6 +53,7 @@ public class StudentController {
     @RequestMapping(value = "/student/list", method = RequestMethod.GET)
     public String listAllStudents(Model model) {
         List<Student> allStudents = studentService.getAllStudents();
+        model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         model.addAttribute("students", allStudents);
         return "/student/list";
     }
@@ -67,9 +65,9 @@ public class StudentController {
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
-        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
-        model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         return "/student/addOrUpdate";
     }
 
@@ -88,9 +86,9 @@ public class StudentController {
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
-        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
-        model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         return "/student/addOrUpdate";
     }
 
@@ -103,9 +101,9 @@ public class StudentController {
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
-        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
-        model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         model.addAttribute("applicationDate", studentService.getApplicationDateForStudent(id));
         return "/student/addOrUpdate";
     }
@@ -121,9 +119,9 @@ public class StudentController {
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
-        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
-        model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         return "/student/addOrUpdate";
     }
 

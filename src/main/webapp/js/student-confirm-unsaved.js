@@ -1,4 +1,3 @@
-
 var originalStudent
 var originalAddressContent
 var originalEducationContent
@@ -15,9 +14,15 @@ $(document).ready(function() {
     originalCommentContent = jQuery('#student\\.commenta input[type=text], textarea').serialize()
 });
 
+submitClicked=false;
 
+$(function() {
+    $(":input[type=submit]").click( function() {
+        submitClicked=true;
+    })
+});
 
-function onClose() {
+function anyChanges() {
     var studentContent = jQuery('#student input[type=text]').serialize()
     var addressContent = jQuery('#student\\.address input[type=text]').serialize()
     var educationContent = jQuery('#student\\.education input[type=text], select').serialize()
@@ -30,8 +35,14 @@ function onClose() {
          (bankContent != originalBankContent) ||
          (sponsorshipContent != originalSponsorshipContent) ||
          (commentContent != originalCommentContent)) {
-        return "There are some unsaved changes.";
+        return true;
+
     }
+    return false;
 }
 
-window.onbeforeunload = onClose;
+window.onbeforeunload = function(myEvt) {
+    if (anyChanges() && !submitClicked) {
+        return "You have some unsaved changes.";
+    }
+}

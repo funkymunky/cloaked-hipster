@@ -1,6 +1,7 @@
 package net.lsf.site.student;
 
 import net.lsf.AgentType;
+import net.lsf.BankInstiution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Education;
@@ -33,7 +34,6 @@ public class EducationController {
     private SponsorService sponsorService;
 
     private Logger log = Logger.getLogger(EducationController.class);
-
 
 
     @InitBinder("education")
@@ -73,8 +73,10 @@ public class EducationController {
             model.addAttribute("student", studentService.getStudent(id));
             model.addAttribute("institutionTypeValues", InstitutionType.values());
             model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
-            model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+            model.addAttribute("bankValues", BankInstiution.values());
             model.addAttribute("agentTypeValues", AgentType.values());
+            model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+            model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
             model.addAttribute("message", message);
             model.addAttribute("updateMode", true);
         }

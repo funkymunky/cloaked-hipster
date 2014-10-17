@@ -107,6 +107,12 @@
         });
 
         $(function() {
+            $(":input[type=submit]").click( function() {
+                submitClicked=true;
+            })
+        });
+
+        $(function() {
             $(".datepicker").datepicker({
                 changeMonth: true,
                 changeYear: true,

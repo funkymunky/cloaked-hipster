@@ -71,6 +71,7 @@ public class UploadFileController {
         }
 
         model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         model.addAttribute("message", message);
         model.addAttribute("warn", warn);
         return "/student/addOrUpdate";

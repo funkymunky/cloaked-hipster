@@ -44,4 +44,6 @@ public interface StudentService {
     void updateCommentsForStudent(int id, Comments comments);
 
     String getApplicationDateForStudent(int id);
+
+    String getMaxUploadFileSize();
 }

@@ -6,6 +6,7 @@ import net.lsf.dao.StudentDao;
 import net.lsf.model.*;
 import net.lsf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentDao studentDao;
+
+
+    @Value("${max.upload.size}")
+    private String maxUploadSize;
 
     @Override
     public void addStudent(Student student) {
@@ -132,5 +137,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String getApplicationDateForStudent(int id) {
         return studentDao.getApplicationDateForStudent(id);
+    }
+
+    @Override
+    public String getMaxUploadFileSize() {
+        return maxUploadSize;
     }
 }
