@@ -146,6 +146,7 @@ public class StudentDaoImpl implements StudentDao {
                 .filter(student ->
                         student.getProfilePic() != null)
                 .map(Student::getProfilePic)
+                .map(String::toLowerCase)
                 .collect(Collectors.toList());
 
         return listOfProfilePictureNames;
@@ -189,13 +190,16 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public String getApplicationDateForStudent(int id) {
-        Student student = getStudent(id);
-        Date applicationDate = student.getEducation().getApplicationDate();
-        if (applicationDate  == null) {
-            return null;
+        Education educationForStudent = getEducationForStudent(id);
+        if (educationForStudent != null) {
+            Date applicationDate = educationForStudent.getApplicationDate();
+            if (applicationDate  == null) {
+                return null;
+            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return dateFormat.format(applicationDate);
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateFormat.format(applicationDate);
+        return null;
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

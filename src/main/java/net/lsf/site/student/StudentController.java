@@ -89,6 +89,7 @@ public class StudentController {
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
         return "/student/addOrUpdate";
     }
@@ -121,6 +122,7 @@ public class StudentController {
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("bankValues", BankInstiution.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
+        model.addAttribute("maxUploadSize", maxUploadSize);
         model.addAttribute("agentTypeValues", AgentType.values());
         return "/student/addOrUpdate";
     }

@@ -38,7 +38,7 @@ public class UploadFileController {
 
         if (!isFileValid(originalFilename)) {
             model.addAttribute("student", studentService.getStudent(id));
-            model.addAttribute("message", filenameExists(originalFilename) ? getStringForDuplicatFilename() : getStringForBadFileType());
+            model.addAttribute("message", filenameExists(originalFilename) ? getStringForDuplicateFilename() : getStringForBadFileType());
             return "/student/addOrUpdate";
         }
 
@@ -89,7 +89,7 @@ public class UploadFileController {
         return "Please check the file you are uploading. Only image files will be accepted.";
     }
 
-    private String getStringForDuplicatFilename() {
+    private String getStringForDuplicateFilename() {
         return "Filename is not unique. Please change the filename of the file you are trying to upload and try again. ";
     }
 
@@ -100,7 +100,7 @@ public class UploadFileController {
 
     private boolean filenameExists(String filename) {
         List<String> allProfilePics = studentService.getAllProfilePics();
-        return allProfilePics.contains(filename);
+        return allProfilePics.contains(filename.toLowerCase());
     }
 
 }
