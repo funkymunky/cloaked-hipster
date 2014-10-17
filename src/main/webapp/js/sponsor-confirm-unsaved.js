@@ -8,6 +8,12 @@ $(document).ready(function() {
 
 submitClicked=false;
 
+$(function() {
+    $(":input[type=submit]").click( function() {
+        submitClicked=true;
+    })
+});
+
 function anyChanges() {
     var sponsorContent = jQuery('#sponsor input[type=text]').serialize()
     var addressContent = jQuery('#sponsor\\.address input[type=text]').serialize()
