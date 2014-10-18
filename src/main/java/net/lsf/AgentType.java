@@ -8,7 +8,10 @@ public enum AgentType {
     LSF(5, "LSF"),
     Website(6, "Website"),
     HomeStartLanka(7, "Home Start Lanka"),
-    LSFMembers(8, "LSF Members");
+    LSFMembers(8, "LSF Members"),
+    KRMV(9, "KRMV"),
+    SuwaSevenaBoysOrphange(10, "Suwa Sevena Boys Orphanage"),
+    SevalankaFoundation(11, "Sevalanka Foundation");
 
     private int code;
     private String description;
