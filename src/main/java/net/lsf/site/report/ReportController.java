@@ -289,13 +289,16 @@ public class ReportController {
 
     private List<Student> getStudentsByAgentType(AgentType agentType) {
         return studentService.getAllStudents().stream()
-                .filter(student -> student.getEducation() != null && student.getEducation().getAgent().equals(agentType.getName()))
+                .filter(student -> student.getEducation() != null &&
+                        student.getEducation().getAgent() != null &&
+                        student.getEducation().getAgent().equals(agentType.getName()))
                 .collect(Collectors.toList());
     }
 
     private List<Student> getStudentsByAgentType(AgentType agentType, InstitutionType institutionType) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getEducation() != null &&
+                        student.getEducation().getAgent() != null &&
                         student.getEducation().getAgent().equals(agentType.getName()) &&
                         student.getEducation().getInstitutionType().equals(institutionType.name()))
                 .collect(Collectors.toList());
