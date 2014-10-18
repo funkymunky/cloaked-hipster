@@ -50,6 +50,23 @@ public class Student implements Serializable {
     private String telephone;
     private String profilePic;
 
+    public Student() { }
+
+    public Student(Integer id, String lastName, String firstName, Date dateOfBirth, Address address, Education education, Sponsorship sponsorship, Bank bank, Comments comments, String email, String telephone, String profilePic) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.education = education;
+        this.sponsorship = sponsorship;
+        this.bank = bank;
+        this.comments = comments;
+        this.email = email;
+        this.telephone = telephone;
+        this.profilePic = profilePic;
+    }
+
     public String getLastName() {
         return lastName;
     }

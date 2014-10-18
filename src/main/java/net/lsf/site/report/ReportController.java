@@ -1,11 +1,15 @@
 package net.lsf.site.report;
 
 import net.lsf.AgentType;
+import net.lsf.BankInstiution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
+import net.lsf.model.Bank;
 import net.lsf.model.Student;
 import net.lsf.service.StudentService;
 import net.lsf.service.WriterService;
+import net.lsf.utils.BankBuilder;
+import net.lsf.utils.StudentBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -284,6 +289,7 @@ public class ReportController {
     private List<Student> getStudentsBySponsorshipType(SponsorshipType sponsorshipType) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()))
+                .map(getStudentForReport())
                 .collect(Collectors.toList());
     }
 
@@ -292,6 +298,7 @@ public class ReportController {
                 .filter(student -> student.getEducation() != null &&
                         student.getEducation().getAgent() != null &&
                         student.getEducation().getAgent().equals(agentType.getName()))
+                .map(getStudentForReport())
                 .collect(Collectors.toList());
     }
 
@@ -301,6 +308,24 @@ public class ReportController {
                         student.getEducation().getAgent() != null &&
                         student.getEducation().getAgent().equals(agentType.getName()) &&
                         student.getEducation().getInstitutionType().equals(institutionType.name()))
+                .map(getStudentForReport())
                 .collect(Collectors.toList());
     }
+
+    private Function<? super Student, ? extends Student> getStudentForReport() {
+        return student -> new StudentBuilder()
+                .id(student.getId())
+                .lastName(student.getLastName())
+                .firstName(student.getFirstName())
+                .education(student.getEducation())
+                .bank(new BankBuilder()
+                        .accountName(student.getBank().getAccountName())
+                        .accountNumber(student.getBank().getAccountNumber())
+                        .standingOrder(student.getBank().getStandingOrder())
+                        .branch(student.getBank().getBranch())
+                        .bankName(student.getBank().getBank().equals("") ? "" : BankInstiution.valueOf(student.getBank().getBank()).getDescription())
+                        .buildBank())
+                .buildStudent();
+    }
+
 }

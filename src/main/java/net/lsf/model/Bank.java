@@ -23,6 +23,16 @@ public class Bank implements Serializable {
     private String branch;
     private String standingOrder;
 
+    public Bank() { }
+
+    public Bank(String accountName, String accountNumber, String bank, String branch, String standingOrder) {
+        this.accountName = accountName;
+        this.accountNumber = accountNumber;
+        this.bank = bank;
+        this.branch = branch;
+        this.standingOrder = standingOrder;
+    }
+
     public String getAccountName() {
         return accountName;
     }
