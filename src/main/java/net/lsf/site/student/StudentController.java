@@ -126,8 +126,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/student/search/{searchText}", method= RequestMethod.GET)
-    public String searchStudent(@PathVariable String searchText,
-                                Model model) {
+    public String searchStudent(@PathVariable String searchText, Model model) {
         Set<Student> studentByNameOrStandingOrder = studentService.getStudentByNameOrStandingOrderOrAccountNumber(searchText);
 
         model.addAttribute("students", studentByNameOrStandingOrder);

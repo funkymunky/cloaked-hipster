@@ -1,5 +1,6 @@
 package net.lsf.site.report;
 
+import net.lsf.AgentType;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Student;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Controller
@@ -189,6 +191,53 @@ public class ReportController {
         writerService.writeCsvFile("studentsApplicationExpired.csv", HEADER_ROW, listOfStudents, response);
     }
 
+    @RequestMapping(value="/report/agent", method = RequestMethod.GET)
+    public String showAllStudentsByAgent(Model model) {
+        model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("activeTab", "reportAgent");
+        return "/reports/showByAgent";
+    }
+
+    @RequestMapping(value="/report/agent/{agentName}", method = RequestMethod.GET)
+    public String showAllStudentsForAgent(@PathVariable String agentName, Model model) {
+        AgentType agentType = AgentType.valueOf(agentName);
+        List<Student> students = getStudentsByAgentType(agentType);
+        model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAgent");
+        model.addAttribute("selectedAgent", agentName);
+        return "/reports/showByAgent";
+    }
+
+    @RequestMapping(value="/report/agent/school/{agentName}", method = RequestMethod.GET)
+    public String showAllSchoolStudentsForAgent(@PathVariable String agentName, Model model) {
+        AgentType agentType = AgentType.valueOf(agentName);
+        List<Student> students = getStudentsByAgentType(agentType, InstitutionType.School);
+        model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAgent");
+        model.addAttribute("selectedAgent", agentName);
+        return "/reports/showByAgent";
+    }
+
+    @RequestMapping(value="/report/agent/university/{agentName}", method = RequestMethod.GET)
+    public String showAllUniversityStudentsForAgent(@PathVariable String agentName, Model model) {
+        AgentType agentType = AgentType.valueOf(agentName);
+        List<Student> students = getStudentsByAgentType(agentType, InstitutionType.University);
+        model.addAttribute("agentTypeValues", AgentType.values());
+        model.addAttribute("students", students);
+        model.addAttribute("activeTab", "reportAgent");
+        model.addAttribute("selectedAgent", agentName);
+        return "/reports/showByAgent";
+    }
+
+    @RequestMapping(value="/report/agent/downloadCsv/{agentName}")
+    public void downloadCsvForStudentsByAgent(@PathVariable String agentName, HttpServletResponse response) throws IOException {
+        AgentType agentType = AgentType.valueOf(agentName);
+        List<Student> listOfStudents = getStudentsByAgentType(agentType);
+        writerService.writeCsvFile("studentsByAgent.csv", HEADER_ROW, listOfStudents, response);
+    }
+
     @RequestMapping(value = "/report/allStudents", method = RequestMethod.GET)
     public String showAllStudents(Model model) {
         List<Student> students = studentService.getAllStudents();
@@ -235,6 +284,20 @@ public class ReportController {
     private List<Student> getStudentsBySponsorshipType(SponsorshipType sponsorshipType) {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()))
+                .collect(Collectors.toList());
+    }
+
+    private List<Student> getStudentsByAgentType(AgentType agentType) {
+        return studentService.getAllStudents().stream()
+                .filter(student -> student.getEducation() != null && student.getEducation().getAgent().equals(agentType.getName()))
+                .collect(Collectors.toList());
+    }
+
+    private List<Student> getStudentsByAgentType(AgentType agentType, InstitutionType institutionType) {
+        return studentService.getAllStudents().stream()
+                .filter(student -> student.getEducation() != null &&
+                        student.getEducation().getAgent().equals(agentType.getName()) &&
+                        student.getEducation().getInstitutionType().equals(institutionType.name()))
                 .collect(Collectors.toList());
     }
 }

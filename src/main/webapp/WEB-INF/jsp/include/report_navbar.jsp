@@ -4,6 +4,7 @@
         <li class=""><a href="/lsf/report/currentlySponsored" class="reportC">Currently Sponsored</a></li>
         <li class=""><a href="/lsf/report/formerlySponsored" class="reportF">Formerly Sponsored</a></li>
         <li class=""><a href="/lsf/report/applicationExpired" class="reportAE">Application Expired</a></li>
+        <li class=""><a href="/lsf/report/agent" class="reportAgent">By Agent</a></li>
     </ul>
 </div>
 <script src="<c:url value='/js/navbar-activation.js'/>"></script>
@@ -24,6 +25,10 @@
 
     <c:if test="${activeTab == 'reportAE'}">
     setActiveNavTab.call($(".reportAE"));
+    </c:if>
+
+    <c:if test="${activeTab == 'reportAgent'}">
+    setActiveNavTab.call($(".reportAgent"));
     </c:if>
 
 </script>

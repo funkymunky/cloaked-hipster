@@ -69,8 +69,7 @@ public class FeesDaoImpl implements FeesDao {
         List<Student> list = query.list();
 
         List<Student> selectedStudent = list.stream()
-                .filter(s -> s.getEducation() != null &&
-                        s.getId().equals(student))
+                .filter(s -> s.getEducation() != null && s.getId().equals(student))
                 .collect(Collectors.toList());
 
 
