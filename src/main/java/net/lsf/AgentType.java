@@ -12,7 +12,7 @@ public enum AgentType {
     KRMV(9, "KRMV"),
     SuwaSevenaBoysOrphange(10, "Suwa Sevena Boys Orphanage"),
     SevalankaFoundation(11, "Sevalanka Foundation"),
-    SamPrice(12, "Sam Price");
+    SamPrince(12, "Sam Prince");
 
     private int code;
     private String description;
