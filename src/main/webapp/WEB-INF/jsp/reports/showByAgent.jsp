@@ -52,7 +52,7 @@
 <script type="text/javascript">
     $(function(){
         $('#agent').change(function() {
-            var agentName = $('#agent').find(":selected").text();
+            var agentName = $('#agent').find(":selected").val();
             var url = "/lsf/report/agent/"+agentName;
             window.location.href = url;
         })
