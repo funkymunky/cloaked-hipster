@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
        <style type="text/css">
           body {
             padding-top: 60px;
@@ -24,6 +25,9 @@
                    </ul>
                </li>
                <li><a href="/lsf/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+               <li class="version"><a href="">Version:<spring:message code="version.number" /></a></li>
            </ul>
        </div><!--/.nav-collapse -->
    </div>

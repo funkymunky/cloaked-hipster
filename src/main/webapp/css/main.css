@@ -141,3 +141,7 @@ input.search-query {
     font-style: italic;
     color: red;
 }
+
+.version {
+    font-style: italic;
+}
