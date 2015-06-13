@@ -1,0 +1,43 @@
+<%@ taglib prefix="fmtd" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<table class="table table-striped">
+<thead><tr>
+    <th>Id</th>
+    <th>Student name</th>
+    <th>Age</th>
+    <th>Year of study</th>
+    <th>School / University</th>
+</tr>
+</thead>
+<tbody>
+<c:set var="today" value="<%=new Date()%>"/>
+<fmtd:formatDate var="year" value="${today}" pattern="yyyy" />
+<c:forEach var="student" items="${students}">
+    <c:choose>
+        <c:when test="${student.education.institutionType eq null}">
+            <c:set var="qualification" value=""/>
+        </c:when>
+        <c:when test="${student.education.institutionType eq 'School'}">
+            <c:set var="qualification" value="${student.education.institutionName}"/>
+        </c:when>
+        <c:otherwise>
+            <c:set var="qualification" value="${student.education.institutionName} (${student.education.degreeName})"/>
+        </c:otherwise>
+    </c:choose>
+
+    <fmtd:formatDate type="date" var="studentage" value="${student.dateOfBirth}" pattern="yyyy"/>
+    <c:set var="age" value="${year - studentage}"/>
+
+    <fmtd:formatDate type="date" var="applicationdate" value="${student.education.applicationDate}" pattern="yyyy"/>
+    <c:set var="yearsSinceApplication" value="${year - applicationdate}"/>
+    <tr>
+        <td>${student.id}</td>
+        <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+        <td>${age}</td>
+        <td>${student.education.yearOfStudyAsAtApplicationDate + yearsSinceApplication}</td>
+        <td>${qualification}</td>
+    </tr>
+</c:forEach>
+</tbody>
+</table>
+

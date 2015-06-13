@@ -4,7 +4,6 @@ import net.lsf.AgentType;
 import net.lsf.BankInstiution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
-import net.lsf.model.Bank;
 import net.lsf.model.Student;
 import net.lsf.service.StudentService;
 import net.lsf.service.WriterService;
@@ -22,13 +21,13 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Controller
 public class ReportController {
 
     private static final String[] HEADER_ROW = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
+    private static final String[] AWAITING_SPONRSORSHIP_HEADER_ROW = {"Student id", "Student name", "Age", "Year of study", "School / University"};
 
     @Autowired
     StudentService studentService;
@@ -79,7 +78,7 @@ public class ReportController {
     @RequestMapping(value="/report/currentlySponsored/downloadCsv")
     public void downloadCsvForCurrentlySponsoredStudents(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
-        writerService.writeCsvFile("currentlySponsoredStudents.csv", HEADER_ROW, listOfStudents, response);
+        writerService.writeCsvFile("currentlySponsoredStudents.csv", HEADER_ROW, listOfStudents, response, false);
     }
 
     @RequestMapping(value = "/report/awaitingSponsorship", method = RequestMethod.GET)
@@ -117,7 +116,7 @@ public class ReportController {
     @RequestMapping(value="/report/awaitingSponsorship/downloadCsv")
     public void downloadCsvForStudentsAwaitingSponsorship(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
-        writerService.writeCsvFile("studentsAwaitingSponsorship.csv", HEADER_ROW, listOfStudents, response);
+        writerService.writeCsvFile("studentsAwaitingSponsorship.csv", AWAITING_SPONRSORSHIP_HEADER_ROW, listOfStudents, response, true);
     }
 
     @RequestMapping(value = "/report/formerlySponsored", method = RequestMethod.GET)
@@ -155,7 +154,7 @@ public class ReportController {
     @RequestMapping(value="/report/formerlySponsored/downloadCsv")
     public void downloadCsvForStudentsFormerlySponsored(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
-        writerService.writeCsvFile("studentsFormerlySponsored.csv", HEADER_ROW, listOfStudents, response);
+        writerService.writeCsvFile("studentsFormerlySponsored.csv", HEADER_ROW, listOfStudents, response, false);
     }
 
     @RequestMapping(value = "/report/applicationExpired", method = RequestMethod.GET)
@@ -193,7 +192,7 @@ public class ReportController {
     @RequestMapping(value="/report/applicationExpired/downloadCsv")
     public void downloadCsvForStudentsWhereApplicationExpired(HttpServletResponse response) throws IOException {
         List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
-        writerService.writeCsvFile("studentsApplicationExpired.csv", HEADER_ROW, listOfStudents, response);
+        writerService.writeCsvFile("studentsApplicationExpired.csv", HEADER_ROW, listOfStudents, response, false);
     }
 
     @RequestMapping(value="/report/agent", method = RequestMethod.GET)
@@ -240,7 +239,7 @@ public class ReportController {
     public void downloadCsvForStudentsByAgent(@PathVariable String agentName, HttpServletResponse response) throws IOException {
         AgentType agentType = AgentType.valueOf(agentName);
         List<Student> listOfStudents = getStudentsByAgentType(agentType);
-        writerService.writeCsvFile("studentsByAgent.csv", HEADER_ROW, listOfStudents, response);
+        writerService.writeCsvFile("studentsByAgent.csv", HEADER_ROW, listOfStudents, response, false);
     }
 
     @RequestMapping(value = "/report/allStudents", method = RequestMethod.GET)
@@ -317,6 +316,7 @@ public class ReportController {
                 .id(student.getId())
                 .lastName(student.getLastName())
                 .firstName(student.getFirstName())
+                .dateOfBirth(student.getDateOfBirth())
                 .education(student.getEducation())
                 .bank(new BankBuilder()
                         .accountName(student.getBank().getAccountName())
