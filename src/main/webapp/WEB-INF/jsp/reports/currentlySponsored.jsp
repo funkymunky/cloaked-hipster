@@ -28,7 +28,7 @@
                     <button type="button" class="btn btn-primary" id="filterBank">Filter by bank</button></a>
                 <input id="bankName" type="text" size="30"/>
                 <p class="filterError" id="errorText"></p>
-                    <%@ include file="/WEB-INF/jsp/reports/reportDetails.jspf" %>
+                    <%@ include file="/WEB-INF/jsp/reports/currentlySponsorsedDetails.jspf" %>
                 <p class="reportTotal">Total students: ${fn:length(students)}</p>
                 <a href="/lsf/report/currentlySponsored/downloadCsv">Export to csv</a>
 

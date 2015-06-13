@@ -58,6 +58,17 @@ public class SponsorServiceImpl implements SponsorService {
     }
 
     @Override
+    public Map<String, String> getMapOfAllSponsors() {
+        Map<String, String> mapOfSponsors = new HashMap<>();
+        List<Sponsor> allSponsors = sponsorDao.getAllSponsors();
+        for (Sponsor sponsor : allSponsors) {
+            mapOfSponsors.put(String.valueOf(sponsor.getId()), (sponsor.getLastName() + ", " + sponsor.getFirstName()));
+        }
+
+        return mapOfSponsors;
+    }
+
+    @Override
     public Set<SponsorDTO> getSponsorByName(String searchText) {
         Set<SponsorDTO> listOfSponsorsDTO = new HashSet<>();
 

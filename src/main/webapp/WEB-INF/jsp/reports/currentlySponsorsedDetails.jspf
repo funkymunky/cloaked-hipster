@@ -1,0 +1,53 @@
+<%@ taglib prefix="fmtd" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<table class="table table-striped">
+    <thead><tr>
+        <th>Id</th>
+        <th>Student name</th>
+        <th>Year of study</th>
+        <th>School / Uni</th>
+        <th>Sponsor</th>
+        <th>Account name</th>
+        <th>Bank</th>
+        <th>Branch</th>
+        <th>Account number</th>
+        <th>Standing order number</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <c:set var="today" value="<%=new Date()%>"/>
+    <fmtd:formatDate var="year" value="${today}" pattern="yyyy" />
+    <c:forEach var="student" items="${students}">
+        <c:choose>
+            <c:when test="${student.education.institutionType eq null}">
+                <c:set var="qualification" value=""/>
+            </c:when>
+            <c:when test="${student.education.institutionType eq 'School'}">
+                <c:set var="qualification" value="${student.education.institutionName}"/>
+            </c:when>
+            <c:otherwise>
+                <c:set var="qualification" value="${student.education.institutionName} (${student.education.degreeName})"/>
+            </c:otherwise>
+        </c:choose>
+
+        <fmtd:formatDate type="date" var="applicationdate" value="${student.education.applicationDate}" pattern="yyyy"/>
+        <c:set var="yearsSinceApplication" value="${year - applicationdate}"/>
+
+        <c:set var="idAsString">${student.sponsorship.sponsor}</c:set>
+        <c:set var="sponsorName" value="${allSponsors[idAsString]}"/>
+        <tr>
+            <td>${student.id}</td>
+            <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+            <td>${student.education.yearOfStudyAsAtApplicationDate + yearsSinceApplication}</td>
+            <td>${qualification}</td>
+            <td>${sponsorName}</td>
+            <td>${student.bank.accountName}</td>
+            <td>${student.bank.bank}</td>
+            <td>${student.bank.branch}</td>
+            <td>${student.bank.accountNumber}</td>
+            <td>${student.bank.standingOrder}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>

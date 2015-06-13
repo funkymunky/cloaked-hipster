@@ -6,6 +6,7 @@ import net.lsf.model.Sponsor;
 import net.lsf.model.Student;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -18,6 +19,7 @@ public interface SponsorService {
     void updateSponsor(Sponsor sponsor);
     Sponsor getSponsor(int id);
     List<SponsorDTO> getAllSponsors();
+    Map<String, String> getMapOfAllSponsors();
     Set<SponsorDTO> getSponsorByName(String searchText);
 
     Address getAddressForSponsor(int id);

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface WriterService {
 
-    public void writeCsvFile(String filename, String[] headerRow, List<Student> content, HttpServletResponse response, boolean studentSpecifics) throws IOException;
+    public void writeCsvFile(String filename, String[] headerRow, List<Student> content, HttpServletResponse response, boolean studentSpecifics, boolean addSponsorDetails) throws IOException;
 }

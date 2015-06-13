@@ -4,7 +4,9 @@ import net.lsf.InstitutionType;
 import net.lsf.model.Bank;
 import net.lsf.model.Education;
 import net.lsf.model.Student;
+import net.lsf.service.SponsorService;
 import net.lsf.service.WriterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +18,16 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class WriterServiceImpl implements WriterService {
 
+    @Autowired
+    SponsorService sponsorService;
+
     @Override
-    public void writeCsvFile(String fileName, String[] headerRow, List<Student> content, HttpServletResponse response, boolean studentSpecifics) throws IOException {
+    public void writeCsvFile(String fileName, String[] headerRow, List<Student> content, HttpServletResponse response, boolean studentSpecifics, boolean addSponsorDetails) throws IOException {
 
         BufferedWriter writer = new BufferedWriter(response.getWriter());
         try {
@@ -32,7 +38,7 @@ public class WriterServiceImpl implements WriterService {
             }
             writer.newLine();
             if (!studentSpecifics) {
-                writeContent(content, writer);
+                writeContent(content, writer, addSponsorDetails);
             } else {
                 writeStudentSpecific(content, writer);
             }
@@ -70,7 +76,7 @@ public class WriterServiceImpl implements WriterService {
         }
     }
 
-    private void writeContent(List<Student> content, BufferedWriter writer) throws IOException {
+    private void writeContent(List<Student> content, BufferedWriter writer, boolean addSponsorName) throws IOException {
         for (Student eachStudent : content) {
             writer.write(eachStudent.getId().toString());
             writer.write(", \"");
@@ -81,14 +87,23 @@ public class WriterServiceImpl implements WriterService {
 
             Education education = eachStudent.getEducation();
             if (education != null) {
+                writer.write(getCurrentYearOfStudy(education.getApplicationDate(), education.getYearOfStudyAsAtApplicationDate()));
+                writer.write(",");
                 if (education.getInstitutionType().equals(InstitutionType.School.name())) {
                     writer.write(education.getInstitutionName());
                 } else {
-                    writer.write(education.getDegreeName());
+                    writer.write(education.getInstitutionName() + " (" + education.getDegreeName() + ")");
                 }
-                writer.write(String.format(" (%s)", education.getYearOfStudy()));
             }
             writer.write(",");
+
+            if (addSponsorName) {
+                writer.write("\"");
+                writer.write(getSponsorNameForStudent(eachStudent.getSponsorship().getSponsor()));
+                writer.write("\"");
+                writer.write(",");
+            }
+
             Bank bank = eachStudent.getBank();
             if (bank != null) {
                 writer.write(bank.getAccountName());
@@ -105,6 +120,11 @@ public class WriterServiceImpl implements WriterService {
             }
             writer.newLine();
         }
+    }
+
+    private String getSponsorNameForStudent(Long sponsor) {
+        Map<String,String> mapOfAllSponsors = sponsorService.getMapOfAllSponsors();
+        return mapOfAllSponsors.get(String.valueOf(sponsor));
     }
 
     private String getAgeFromDateOfBirth(Date dateOfBirth) {
