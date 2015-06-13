@@ -5,7 +5,7 @@
     <th>Id</th>
     <th>Student name</th>
     <th>Age</th>
-    <th>Year of study</th>
+    <th style="text-align: center;">Year of study</th>
     <th>School / University</th>
 </tr>
 </thead>
@@ -34,7 +34,7 @@
         <td>${student.id}</td>
         <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
         <td>${age}</td>
-        <td>${student.education.yearOfStudyAsAtApplicationDate + yearsSinceApplication}</td>
+        <td style="text-align: center;">${student.education.yearOfStudyAsAtApplicationDate + yearsSinceApplication}</td>
         <td>${qualification}</td>
     </tr>
 </c:forEach>

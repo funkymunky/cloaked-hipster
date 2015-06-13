@@ -1,4 +1,6 @@
-    <div id="educationInfo" class="student-insert">
+<%@ taglib prefix="fmtd" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<div id="educationInfo" class="student-insert">
     <fieldset>
     <spring-form:form method="POST" modelAttribute="student.education" class="form-horizontal" action="/lsf/student/education/addOrUpdate">
         <div class="form-group">
@@ -38,7 +40,12 @@
         <div class="form-group">
             <label class="control-label col-md-4" for="yearOfStudy">Current year of study:</label>
             <div class="col-md-5">
-                <spring-form:input class="form-control" path="yearOfStudy" name="yearOfStudy" id="yearOfStudy" type="text" readonly="true"/>
+                <c:set var="today" value="<%=new Date()%>"/>
+                <fmtd:formatDate var="year" value="${today}" pattern="yyyy" />
+                <fmtd:formatDate type="date" var="applicationYear" value="${student.education.applicationDate}" pattern="yyyy"/>
+                <c:set var="numYears" value="${year - applicationYear}"/>
+                <c:set var="currentYearOfStudy" value="${student.education.yearOfStudyAsAtApplicationDate + numYears}"/>
+                <input class="form-control" name="yearOfStudy" id="yearOfStudy" type="text" readonly="true" value="${currentYearOfStudy}"/>
             </div>
         </div>
         <div class="form-group">
@@ -94,17 +101,6 @@
             changeYear: true,
             dateFormat: 'dd/mm/yy',
             yearRange: '-1:+5'
-        });
-    });
-
-    $(function() {
-        $('#yearOfStudyAsAtApplicationDate').change(function() {
-            var applicationDate = $("input[name='education.applicationDate']").val().split("/");
-            var applicationDateAsDate = new Date(applicationDate[2], applicationDate[1], applicationDate[0]);
-            var today = new Date();
-            var yearDiff = today.getFullYear() - applicationDateAsDate.getFullYear();
-            var currentYearOfStudy = parseInt($('#yearOfStudyAsAtApplicationDate').val()) + parseInt(yearDiff);
-            $('#yearOfStudy').val(currentYearOfStudy);
         });
     });
 

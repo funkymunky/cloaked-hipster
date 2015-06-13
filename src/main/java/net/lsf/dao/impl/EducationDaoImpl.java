@@ -45,7 +45,6 @@ public class EducationDaoImpl implements EducationDao {
         }
         educationToUpdate.setApplicationDate(education.getApplicationDate());
         educationToUpdate.setYearOfStudyAsAtApplicationDate(education.getYearOfStudyAsAtApplicationDate());
-        educationToUpdate.setYearOfStudy(education.getYearOfStudy());
         educationToUpdate.setMonthlyAllowance(education.getMonthlyAllowance());
         educationToUpdate.setAgent(education.getAgent());
     }
