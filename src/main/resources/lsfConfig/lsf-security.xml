@@ -33,6 +33,8 @@
         <property name="defaultTargetUrl" value="/home"/>
     </bean>
 
+
+
     <sec:authentication-manager>
         <sec:authentication-provider user-service-ref="userUserDetailsService">
             <sec:password-encoder ref="encoder"/>

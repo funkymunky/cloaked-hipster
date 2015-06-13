@@ -68,8 +68,9 @@
     </servlet-mapping>
 
     <!-- session time out in minutes -->
+    <!-- set to 0 so that it does not timeout -->
     <session-config>
-        <session-timeout>10</session-timeout>
+        <session-timeout>0</session-timeout>
     </session-config>
 
     <welcome-file-list>
