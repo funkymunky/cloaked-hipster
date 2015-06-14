@@ -3,6 +3,7 @@ package net.lsf.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.Date;
 
 @Entity
@@ -84,4 +85,17 @@ public class SponsorshipFees implements Serializable {
         this.paidInFull = paidInFull;
     }
 
+    public static Comparator<SponsorshipFees> COMPARE_BY_NAME = new Comparator<SponsorshipFees>() {
+        public int compare(SponsorshipFees one, SponsorshipFees other) {
+            String sponsor1Name = one.getSponsor().getLastName() + one.getSponsor().getFirstName();
+            String sponsor2Name = other.getSponsor().getLastName() + other.getSponsor().getFirstName();
+            int alpha = sponsor1Name.compareToIgnoreCase(sponsor2Name);
+            if (alpha > 0) {
+                return 1;
+            } else if (alpha < 0) {
+                return -1;
+            }
+            return 0;
+        }
+    };
 }

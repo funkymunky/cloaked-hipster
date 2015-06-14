@@ -1,5 +1,7 @@
 package net.lsf.site.fees;
 
+import net.lsf.model.Sponsor;
+import net.lsf.model.SponsorshipFees;
 import net.lsf.service.FeesService;
 import net.lsf.service.SponsorshipFeesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class FeesController {
@@ -36,7 +41,11 @@ public class FeesController {
     @RequestMapping(value = "/manage/fees", method = RequestMethod.GET)
     public String showAdminHomePage(Model model) {
         model.addAttribute("fees", feesService.getCurrentFees());
-        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        List<SponsorshipFees> outstandingFees = sponsorshipFeesService.getOutstandingFees();
+        Collections.sort(outstandingFees, SponsorshipFees.COMPARE_BY_NAME);
+        int sponsorCount = countUniqueSponsors(outstandingFees);
+        model.addAttribute("countOfSponsors", sponsorCount);
+        model.addAttribute("sponsoredStudents", outstandingFees);
         model.addAttribute("outstandingPayments", new OutstandingPayments());
         return "/manage/fees";
     }
@@ -57,6 +66,16 @@ public class FeesController {
         model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
         model.addAttribute("outstandingPayments", new OutstandingPayments());
         return "/manage/fees";
+    }
+
+    private int countUniqueSponsors(List<SponsorshipFees> outstandingFees) {
+        List<Sponsor> sponsors = new ArrayList<>();
+        for (SponsorshipFees fee : outstandingFees) {
+            sponsors.add(fee.getSponsor());
+        }
+
+        List<Sponsor> totalSponsors = sponsors.stream().distinct().collect(Collectors.toList());
+        return totalSponsors.size();
     }
 
     private static class FeesCommand {

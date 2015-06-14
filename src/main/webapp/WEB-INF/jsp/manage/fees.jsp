@@ -36,9 +36,11 @@
                 </spring-form:form>
                 <div>
                     <table class="table table-striped mytable">
+                        <br>
+                        <span style="font-style: italic">Total number of sponsors: <span style="font-weight: bold">${countOfSponsors}</span></span>
                         <thead>
                             <tr>
-                                <th class="span1">Id</th>
+                                <th class="span1">Fee Id</th>
                                 <th class="span2">Sponsor</th>
                                 <th class="span4">Student</th>
                                 <th class="span2" style="text-align: right">Amount outstanding</th>
@@ -50,7 +52,7 @@
                             <c:forEach var="sponsorshipFee" items="${sponsoredStudents}">
                                 <tr>
                                     <td>${sponsorshipFee.id}</td>
-                                    <td><a href="/lsf/sponsor/edit/${sponsorshipFee.sponsor.id}">${sponsorshipFee.sponsor.firstName} ${sponsorshipFee.sponsor.lastName}</a></td>
+                                    <td><a href="/lsf/sponsor/edit/${sponsorshipFee.sponsor.id}">${sponsorshipFee.sponsor.lastName}, ${sponsorshipFee.sponsor.firstName}</a></td>
                                     <td>${sponsorshipFee.student.firstName} ${sponsorshipFee.student.lastName}</td>
                                     <td style="text-align: right">${sponsorshipFee.amountOutstanding}</td>
                                     <td style="text-align: center"><spring-form:checkbox path="paidFees" id="paymentReceived" value="${sponsorshipFee.id}"/></td>
@@ -70,6 +72,7 @@
 </html>
 
 <script type="text/javascript">
+    console.log("${sponsoredStudents}")
     $(function() {
         $(".datepickerFee").datepicker({
             changeMonth: true,
