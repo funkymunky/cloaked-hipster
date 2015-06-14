@@ -62,8 +62,12 @@ public class FeesController {
     @RequestMapping(value="/manage/payments", method= RequestMethod.POST)
     public String updatePaymentsReceived(@ModelAttribute OutstandingPayments outstandingPayments, Model model) {
         sponsorshipFeesService.updatePaymentsReceived(outstandingPayments.getPaidFees());
+        List<SponsorshipFees> outstandingFees = sponsorshipFeesService.getOutstandingFees();
+        Collections.sort(outstandingFees, SponsorshipFees.COMPARE_BY_NAME);
+        int sponsorCount = countUniqueSponsors(outstandingFees);
+        model.addAttribute("countOfSponsors", sponsorCount);
         model.addAttribute("fees", feesService.getCurrentFees());
-        model.addAttribute("sponsoredStudents", sponsorshipFeesService.getOutstandingFees());
+        model.addAttribute("sponsoredStudents", outstandingFees);
         model.addAttribute("outstandingPayments", new OutstandingPayments());
         return "/manage/fees";
     }
