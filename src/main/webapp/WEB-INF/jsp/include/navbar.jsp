@@ -13,7 +13,7 @@
                <li><a href="/lsf/home">Home</a></li>
                <li><a href="/lsf/student/list">Students</a></li>
                <li><a href="/lsf/sponsor/list">Sponsors</a></li>
-               <li><a href="/lsf/report/awaitingSponsorship">Reports</a></li>
+               <li><a href="/lsf/report/list">Reports</a></li>
                <li><a href="/lsf/manage/fees">Fees</a></li>
                <li class="dropdown">
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<span class="caret"></span></a>

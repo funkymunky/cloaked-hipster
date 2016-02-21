@@ -12,45 +12,21 @@
 <body>
 <%@ include file="/WEB-INF/jsp/include/navbar.jsp" %>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <%--<%@ include file="/WEB-INF/jsp/include/student_navbar.jsp" %>--%>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <%@ include file="/WEB-INF/jsp/include/report_navbar.jsp" %>
+        </div>
 
-            <div class="col-md-10">
-            <legend>Available Reports</legend>
-
-                <table class="table table-striped">
-                    <thead><tr>
-                        <th>Standard reports</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><a href="/lsf/report/currentlySponsored">Currently sponsored students</a></td></tr>
-                        <tr><td><a href="/lsf/report/awaitingSponsorship">Students awaiting sponsorship</a></td></tr>
-                        <tr><td><a href="/lsf/report/allStudents">All Students (non jasper)</a></td></tr>
-                    </tbody>
-                </table>
-
-                <table class="table table-striped">
-                    <thead><tr>
-                        <th>Custom reports</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-md-10">
+            <legend>Please select a report from the menu</legend>
+        </div>
+        <div>
+            <c:if test="${not empty error}" >
+                <p>Something went wrong: ${error}</p>
+            </c:if>
         </div>
     </div>
+</div>
 </body>
-
-<script type="text/javascript">
-
-</script>
-
 </html>

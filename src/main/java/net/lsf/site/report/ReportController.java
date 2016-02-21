@@ -1,15 +1,14 @@
 package net.lsf.site.report;
 
 import net.lsf.AgentType;
-import net.lsf.BankInstiution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Student;
+import net.lsf.service.ReportService;
 import net.lsf.service.SponsorService;
 import net.lsf.service.StudentService;
 import net.lsf.service.WriterService;
-import net.lsf.utils.BankBuilder;
-import net.lsf.utils.StudentBuilder;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,15 +21,14 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Controller
 public class ReportController {
 
     private static final String[] HEADER_ROW = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
-    private static final String[] AWAITING_SPONRSORSHIP_HEADER_ROW = {"Student id", "Student name", "Age", "Year of study", "School / University"};
     private static final String[] CURENTLY_SPONSORED_HEADER_ROW = {"Student id", "Student name", "Year of study", "School / University", "Sponsor", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
+
+    private static final Logger LOG = Logger.getLogger("ReportController.class");
 
     @Autowired
     StudentService studentService;
@@ -41,6 +39,8 @@ public class ReportController {
     @Autowired
     SponsorService sponsorService;
 
+    @Autowired
+    ReportService reportService;
 
     @RequestMapping(value = "/report/list", method = RequestMethod.GET)
     public String listAllStudents(Model model) {
@@ -48,8 +48,8 @@ public class ReportController {
     }
 
     @RequestMapping(value = "/report/currentlySponsored", method = RequestMethod.GET)
-    public String showCurrentlySponsoredStudents(Model model) {
-        List<Student> sponsored = getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
+    public String showCurrentlySponsoredStudents(Model model) throws ReportException {
+        List<Student> sponsored = reportService.getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
         Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
         model.addAttribute("students", sponsored);
         model.addAttribute("activeTab", "reportC");
@@ -91,52 +91,14 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/currentlySponsored/downloadCsv")
-    public void downloadCsvForCurrentlySponsoredStudents(HttpServletResponse response) throws IOException {
-        List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
+    public void downloadCsvForCurrentlySponsoredStudents(HttpServletResponse response) throws IOException, ReportException {
+        List<Student> listOfStudents = reportService.getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
         writerService.writeCsvFile("currentlySponsoredStudents.csv", CURENTLY_SPONSORED_HEADER_ROW, listOfStudents, response, false, true);
     }
 
-    @RequestMapping(value = "/report/awaitingSponsorship", method = RequestMethod.GET)
-    public String showStudentsAwaitingSponsorship(Model model) {
-        List<Student> awaitingSponsorship = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
-        model.addAttribute("students", awaitingSponsorship);
-        model.addAttribute("activeTab", "reportA");
-        return "/reports/awaitingSponsorship";
-    }
-
-    @RequestMapping(value = "/report/awaitingSponsorship/school", method = RequestMethod.GET)
-    public String showOnlySchoolStudentsAwaitingSponsorship(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.School);
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportA");
-        return "/reports/awaitingSponsorship";
-    }
-
-    @RequestMapping(value = "/report/awaitingSponsorship/university", method = RequestMethod.GET)
-    public String showOnlyUniveristyStudentsAwaitingSponsorship(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.University);
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportA");
-        return "/reports/awaitingSponsorship";
-    }
-
-    @RequestMapping(value="/report/awaitingSponsorship/bank/{bankName}", method = RequestMethod.GET)
-    public String showOnlyAwaitingStudentsWithBank(@PathVariable String bankName, Model model) {
-        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.AwaitingSponsorship, bankName);
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportA");
-        return "/reports/awaitingSponsorship";
-    }
-
-    @RequestMapping(value="/report/awaitingSponsorship/downloadCsv")
-    public void downloadCsvForStudentsAwaitingSponsorship(HttpServletResponse response) throws IOException {
-        List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.AwaitingSponsorship);
-        writerService.writeCsvFile("studentsAwaitingSponsorship.csv", AWAITING_SPONRSORSHIP_HEADER_ROW, listOfStudents, response, true, false);
-    }
-
     @RequestMapping(value = "/report/formerlySponsored", method = RequestMethod.GET)
-    public String showStudentsFormerlySponsored(Model model) {
-        List<Student> formerlySponsored = getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
+    public String showStudentsFormerlySponsored(Model model) throws ReportException {
+        List<Student> formerlySponsored = reportService.getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
         model.addAttribute("students", formerlySponsored);
         model.addAttribute("activeTab", "reportF");
         return "/reports/formerlySponsored";
@@ -167,14 +129,14 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/formerlySponsored/downloadCsv")
-    public void downloadCsvForStudentsFormerlySponsored(HttpServletResponse response) throws IOException {
-        List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
+    public void downloadCsvForStudentsFormerlySponsored(HttpServletResponse response) throws IOException, ReportException {
+        List<Student> listOfStudents = reportService.getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
         writerService.writeCsvFile("studentsFormerlySponsored.csv", HEADER_ROW, listOfStudents, response, false, false);
     }
 
     @RequestMapping(value = "/report/applicationExpired", method = RequestMethod.GET)
-    public String showStudentsWhereApplicationExpired(Model model) {
-        List<Student> students = getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
+    public String showStudentsWhereApplicationExpired(Model model) throws ReportException {
+        List<Student> students = reportService.getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAE");
         return "/reports/applicationExpired";
@@ -205,8 +167,8 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/applicationExpired/downloadCsv")
-    public void downloadCsvForStudentsWhereApplicationExpired(HttpServletResponse response) throws IOException {
-        List<Student> listOfStudents = getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
+    public void downloadCsvForStudentsWhereApplicationExpired(HttpServletResponse response) throws IOException, ReportException {
+        List<Student> listOfStudents = reportService.getStudentsBySponsorshipType(SponsorshipType.ApplicationExpired);
         writerService.writeCsvFile("studentsApplicationExpired.csv", HEADER_ROW, listOfStudents, response, false, false);
     }
 
@@ -218,9 +180,9 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/agent/{agentName}", method = RequestMethod.GET)
-    public String showAllStudentsForAgent(@PathVariable String agentName, Model model) {
+    public String showAllStudentsForAgent(@PathVariable String agentName, Model model) throws ReportException {
         AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> students = getStudentsByAgentType(agentType);
+        List<Student> students = reportService.getStudentsByAgentType(agentType);
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAgent");
@@ -229,9 +191,9 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/agent/school/{agentName}", method = RequestMethod.GET)
-    public String showAllSchoolStudentsForAgent(@PathVariable String agentName, Model model) {
+    public String showAllSchoolStudentsForAgent(@PathVariable String agentName, Model model) throws ReportException {
         AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> students = getStudentsByAgentType(agentType, InstitutionType.School);
+        List<Student> students = reportService.getStudentsByAgentType(agentType, InstitutionType.School);
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAgent");
@@ -240,9 +202,9 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/agent/university/{agentName}", method = RequestMethod.GET)
-    public String showAllUniversityStudentsForAgent(@PathVariable String agentName, Model model) {
+    public String showAllUniversityStudentsForAgent(@PathVariable String agentName, Model model) throws ReportException {
         AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> students = getStudentsByAgentType(agentType, InstitutionType.University);
+        List<Student> students = reportService.getStudentsByAgentType(agentType, InstitutionType.University);
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAgent");
@@ -251,9 +213,9 @@ public class ReportController {
     }
 
     @RequestMapping(value="/report/agent/downloadCsv/{agentName}")
-    public void downloadCsvForStudentsByAgent(@PathVariable String agentName, HttpServletResponse response) throws IOException {
+    public void downloadCsvForStudentsByAgent(@PathVariable String agentName, HttpServletResponse response) throws IOException, ReportException {
         AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> listOfStudents = getStudentsByAgentType(agentType);
+        List<Student> listOfStudents = reportService.getStudentsByAgentType(agentType);
         writerService.writeCsvFile("studentsByAgent.csv", HEADER_ROW, listOfStudents, response, false, false);
     }
 
@@ -293,6 +255,7 @@ public class ReportController {
             }
 
         } catch (IOException ex) {
+            LOG.error("Error in download", ex);
         } finally {
             writer.flush();
             writer.close();
@@ -300,48 +263,5 @@ public class ReportController {
 
     }
 
-    private List<Student> getStudentsBySponsorshipType(SponsorshipType sponsorshipType) {
-        return studentService.getAllStudents().stream()
-                .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()))
-                .map(getStudentForReport())
-                .collect(Collectors.toList());
-    }
-
-    private List<Student> getStudentsByAgentType(AgentType agentType) {
-        return studentService.getAllStudents().stream()
-                .filter(student -> student.getEducation() != null &&
-                        student.getEducation().getAgent() != null &&
-                        student.getEducation().getAgent().equals(agentType.getName()))
-                .map(getStudentForReport())
-                .collect(Collectors.toList());
-    }
-
-    private List<Student> getStudentsByAgentType(AgentType agentType, InstitutionType institutionType) {
-        return studentService.getAllStudents().stream()
-                .filter(student -> student.getEducation() != null &&
-                        student.getEducation().getAgent() != null &&
-                        student.getEducation().getAgent().equals(agentType.getName()) &&
-                        student.getEducation().getInstitutionType().equals(institutionType.name()))
-                .map(getStudentForReport())
-                .collect(Collectors.toList());
-    }
-
-    private Function<? super Student, ? extends Student> getStudentForReport() {
-        return student -> new StudentBuilder()
-                .id(student.getId())
-                .lastName(student.getLastName())
-                .firstName(student.getFirstName())
-                .dateOfBirth(student.getDateOfBirth())
-                .education(student.getEducation())
-                .sponsorship(student.getSponsorship())
-                .bank(new BankBuilder()
-                        .accountName(student.getBank().getAccountName())
-                        .accountNumber(student.getBank().getAccountNumber())
-                        .standingOrder(student.getBank().getStandingOrder())
-                        .branch(student.getBank().getBranch())
-                        .bankName(student.getBank().getBank().equals("") ? "" : BankInstiution.valueOf(student.getBank().getBank()).getDescription())
-                        .buildBank())
-                .buildStudent();
-    }
 
 }

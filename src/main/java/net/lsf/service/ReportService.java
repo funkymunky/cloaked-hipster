@@ -1,0 +1,20 @@
+package net.lsf.service;
+
+import net.lsf.AgentType;
+import net.lsf.InstitutionType;
+import net.lsf.SponsorshipType;
+import net.lsf.model.Student;
+import net.lsf.site.report.ReportException;
+
+import java.util.List;
+
+public interface ReportService {
+
+    List<Student> getStudentsBySponsorshipType(SponsorshipType sponsorshipType) throws ReportException;
+    List<Student> getStudentsByAgentType(AgentType agentType) throws ReportException;
+    List<Student> getStudentsByAgentType(AgentType agentType, InstitutionType institutionType) throws ReportException;
+
+
+
+
+}
