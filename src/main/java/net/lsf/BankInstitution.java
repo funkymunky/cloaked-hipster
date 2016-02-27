@@ -1,6 +1,6 @@
 package net.lsf;
 
-public enum BankInstiution {
+public enum BankInstitution {
     BankOfCeylon(1, "Bank of Ceylon"),
     PeoplesBank(2, "Peoples Bank"),
     SampathBank(3, "Sampath Bank"),
@@ -14,7 +14,7 @@ public enum BankInstiution {
     private int code;
     private String description;
 
-    BankInstiution(int code, String description) {
+    BankInstitution(int code, String description) {
         this.code = code;
         this.description = description;
     }
