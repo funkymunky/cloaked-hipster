@@ -1,7 +1,7 @@
 package net.lsf.site.student;
 
 import net.lsf.AgentType;
-import net.lsf.BankInstiution;
+import net.lsf.BankInstitution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Sponsorship;
@@ -63,7 +63,7 @@ public class SponsorshipController {
         model.addAttribute("sponsorship", studentService.getSponsorshipForStudent(id));
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("institutionTypeValues", InstitutionType.values());
-        model.addAttribute("bankValues", BankInstiution.values());
+        model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         model.addAttribute("activeTab", "sponsor");

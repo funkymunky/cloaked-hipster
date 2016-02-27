@@ -20,13 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ReportController {
 
     private static final String[] HEADER_ROW = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
-    private static final String[] CURENTLY_SPONSORED_HEADER_ROW = {"Student id", "Student name", "Year of study", "School / University", "Sponsor", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
 
     private static final Logger LOG = Logger.getLogger("ReportController.class");
 
@@ -47,54 +45,7 @@ public class ReportController {
         return "/reports/list";
     }
 
-    @RequestMapping(value = "/report/currentlySponsored", method = RequestMethod.GET)
-    public String showCurrentlySponsoredStudents(Model model) throws ReportException {
-        List<Student> sponsored = reportService.getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
-        Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
-        model.addAttribute("students", sponsored);
-        model.addAttribute("activeTab", "reportC");
-        model.addAttribute("allSponsors", sponsors);
-        return "/reports/currentlySponsored";
-    }
 
-    @RequestMapping(value = "/report/currentlySponsored/school", method = RequestMethod.GET)
-    public String showOnlySchoolStudents(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.School);
-        Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
-
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportC");
-        model.addAttribute("allSponsors", sponsors);
-        return "/reports/currentlySponsored";
-    }
-
-    @RequestMapping(value = "/report/currentlySponsored/university", method = RequestMethod.GET)
-    public String showOnlyUniversityStudents(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.University);
-        Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
-
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportC");
-        model.addAttribute("allSponsors", sponsors);
-        return "/reports/currentlySponsored";
-    }
-
-    @RequestMapping(value="/report/currentlySponsored/bank/{bankName}", method = RequestMethod.GET)
-    public String showOnlySponsoredStudentsWithBank(@PathVariable String bankName, Model model) {
-        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.CurrentlySponsored, bankName);
-        Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
-
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportC");
-        model.addAttribute("allSponsors", sponsors);
-        return "/reports/currentlySponsored";
-    }
-
-    @RequestMapping(value="/report/currentlySponsored/downloadCsv")
-    public void downloadCsvForCurrentlySponsoredStudents(HttpServletResponse response) throws IOException, ReportException {
-        List<Student> listOfStudents = reportService.getStudentsBySponsorshipType(SponsorshipType.CurrentlySponsored);
-        writerService.writeCsvFile("currentlySponsoredStudents.csv", CURENTLY_SPONSORED_HEADER_ROW, listOfStudents, response, false, true);
-    }
 
     @RequestMapping(value = "/report/formerlySponsored", method = RequestMethod.GET)
     public String showStudentsFormerlySponsored(Model model) throws ReportException {

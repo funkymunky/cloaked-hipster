@@ -1,7 +1,7 @@
 package net.lsf.service.impl;
 
 import net.lsf.AgentType;
-import net.lsf.BankInstiution;
+import net.lsf.BankInstitution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Bank;
@@ -53,6 +53,15 @@ public class ReportServiceImpl implements ReportService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Student> getStudentsByBank(SponsorshipType sponsorshipType, BankInstitution bankInstiution) throws ReportException {
+        return studentService.getAllStudents().stream()
+                .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()) &&
+                        student.getBank().getBank().equals(bankInstiution.getName()))
+                .map(getStudentForReport())
+                .collect(Collectors.toList());
+    }
+
     private Function<? super Student, ? extends Student> getStudentForReport() throws ReportException {
         return student -> {
             Bank studentBank = student.getBank();
@@ -68,7 +77,7 @@ public class ReportServiceImpl implements ReportService {
                             .accountNumber(studentBank.getAccountNumber())
                             .standingOrder(studentBank.getStandingOrder())
                             .branch(studentBank.getBranch())
-                            .bankName(studentBank.getBank().equals("") ? "" : BankInstiution.valueOf(student.getBank().getBank()).getDescription())
+                            .bankName(studentBank.getBank().equals("") ? "" : BankInstitution.valueOf(student.getBank().getBank()).getDescription())
                             .buildBank())
                     .buildStudent();
         };

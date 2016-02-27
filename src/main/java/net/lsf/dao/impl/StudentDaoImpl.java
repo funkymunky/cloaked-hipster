@@ -176,7 +176,7 @@ public class StudentDaoImpl implements StudentDao {
         List<Student> studentsByBank = allStudents.stream()
                 .filter(student ->
                         student.getBank() != null &&
-                                student.getBank().getBank().equalsIgnoreCase(bankName))
+                                (student.getBank().getBank().toLowerCase()).contains(bankName.toLowerCase()))
                 .collect(Collectors.toList());
 
         return studentsByBank;

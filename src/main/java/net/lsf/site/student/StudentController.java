@@ -1,7 +1,7 @@
 package net.lsf.site.student;
 
 import net.lsf.AgentType;
-import net.lsf.BankInstiution;
+import net.lsf.BankInstitution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Address;
@@ -11,7 +11,6 @@ import net.lsf.service.SponsorService;
 import net.lsf.service.StudentService;
 import net.lsf.validator.StudentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,7 +63,7 @@ public class StudentController {
         model.addAttribute("student", new Student());
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
-        model.addAttribute("bankValues", BankInstiution.values());
+        model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
@@ -85,7 +84,7 @@ public class StudentController {
         model.addAttribute("updateMode", false);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
-        model.addAttribute("bankValues", BankInstiution.values());
+        model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
@@ -100,7 +99,7 @@ public class StudentController {
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
-        model.addAttribute("bankValues", BankInstiution.values());
+        model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
@@ -118,7 +117,7 @@ public class StudentController {
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
-        model.addAttribute("bankValues", BankInstiution.values());
+        model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
