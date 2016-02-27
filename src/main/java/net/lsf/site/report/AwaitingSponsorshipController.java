@@ -1,10 +1,10 @@
 package net.lsf.site.report;
 
+import net.lsf.BankInstitution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.model.Student;
 import net.lsf.service.ReportService;
-import net.lsf.service.StudentService;
 import net.lsf.service.WriterService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,6 @@ import java.util.List;
 
 @Controller
 public class AwaitingSponsorshipController {
-
-    @Autowired
-    StudentService studentService;
 
     @Autowired
     WriterService writerService;
@@ -49,24 +46,25 @@ public class AwaitingSponsorshipController {
     }
 
     @RequestMapping(value = "/report/awaitingSponsorship/bank/{bankName}", method = RequestMethod.GET)
-    public String showOnlyAwaitingStudentsWithBank(@PathVariable String bankName, Model model) {
-        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.AwaitingSponsorship, bankName);
+    public String showOnlyAwaitingStudentsWithBank(@PathVariable String bankName, Model model) throws ReportException {
+        BankInstitution bankInstitution = BankInstitution.getInstitutionFromString(bankName);
+        List<Student> students = reportService.getStudentsByBank(SponsorshipType.AwaitingSponsorship, bankInstitution);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
         return "/reports/awaitingSponsorship";
     }
 
     @RequestMapping(value = "/report/awaitingSponsorship/school", method = RequestMethod.GET)
-    public String showOnlySchoolStudentsAwaitingSponsorship(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.School);
+    public String showOnlySchoolStudentsAwaitingSponsorship(Model model) throws ReportException {
+        List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.School);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
         return "/reports/awaitingSponsorship";
     }
 
     @RequestMapping(value = "/report/awaitingSponsorship/university", method = RequestMethod.GET)
-    public String showOnlyUniveristyStudentsAwaitingSponsorship(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.University);
+    public String showOnlyUniveristyStudentsAwaitingSponsorship(Model model) throws ReportException {
+        List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.University);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
         return "/reports/awaitingSponsorship";

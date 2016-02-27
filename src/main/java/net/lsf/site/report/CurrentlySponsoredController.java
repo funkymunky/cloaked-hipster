@@ -67,7 +67,7 @@ public class CurrentlySponsoredController {
 
     @RequestMapping(value="/report/currentlySponsored/bank/{bankName}", method = RequestMethod.GET)
     public String showOnlySponsoredStudentsWithBank(@PathVariable String bankName, Model model) throws ReportException {
-        BankInstitution bankInstitution = getInstitutionFromString(bankName);
+        BankInstitution bankInstitution = BankInstitution.getInstitutionFromString(bankName);
         List<Student> students = reportService.getStudentsByBank(SponsorshipType.CurrentlySponsored, bankInstitution);
         Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
 
@@ -83,12 +83,4 @@ public class CurrentlySponsoredController {
         writerService.writeCsvFile("currentlySponsoredStudents.csv", CURENTLY_SPONSORED_HEADER_ROW, listOfStudents, response, false, true);
     }
 
-    private BankInstitution getInstitutionFromString(String bankName) {
-        for (BankInstitution institution : BankInstitution.values()) {
-            if (institution.getDescription().toLowerCase().contains(bankName.trim().toLowerCase())) {
-                return institution;
-            }
-        }
-        return BankInstitution.Default;
-    }
 }

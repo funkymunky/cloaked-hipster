@@ -40,4 +40,13 @@ public enum BankInstitution {
         return this.name();
     }
 
+    static public BankInstitution getInstitutionFromString(String bankName) {
+        for (BankInstitution institution : BankInstitution.values()) {
+            if (institution.getDescription().toLowerCase().contains(bankName.trim().toLowerCase())) {
+                return institution;
+            }
+        }
+        return BankInstitution.Default;
+    }
+
 }
