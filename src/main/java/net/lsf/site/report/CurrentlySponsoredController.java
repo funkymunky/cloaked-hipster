@@ -6,7 +6,6 @@ import net.lsf.SponsorshipType;
 import net.lsf.model.Student;
 import net.lsf.service.ReportService;
 import net.lsf.service.SponsorService;
-import net.lsf.service.StudentService;
 import net.lsf.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +29,6 @@ public class CurrentlySponsoredController {
     private SponsorService sponsorService;
 
     @Autowired
-    private StudentService studentService;
-
-    @Autowired
     private WriterService writerService;
 
     private static final String[] CURENTLY_SPONSORED_HEADER_ROW = {"Student id", "Student name", "Year of study", "School / University", "Sponsor", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
@@ -48,8 +44,8 @@ public class CurrentlySponsoredController {
     }
 
     @RequestMapping(value = "/report/currentlySponsored/school", method = RequestMethod.GET)
-    public String showOnlySchoolStudents(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.School);
+    public String showOnlySchoolStudents(Model model) throws ReportException {
+        List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.School);
         Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
 
         model.addAttribute("students", students);
@@ -59,8 +55,8 @@ public class CurrentlySponsoredController {
     }
 
     @RequestMapping(value = "/report/currentlySponsored/university", method = RequestMethod.GET)
-    public String showOnlyUniversityStudents(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.University);
+    public String showOnlyUniversityStudents(Model model) throws ReportException {
+        List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.CurrentlySponsored, InstitutionType.University);
         Map<String, String> sponsors =  sponsorService.getMapOfAllSponsors();
 
         model.addAttribute("students", students);

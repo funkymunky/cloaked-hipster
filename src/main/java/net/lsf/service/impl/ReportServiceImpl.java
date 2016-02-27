@@ -62,6 +62,15 @@ public class ReportServiceImpl implements ReportService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Student> getStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType) throws ReportException {
+        return studentService.getAllStudents().stream()
+                .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()) &&
+                        student.getEducation().getInstitutionType().equals(institutionType.getInstitutionTypeName()))
+                .map(getStudentForReport())
+                .collect(Collectors.toList());
+    }
+
     private Function<? super Student, ? extends Student> getStudentForReport() throws ReportException {
         return student -> {
             Bank studentBank = student.getBank();

@@ -15,8 +15,5 @@ public interface ReportService {
     List<Student> getStudentsByAgentType(AgentType agentType) throws ReportException;
     List<Student> getStudentsByAgentType(AgentType agentType, InstitutionType institutionType) throws ReportException;
     List<Student> getStudentsByBank(SponsorshipType sponsorshipType, BankInstitution bankInstiution) throws ReportException;
-
-
-
-
+    List<Student> getStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType) throws ReportException;
 }
