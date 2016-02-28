@@ -24,7 +24,7 @@ import java.util.List;
 @Controller
 public class ReportController {
 
-    private static final String[] HEADER_ROW = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
+    public static final String[] HEADER_ROW = {"Student id", "Student name", "Year of study", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
 
     private static final Logger LOG = Logger.getLogger("ReportController.class");
 
@@ -45,45 +45,6 @@ public class ReportController {
         return "/reports/list";
     }
 
-
-
-    @RequestMapping(value = "/report/formerlySponsored", method = RequestMethod.GET)
-    public String showStudentsFormerlySponsored(Model model) throws ReportException {
-        List<Student> formerlySponsored = reportService.getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
-        model.addAttribute("students", formerlySponsored);
-        model.addAttribute("activeTab", "reportF");
-        return "/reports/formerlySponsored";
-    }
-
-    @RequestMapping(value = "/report/formerlySponsored/school", method = RequestMethod.GET)
-    public String showOnlySchoolStudentsFormerlySponsored(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.FormerlySponsored, InstitutionType.School);
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportF");
-        return "/reports/formerlySponsored";
-    }
-
-    @RequestMapping(value = "/report/formerlySponsored/university", method = RequestMethod.GET)
-    public String showOnlyUniveristyStudentsFormerlySponsored(Model model) {
-        List<Student> students = studentService.getAllStudentsByInstitutionType(SponsorshipType.FormerlySponsored, InstitutionType.University);
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportF");
-        return "/reports/formerlySponsored";
-    }
-
-    @RequestMapping(value="/report/formerlySponsored/bank/{bankName}", method = RequestMethod.GET)
-    public String showOnlyFormerlySponsoredWithBank(@PathVariable String bankName, Model model) {
-        List<Student> students = studentService.getAllStudentsWithBank(SponsorshipType.FormerlySponsored, bankName);
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportF");
-        return "/reports/formerlySponsored";
-    }
-
-    @RequestMapping(value="/report/formerlySponsored/downloadCsv")
-    public void downloadCsvForStudentsFormerlySponsored(HttpServletResponse response) throws IOException, ReportException {
-        List<Student> listOfStudents = reportService.getStudentsBySponsorshipType(SponsorshipType.FormerlySponsored);
-        writerService.writeCsvFile("studentsFormerlySponsored.csv", HEADER_ROW, listOfStudents, response, false, false);
-    }
 
     @RequestMapping(value = "/report/applicationExpired", method = RequestMethod.GET)
     public String showStudentsWhereApplicationExpired(Model model) throws ReportException {
