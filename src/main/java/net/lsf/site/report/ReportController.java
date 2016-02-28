@@ -84,52 +84,6 @@ public class ReportController {
         writerService.writeCsvFile("studentsApplicationExpired.csv", HEADER_ROW, listOfStudents, response, false, false);
     }
 
-    @RequestMapping(value="/report/agent", method = RequestMethod.GET)
-    public String showAllStudentsByAgent(Model model) {
-        model.addAttribute("agentTypeValues", AgentType.values());
-        model.addAttribute("activeTab", "reportAgent");
-        return "/reports/showByAgent";
-    }
-
-    @RequestMapping(value="/report/agent/{agentName}", method = RequestMethod.GET)
-    public String showAllStudentsForAgent(@PathVariable String agentName, Model model) throws ReportException {
-        AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> students = reportService.getStudentsByAgentType(agentType);
-        model.addAttribute("agentTypeValues", AgentType.values());
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportAgent");
-        model.addAttribute("selectedAgent", agentName);
-        return "/reports/showByAgent";
-    }
-
-    @RequestMapping(value="/report/agent/school/{agentName}", method = RequestMethod.GET)
-    public String showAllSchoolStudentsForAgent(@PathVariable String agentName, Model model) throws ReportException {
-        AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> students = reportService.getStudentsByAgentType(agentType, InstitutionType.School);
-        model.addAttribute("agentTypeValues", AgentType.values());
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportAgent");
-        model.addAttribute("selectedAgent", agentName);
-        return "/reports/showByAgent";
-    }
-
-    @RequestMapping(value="/report/agent/university/{agentName}", method = RequestMethod.GET)
-    public String showAllUniversityStudentsForAgent(@PathVariable String agentName, Model model) throws ReportException {
-        AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> students = reportService.getStudentsByAgentType(agentType, InstitutionType.University);
-        model.addAttribute("agentTypeValues", AgentType.values());
-        model.addAttribute("students", students);
-        model.addAttribute("activeTab", "reportAgent");
-        model.addAttribute("selectedAgent", agentName);
-        return "/reports/showByAgent";
-    }
-
-    @RequestMapping(value="/report/agent/downloadCsv/{agentName}")
-    public void downloadCsvForStudentsByAgent(@PathVariable String agentName, HttpServletResponse response) throws IOException, ReportException {
-        AgentType agentType = AgentType.valueOf(agentName);
-        List<Student> listOfStudents = reportService.getStudentsByAgentType(agentType);
-        writerService.writeCsvFile("studentsByAgent.csv", HEADER_ROW, listOfStudents, response, false, false);
-    }
 
     @RequestMapping(value = "/report/allStudents", method = RequestMethod.GET)
     public String showAllStudents(Model model) {
