@@ -28,7 +28,8 @@
                     <button type="button" class="btn btn-primary" id="filterBank">Filter by bank</button></a>
                 <input id="bankName" type="text" size="30"/>
                 <p class="filterError" id="errorText"></p>
-                    <%@ include file="/WEB-INF/jsp/reports/reportDetails.jspf" %>
+                <p class="reportTotal">Total students: ${fn:length(students)}</p>
+                <%@ include file="/WEB-INF/jsp/reports/reportDetails.jspf" %>
                 <p class="reportTotal">Total students: ${fn:length(students)}</p>
                 <a href="/lsf/report/formerlySponsored/downloadCsv">Export to csv</a>
 
@@ -49,6 +50,19 @@
             }
         })
     })
+
+    <c:if test="${activeFilter == 'school'}">
+    setActiveFilter.call($("#filterSchool"));
+    </c:if>
+
+    <c:if test="${activeFilter == 'uni'}">
+    setActiveFilter.call($("#filterUniversity"));
+    </c:if>
+
+    <c:if test="${activeFilter == 'bank'}">
+    setActiveFilter.call($("#filterBank"));
+    </c:if>
+
 </script>
 
 </html>

@@ -39,6 +39,7 @@ public class ExpiredApplicationController {
         List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.ApplicationExpired, InstitutionType.School);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAE");
+        model.addAttribute("activeFilter", "school");
         return "/reports/applicationExpired";
     }
 
@@ -47,6 +48,7 @@ public class ExpiredApplicationController {
         List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.ApplicationExpired, InstitutionType.University);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAE");
+        model.addAttribute("activeFilter", "uni");
         return "/reports/applicationExpired";
     }
 
@@ -56,6 +58,7 @@ public class ExpiredApplicationController {
         List<Student> students = reportService.getStudentsByBank(SponsorshipType.ApplicationExpired, bankInstitution);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAE");
+        model.addAttribute("activeFilter", "bank");
         return "/reports/applicationExpired";
     }
 

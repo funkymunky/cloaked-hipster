@@ -57,6 +57,7 @@ public class ReportServiceImpl implements ReportService {
     public List<Student> getStudentsByBank(SponsorshipType sponsorshipType, BankInstitution bankInstiution) throws ReportException {
         return studentService.getAllStudents().stream()
                 .filter(student -> student.getSponsorship().getSponsorshipType().equals(sponsorshipType.getName()) &&
+                        student.getBank() != null &&
                         student.getBank().getBank().equals(bankInstiution.getName()))
                 .map(getStudentForReport())
                 .collect(Collectors.toList());

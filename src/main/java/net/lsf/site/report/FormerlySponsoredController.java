@@ -39,6 +39,7 @@ public class FormerlySponsoredController {
         List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.FormerlySponsored, InstitutionType.School);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportF");
+        model.addAttribute("activeFilter", "school");
         return "/reports/formerlySponsored";
     }
 
@@ -47,6 +48,7 @@ public class FormerlySponsoredController {
         List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.FormerlySponsored, InstitutionType.University);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportF");
+        model.addAttribute("activeFilter", "uni");
         return "/reports/formerlySponsored";
     }
 
@@ -56,6 +58,7 @@ public class FormerlySponsoredController {
         List<Student> students = reportService.getStudentsByBank(SponsorshipType.FormerlySponsored, bankInstitution);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportF");
+        model.addAttribute("activeFilter", "bank");
         return "/reports/formerlySponsored";
     }
 

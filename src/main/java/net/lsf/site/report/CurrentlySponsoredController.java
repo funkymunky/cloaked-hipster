@@ -51,6 +51,7 @@ public class CurrentlySponsoredController {
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportC");
         model.addAttribute("allSponsors", sponsors);
+        model.addAttribute("activeFilter", "school");
         return "/reports/currentlySponsored";
     }
 
@@ -62,6 +63,7 @@ public class CurrentlySponsoredController {
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportC");
         model.addAttribute("allSponsors", sponsors);
+        model.addAttribute("activeFilter", "uni");
         return "/reports/currentlySponsored";
     }
 
@@ -74,6 +76,7 @@ public class CurrentlySponsoredController {
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportC");
         model.addAttribute("allSponsors", sponsors);
+        model.addAttribute("activeFilter", "bank");
         return "/reports/currentlySponsored";
     }
 

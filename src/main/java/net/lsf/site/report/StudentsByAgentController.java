@@ -51,6 +51,7 @@ public class StudentsByAgentController {
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAgent");
         model.addAttribute("selectedAgent", agentName);
+        model.addAttribute("activeFilter", "school");
         return "/reports/showByAgent";
     }
 
@@ -62,6 +63,7 @@ public class StudentsByAgentController {
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportAgent");
         model.addAttribute("selectedAgent", agentName);
+        model.addAttribute("activeFilter", "uni");
         return "/reports/showByAgent";
     }
 

@@ -51,6 +51,7 @@ public class AwaitingSponsorshipController {
         List<Student> students = reportService.getStudentsByBank(SponsorshipType.AwaitingSponsorship, bankInstitution);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
+        model.addAttribute("activeFilter", "bank");
         return "/reports/awaitingSponsorship";
     }
 
@@ -59,6 +60,7 @@ public class AwaitingSponsorshipController {
         List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.School);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
+        model.addAttribute("activeFilter", "school");
         return "/reports/awaitingSponsorship";
     }
 
@@ -67,6 +69,7 @@ public class AwaitingSponsorshipController {
         List<Student> students = reportService.getStudentsByInstitutionType(SponsorshipType.AwaitingSponsorship, InstitutionType.University);
         model.addAttribute("students", students);
         model.addAttribute("activeTab", "reportA");
+        model.addAttribute("activeFilter", "uni");
         return "/reports/awaitingSponsorship";
     }
 

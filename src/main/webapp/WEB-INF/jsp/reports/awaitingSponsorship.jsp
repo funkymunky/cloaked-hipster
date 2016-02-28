@@ -27,13 +27,15 @@
                     <button type="button" class="btn btn-primary" id="filterBank">Filter by bank</button></a>
                 <input id="bankName" type="text" size="30"/>
                 <p class="filterError" id="errorText"></p>
-                    <%@ include file="/WEB-INF/jsp/reports/awaitingSponsorshipDetails.jspf" %>
+                <p class="reportTotal">Total students: ${fn:length(students)}</p>
+                <%@ include file="/WEB-INF/jsp/reports/awaitingSponsorshipDetails.jspf" %>
                 <p class="reportTotal">Total students: ${fn:length(students)}</p>
                 <a href="/lsf/report/awaitingSponsorship/downloadCsv">Export to csv</a>
             </div>
         </div>
     </div>
 </body>
+<script src="<c:url value='/js/report-filter.js'/>"></script>
 <script type="text/javascript">
         $(function(){
             $('#filterBank').click(function() {
@@ -47,5 +49,17 @@
 
             })
         })
+
+        <c:if test="${activeFilter == 'school'}">
+        setActiveFilter.call($("#filterSchool"));
+        </c:if>
+
+        <c:if test="${activeFilter == 'uni'}">
+        setActiveFilter.call($("#filterUniversity"));
+        </c:if>
+
+        <c:if test="${activeFilter == 'bank'}">
+        setActiveFilter.call($("#filterBank"));
+        </c:if>
 </script>
 </html>

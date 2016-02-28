@@ -76,6 +76,14 @@
         window.location.href = url;
     });
 
+    <c:if test="${activeFilter == 'school'}">
+    setActiveFilter.call($("#filterSchool"));
+    </c:if>
+
+    <c:if test="${activeFilter == 'uni'}">
+    setActiveFilter.call($("#filterUniversity"));
+    </c:if>
+
 </script>
 
 </html>
