@@ -6,6 +6,7 @@
         <th>Student name</th>
         <th>Year of study</th>
         <th>School / Uni</th>
+        <th>Telephone</th>
         <th>Sponsor</th>
         <th>Account name</th>
         <th>Bank</th>
@@ -41,6 +42,7 @@
             <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
             <td>${student.education.yearOfStudyAsAtApplicationDate + yearsSinceApplication}</td>
             <td>${qualification}</td>
+            <td>${student.telephone}</td>
             <td>${sponsorName}</td>
             <td>${student.bank.accountName}</td>
             <td>${student.bank.bank}</td>

@@ -31,7 +31,7 @@ public class CurrentlySponsoredController {
     @Autowired
     private WriterService writerService;
 
-    private static final String[] CURENTLY_SPONSORED_HEADER_ROW = {"Student id", "Student name", "Year of study", "School / University", "Sponsor", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
+    private static final String[] CURENTLY_SPONSORED_HEADER_ROW = {"Student id", "Student name", "Year of study", "School / University", "Telephone", "Sponsor", "Account name", "Bank", "Branch", "Account number", "Standing order number"};
 
     @RequestMapping(value = "/report/currentlySponsored", method = RequestMethod.GET)
     public String showCurrentlySponsoredStudents(Model model) throws ReportException {

@@ -97,6 +97,9 @@ public class WriterServiceImpl implements WriterService {
             }
             writer.write(",");
 
+            writer.write(eachStudent.getTelephone());
+            writer.write(",");
+
             if (addSponsorName) {
                 writer.write("\"");
                 writer.write(getSponsorNameForStudent(eachStudent.getSponsorship().getSponsor()));

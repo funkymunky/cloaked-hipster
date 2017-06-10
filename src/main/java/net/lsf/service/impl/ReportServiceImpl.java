@@ -80,6 +80,7 @@ public class ReportServiceImpl implements ReportService {
                     .lastName(student.getLastName())
                     .firstName(student.getFirstName())
                     .dateOfBirth(student.getDateOfBirth())
+                    .telephone(student.getTelephone())
                     .education(student.getEducation())
                     .sponsorship(student.getSponsorship())
                     .bank((studentBank == null) ? new Bank() : new BankBuilder()
