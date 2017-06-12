@@ -1,9 +1,6 @@
 package net.lsf.site.student;
 
-import net.lsf.AgentType;
-import net.lsf.BankInstitution;
-import net.lsf.InstitutionType;
-import net.lsf.SponsorshipType;
+import net.lsf.*;
 import net.lsf.model.Sponsorship;
 import net.lsf.service.SponsorService;
 import net.lsf.service.SponsorshipService;
@@ -15,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class SponsorshipController {
@@ -63,6 +60,7 @@ public class SponsorshipController {
         model.addAttribute("sponsorship", studentService.getSponsorshipForStudent(id));
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
         model.addAttribute("institutionTypeValues", InstitutionType.values());
+        model.addAttribute("currencyTypeValues", CurrencyType.values());
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());

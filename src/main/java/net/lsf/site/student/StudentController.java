@@ -1,9 +1,6 @@
 package net.lsf.site.student;
 
-import net.lsf.AgentType;
-import net.lsf.BankInstitution;
-import net.lsf.InstitutionType;
-import net.lsf.SponsorshipType;
+import net.lsf.*;
 import net.lsf.model.Address;
 import net.lsf.model.Education;
 import net.lsf.model.Student;
@@ -63,6 +60,7 @@ public class StudentController {
         model.addAttribute("student", new Student());
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("currencyTypeValues", CurrencyType.values());
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
@@ -84,6 +82,7 @@ public class StudentController {
         model.addAttribute("updateMode", false);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("currencyTypeValues", CurrencyType.values());
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
@@ -99,6 +98,7 @@ public class StudentController {
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("currencyTypeValues", CurrencyType.values());
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
@@ -117,6 +117,7 @@ public class StudentController {
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+        model.addAttribute("currencyTypeValues", CurrencyType.values());
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
