@@ -15,6 +15,7 @@
                 <thead>
                 <tr>
                     <th class="span3">Student</th>
+                    <th>Sponsorship status</th>
                     <th>Year of study</th>
                     <th style="text-align: right">Amount sponsored</th>
                     <th>Paid</th>
@@ -24,6 +25,7 @@
                 <c:forEach var="kid" items="${sponsoredKids}">
                     <tr>
                         <td><a href="/lsf/student/edit/${kid.id}">${kid.lastName}, ${kid.firstName}</a></td>
+                        <td>${kid.sponsorship.sponsorshipType}</td>
                         <c:set var="kidEducation" value="${kid.education}"/>
                         <c:choose>
                             <c:when test="${kidEducation.institutionType eq 'School'}">
