@@ -73,6 +73,7 @@
                             <%@ include file="/WEB-INF/jsp/student/educationDetails.jspf" %>
                             <%@ include file="/WEB-INF/jsp/student/bankDetails.jspf" %>
                             <%@ include file="/WEB-INF/jsp/student/sponsorshipDetails.jspf" %>
+                            <%@ include file="/WEB-INF/jsp/student/studentFeeDetails.jspf" %>
                             <%@ include file="/WEB-INF/jsp/student/comments.jspf" %>
                         </div>
                     </div>
@@ -113,6 +114,11 @@
             setActiveNavTab.call($(".sponsorInfo"));
         </c:if>
 
+        <c:if test="${activeTab == 'studentfee'}">
+            hideAllExceptThis("#studentFeeInfo");
+            setActiveNavTab.call($(".studentFeeInfo"));
+        </c:if>
+
         <c:if test="${activeTab == 'comment'}">
             hideAllExceptThis("#commentInfo");
             setActiveNavTab.call($(".commentInfo"));
@@ -128,6 +134,7 @@
             $('#sponsorInfo').hide();
             $('#addressInfo').hide();
             $('#educationInfo').hide();
+            $('#studentFeeInfo').hide();
             $('#commentInfo').hide();
 
             $(divIdToShow).show();
@@ -165,6 +172,14 @@
             $(".sponsorInfo").click( function(evt) {
                 evt.preventDefault();
                 hideAllExceptThis("#sponsorInfo");
+                setActiveNavTab.call(this);
+            });
+        });
+
+        $(function() {
+            $(".studentFeeInfo").click( function(evt) {
+                evt.preventDefault();
+                hideAllExceptThis("#studentFeeInfo");
                 setActiveNavTab.call(this);
             });
         });

@@ -12,6 +12,7 @@
         <li class="disabled"><a href="" class="educationInfo">Education Info</a></li>
         <li class="disabled"><a href="" class="bankInfo">Bank Info</a></li>
         <li class="disabled"><a href="" class="sponsorInfo">Sponsor Info</a></li>
+        <li class="disabled"><a href="" class="studentFeeInfo">Fee Info</a></li>
         <li class="disabled"><a href="" class="commentInfo">Comments</a></li>
     </ul>
 </div>

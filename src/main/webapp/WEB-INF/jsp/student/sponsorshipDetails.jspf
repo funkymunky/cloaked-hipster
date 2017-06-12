@@ -49,7 +49,10 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="electedCurrency">Elected currency:</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" path="electedCurrency" id="electedCurrency" type="text" />
+                    <spring-form:select class="form-control" path="electedCurrency" id="electedCurrency" type="text">
+                        <spring-form:option value="">-- Select an option --</spring-form:option>
+                        <spring-form:options items="${currencyTypeValues}" itemValue="currencyTypeName" itemLabel="currencyTypeName"/>
+                    </spring-form:select>
                 </div>
             </div>
 
