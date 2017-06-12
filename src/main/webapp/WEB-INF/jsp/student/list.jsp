@@ -33,12 +33,27 @@
                 <table class="table table-striped">
                     <thead><tr>
                         <th>Student Name</th>
+                        <th>Sponsorship Type</th>
+                        <th>Assigned to Sponsor</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="student" items ="${students}">
                         <tr>
                             <td><a href="/lsf/student/edit/${student.id}">${student.lastName}, ${student.firstName}</a></td>
+                            <td style="text-align: center">
+                                <c:choose>
+                                    <c:when test="${student.sponsorship.sponsorshipType == 'FormerlySponsored'}"><span class="glyphicon glyphicon-remove-circle"/></c:when>
+                                    <c:when test="${student.sponsorship.sponsorshipType == 'AwaitingSponsorship'}"><span class="glyphicon glyphicon-question-sign"/></c:when>
+                                    <c:when test="${student.sponsorship.sponsorshipType == 'CurrentlySponsored'}"><span class="glyphicon glyphicon-ok-circle"/></c:when>
+                                </c:choose>
+                            </td>
+                            <td style="text-align: center">
+                                <c:choose>
+                                    <c:when test="${student.sponsorship.sponsor ne null}"><span class="glyphicon glyphicon-ok" style="color: green"/></td></c:when>
+                                    <c:otherwise><span class="glyphicon glyphicon-remove" style="color: red"/></c:otherwise>
+                                </c:choose>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
