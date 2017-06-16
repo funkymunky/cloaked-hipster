@@ -41,13 +41,13 @@
                     <div class="form-inline">
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="10" path="sponsorship.paymentFrom" id="paymentFrom" type="text" placeholder="From" readonly="true"/>
+                                <spring-form:input size="10" class="datepickerPaymentDates" path="sponsorship.paymentFrom" id="paymentFrom" type="text" placeholder="From" readonly="true"/>
                             </div>
                         </div>
                         to
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="10" path="sponsorship.paymentTill" id="paymentTill" type="text" placeholder="To" readonly="true"/>
+                                <spring-form:input size="10" class="datepickerPaymentDates" path="sponsorship.paymentTill" id="paymentTill" type="text" placeholder="To" readonly="true"/>
                             </div>
                         </div>
                         (<span id="numMonths">X</span> months)
@@ -59,7 +59,9 @@
                 <label class="control-label col-md-4" for="amountOutstanding">Fees payable for payment period:</label>
                 <div class="col-md-6">
                     <spring-form:input class="form-control" path="" id="amountOutstanding" type="text" />
+                    <button type="button" class="btn-link" id="calculate">Calculate fee</button>
                 </div>
+
             </div>
 
             <div class="form-group" style="margin-left: 160px;">
@@ -72,6 +74,15 @@
 </div>
 
 <script type="text/javascript">
+    $(function() {
+        $(".datepickerPaymentDates").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            yearRange: 'c-10:c+10'
+        });
+    });
+
     $(function() {
         if ($('#paymentFrom').val() != '' || $('#paymentTill').val() != '') {
             var fromDate = $.datepicker.parseDate("dd/mm/yy", $('#paymentFrom').val());
@@ -95,19 +106,12 @@
         }
     });
 
-    $('#exchangeRate').focusout(function() {
-        var monthlyAllowance = $('#monthlyAllowance').val().length > 0 ? parseFloat($('#monthlyAllowance').val()) : 0;
-        var monthlyBankFee = $('#bankFee').val().length > 0 ? parseFloat($('#bankFee').val()) : 0;
-        var totalInLKR = monthlyAllowance + monthlyBankFee;
-
-        var numMonthsToCalculate = $('#numMonths').text() == 'X' ? 0 : parseInt($('#numMonths').text());
-
-        var feesInLKR = totalInLKR * numMonthsToCalculate;
-
-//        alert("monthly allowance = " + monthlyAllowance + "\n monthly bank fee = " + monthlyBankFee + "\n total in LKR = " + totalInLKR + "\n months:" + numMonthsToCalculate)
+    $('#calculate').click(function() {
+        var feesInLKR = calculateFeesInLKR();
+//        alert("monthly allowance = " + monthlyAllowance + "\n monthly bank fee = " + monthlyBankFee + "\n total in LKR = " + totalInLKR + "\n months:" + numMonthsToCalculate + "\n fees:" + feesInLKR)
 
         if ($('#electedCurrency').val() != 'AUD') {
-            $('#amountOustanding').text(feesInLKR);
+            $('#amountOutstanding').val(feesInLKR.toFixed(2));
         } else {
             var rate = parseFloat($('#exchangeRate').val());
             var feesPayable = (feesInLKR / rate).toFixed(2);
@@ -115,5 +119,14 @@
         }
 
     });
+
+    function calculateFeesInLKR() {
+        var monthlyAllowance = $('#monthlyAllowance').val().length > 0 ? parseFloat($('#monthlyAllowance').val()) : 0;
+        var monthlyBankFee = $('#bankFee').val().length > 0 ? parseFloat($('#bankFee').val()) : 0;
+        var totalInLKR = monthlyAllowance + monthlyBankFee;
+        var numMonthsToCalculate = $('#numMonths').text() == 'X' ? 0 : parseInt($('#numMonths').text());
+        var feesInLKR = totalInLKR * numMonthsToCalculate;
+        return feesInLKR;
+    }
 
 </script>
