@@ -1,9 +1,6 @@
 package net.lsf.site.student;
 
-import net.lsf.AgentType;
-import net.lsf.BankInstitution;
-import net.lsf.InstitutionType;
-import net.lsf.SponsorshipType;
+import net.lsf.*;
 import net.lsf.model.Education;
 import net.lsf.model.Student;
 import net.lsf.service.EducationService;
@@ -73,6 +70,7 @@ public class EducationController {
             model.addAttribute("student", studentService.getStudent(id));
             model.addAttribute("institutionTypeValues", InstitutionType.values());
             model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
+            model.addAttribute("currencyTypeValues", CurrencyType.values());
             model.addAttribute("bankValues", BankInstitution.values());
             model.addAttribute("agentTypeValues", AgentType.values());
             model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
