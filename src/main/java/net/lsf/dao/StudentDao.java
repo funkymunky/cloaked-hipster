@@ -2,6 +2,7 @@ package net.lsf.dao;
 
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
+import net.lsf.dto.StudentFeeDto;
 import net.lsf.model.*;
 
 import java.util.List;
@@ -45,4 +46,6 @@ public interface StudentDao {
     void updateCommentsForStudent(Student student, Comments comments);
 
     String getApplicationDateForStudent(int id);
+
+    StudentFeeDto getStudentSponsorFeeInformation(int studentId);
 }

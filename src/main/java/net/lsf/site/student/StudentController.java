@@ -1,6 +1,7 @@
 package net.lsf.site.student;
 
 import net.lsf.*;
+import net.lsf.dto.StudentFeeDto;
 import net.lsf.model.Address;
 import net.lsf.model.Education;
 import net.lsf.model.Student;
@@ -93,8 +94,10 @@ public class StudentController {
     @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.GET)
     public String editStudent(@PathVariable int id, Model model) {
         Student student = studentService.getStudent(id);
+        StudentFeeDto studentFees = studentService.populateStudentFeeInfo(id);
 
         model.addAttribute("student", student);
+        model.addAttribute("studentFee", studentFees);
         model.addAttribute("updateMode", true);
         model.addAttribute("institutionTypeValues", InstitutionType.values());
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());

@@ -3,6 +3,7 @@ package net.lsf.service.impl;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.dao.StudentDao;
+import net.lsf.dto.StudentFeeDto;
 import net.lsf.model.*;
 import net.lsf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,5 +143,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String getMaxUploadFileSize() {
         return maxUploadSize;
+    }
+
+    @Override
+    public StudentFeeDto populateStudentFeeInfo(int studentId) {
+        return studentDao.getStudentSponsorFeeInformation(studentId);
     }
 }

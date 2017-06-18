@@ -3,6 +3,7 @@ package net.lsf.dao.impl;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.dao.StudentDao;
+import net.lsf.dto.StudentFeeDto;
 import net.lsf.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -201,6 +202,19 @@ public class StudentDaoImpl implements StudentDao {
             return dateFormat.format(applicationDate);
         }
         return null;
+    }
+
+    @Override
+    public StudentFeeDto getStudentSponsorFeeInformation(int studentId) {
+        StudentFeeDto studentFeeDto = new StudentFeeDto();
+        Sponsorship sponsorship = getSponsorshipForStudent(studentId);
+        Education education = getEducationForStudent(studentId);
+
+        studentFeeDto.setMonthlyAllowance(education.getMonthlyAllowance().toString());
+        studentFeeDto.setElectedCurrency(sponsorship.getElectedCurrency());
+        studentFeeDto.setPaymentFrom(sponsorship.getPaymentFrom());
+        studentFeeDto.setPaymentTo(sponsorship.getPaymentTill());
+        return studentFeeDto;
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

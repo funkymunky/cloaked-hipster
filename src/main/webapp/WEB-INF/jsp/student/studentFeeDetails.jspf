@@ -4,18 +4,18 @@
 
 <div id="studentFeeInfo" class="student-insert">
     <fieldset>
-        <spring-form:form method="POST" modelAttribute="student" class="form-horizontal" action="/lsf/student/studentfees/addOrUpdate">
+        <spring-form:form method="POST" id="feesForSponsor" modelAttribute="studentFee" class="form-horizontal" action="/lsf/student/studentfees/save">
             <div class="form-group">
                 <label class="control-label col-md-4" for="monthlyAllowance">Monthly allowance (LKR):</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" path="education.monthlyAllowance" id="monthlyAllowance" type="text" readonly="true"/>
+                    <spring-form:input class="form-control" path="monthlyAllowance" id="monthlyAllowance" type="text" readonly="true"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-md-4" for="bankFee">Bank fee per month (LKR):</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" path="" id="bankFee" type="text" />
+                    <spring-form:input class="form-control" name="bankFee" path="" id="bankFee" type="text" />
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="electedCurrency">Elected currency:</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" path="sponsorship.electedCurrency" id="electedCurrency" type="text" readonly="true"/>
+                    <spring-form:input class="form-control" path="electedCurrency" id="electedCurrency" type="text" readonly="true"/>
                 </div>
             </div>
 
@@ -41,13 +41,13 @@
                     <div class="form-inline">
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="10" class="datepickerPaymentDates" path="sponsorship.paymentFrom" id="paymentFrom" type="text" placeholder="From" readonly="true"/>
+                                <spring-form:input size="10" class="datepickerPaymentDates" path="paymentFrom" id="paymentFrom" type="text" placeholder="From" readonly="true"/>
                             </div>
                         </div>
                         to
                         <div class="form-group">
                             <div class="col-md-1">
-                                <spring-form:input size="10" class="datepickerPaymentDates" path="sponsorship.paymentTill" id="paymentTill" type="text" placeholder="To" readonly="true"/>
+                                <spring-form:input size="10" class="datepickerPaymentDates" path="paymentTo" id="paymentTill" type="text" placeholder="To" readonly="true"/>
                             </div>
                         </div>
                         (<span id="numMonths">X</span> months)
@@ -58,14 +58,14 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="amountOutstanding">Fees payable for payment period:</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" path="" id="amountOutstanding" type="text" />
+                    <spring-form:input class="form-control" name="feesToSave" path="amountOutstanding" id="amountOutstanding" type="text" />
                     <button type="button" class="btn-link" id="calculate">Calculate fee</button>
                 </div>
 
             </div>
 
             <div class="form-group" style="margin-left: 160px;">
-                <button type="submit" class="btn btn-primary">Update fees</button>
+                <button type="submit" class="btn btn-primary">Save fees</button>
                 <button type="button" class="btn" onclick="location.href='/lsf/student/edit/${student.id}'">Cancel</button>
             </div>
             <input type="hidden" value="${student.id}" name="studentid" />
@@ -74,14 +74,14 @@
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        $(".datepickerPaymentDates").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'dd/mm/yy',
-            yearRange: 'c-10:c+10'
-        });
-    });
+//    $(function() {
+//        $(".datepickerPaymentDates").datepicker({
+//            changeMonth: true,
+//            changeYear: true,
+//            dateFormat: 'dd/mm/yy',
+//            yearRange: 'c-10:c+10'
+//        });
+//    });
 
     $(function() {
         if ($('#paymentFrom').val() != '' || $('#paymentTill').val() != '') {

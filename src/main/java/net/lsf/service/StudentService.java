@@ -2,9 +2,9 @@ package net.lsf.service;
 
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
+import net.lsf.dto.StudentFeeDto;
 import net.lsf.model.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -46,4 +46,6 @@ public interface StudentService {
     String getApplicationDateForStudent(int id);
 
     String getMaxUploadFileSize();
+
+    StudentFeeDto populateStudentFeeInfo(int studentId);
 }
