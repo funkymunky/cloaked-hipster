@@ -16,6 +16,7 @@
         <mapping class="net.lsf.model.Fees" />
         <mapping class="net.lsf.model.SponsorshipFees" />
         <mapping class="net.lsf.model.Comments" />
+        <mapping class="net.lsf.model.StudentSponsorFees"/>
     </session-factory>
 
 </hibernate-configuration>

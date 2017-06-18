@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="bankFee">Bank fee per month (LKR):</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" name="bankFee" path="" id="bankFee" type="text" />
+                    <spring-form:input class="form-control" path="bankFee" id="bankFee" type="text" />
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="exchangeRate">Exchange rate:</br>(1 AUD = ? LKR)</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" path="" id="exchangeRate" type="text" />
+                    <spring-form:input class="form-control" path="exchangeRate" id="exchangeRate" type="text" />
                 </div>
             </div>
 

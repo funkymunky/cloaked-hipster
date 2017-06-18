@@ -1,27 +1,26 @@
 package net.lsf.site.student;
 
-import net.lsf.AgentType;
-import net.lsf.BankInstitution;
-import net.lsf.InstitutionType;
-import net.lsf.SponsorshipType;
+import net.lsf.*;
+import net.lsf.data.StudentFeeDTO;
 import net.lsf.service.SponsorService;
 import net.lsf.service.SponsorshipService;
 import net.lsf.service.StudentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @Controller
 public class StudentFeeController {
+
+    Logger log = Logger.getLogger(StudentFeeController.class);
 
     @Autowired
     private StudentService studentService;
@@ -40,14 +39,25 @@ public class StudentFeeController {
         binder.registerCustomEditor(Date.class, "endDate", new CustomDateEditor(dateFormat, true));
     }
 
-    @RequestMapping(value="/student/studentfees/addOrUpdate", method= RequestMethod.POST)
+    @RequestMapping(value="/student/studentfees/save", method= RequestMethod.POST)
     public String submitForm( @RequestParam(value = "studentid") String studentId,
-                              Model model) {
+                              @ModelAttribute("studentFee") StudentFeeDTO studentFee,
+                              Model model) throws ParseException {
 
         String message = null;
         int id = Integer.parseInt(studentId);
 
+//        log.info("The fee I am about to save is: " + studentFee.getAmountOutstanding());
+//        log.info("The bank fee I fetched was:" + studentFee.getBankFee());
+//        log.info("The exchange rate is: " + studentFee.getExchangeRate());
+
+        studentService.updateStudentSponsorFees(studentFee, id);
+
         model.addAttribute("student", studentService.getStudent(id));
+        model.addAttribute("currencyTypeValues", CurrencyType.values());
+        model.addAttribute("activeTab", "studentfee");
+        model.addAttribute("message", message);
+        model.addAttribute("updateMode", true);
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("sponsorship", studentService.getSponsorshipForStudent(id));
         model.addAttribute("sponsorshipTypeValues", SponsorshipType.values());
@@ -55,9 +65,6 @@ public class StudentFeeController {
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
-        model.addAttribute("activeTab", "sponsor");
-        model.addAttribute("message", message);
-        model.addAttribute("updateMode", true);
 
         return "/student/addOrUpdate";
     }

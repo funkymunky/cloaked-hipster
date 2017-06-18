@@ -2,9 +2,10 @@ package net.lsf.service;
 
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
-import net.lsf.dto.StudentFeeDto;
+import net.lsf.data.StudentFeeDTO;
 import net.lsf.model.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Set;
 
@@ -47,5 +48,7 @@ public interface StudentService {
 
     String getMaxUploadFileSize();
 
-    StudentFeeDto populateStudentFeeInfo(int studentId);
+    StudentFeeDTO populateStudentFeeInfo(int studentId);
+
+    void updateStudentSponsorFees(StudentFeeDTO studentSponsorFee, int studentId) throws ParseException;
 }

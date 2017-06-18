@@ -1,10 +1,10 @@
-package net.lsf.dto;
+package net.lsf.data;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class StudentFeeDto {
+public class StudentFeeDTO {
 
     private String monthlyAllowance;
     private String bankFee;
@@ -16,10 +16,10 @@ public class StudentFeeDto {
     private Date paymentTo;
     private String amountOutstanding;
 
-    public StudentFeeDto() {
+    public StudentFeeDTO() {
     }
 
-    public StudentFeeDto(String monthlyAllowance, String bankFee, String exchangeRate, String electedCurrency, Date paymentFrom, Date paymentTo, String amountOutstanding) {
+    public StudentFeeDTO(String monthlyAllowance, String bankFee, String exchangeRate, String electedCurrency, Date paymentFrom, Date paymentTo, String amountOutstanding) {
         this.monthlyAllowance = monthlyAllowance;
         this.bankFee = bankFee;
         this.exchangeRate = exchangeRate;

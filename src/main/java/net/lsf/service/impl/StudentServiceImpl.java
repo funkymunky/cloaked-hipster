@@ -3,7 +3,8 @@ package net.lsf.service.impl;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
 import net.lsf.dao.StudentDao;
-import net.lsf.dto.StudentFeeDto;
+import net.lsf.dao.StudentSponsorFeesDao;
+import net.lsf.data.StudentFeeDTO;
 import net.lsf.model.*;
 import net.lsf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Set;
 
@@ -25,6 +27,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentDao studentDao;
 
+    @Autowired
+    private StudentSponsorFeesDao studentSponsorFeesDao;
 
     @Value("${max.upload.size}")
     private String maxUploadSize;
@@ -146,7 +150,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentFeeDto populateStudentFeeInfo(int studentId) {
-        return studentDao.getStudentSponsorFeeInformation(studentId);
+    public StudentFeeDTO populateStudentFeeInfo(int studentId) {
+        return studentSponsorFeesDao.getStudentSponsorFeeInformation(studentId);
+    }
+
+    @Override
+    public void updateStudentSponsorFees(StudentFeeDTO studentSponsorFee, int studentId) throws ParseException {
+        studentSponsorFeesDao.updateFeesForStudentAndSponsor(studentSponsorFee, studentId);
     }
 }

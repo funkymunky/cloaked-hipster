@@ -148,3 +148,17 @@ alter table `sponsorship` change startDate paymentFrom date;
 alter table `sponsorship` change endDate paymentTill date;
 alter table `sponsorship` change sponsorshipStartDate  startDate date;
 alter table `sponsorship` change sponsorshipEndDate endDate date;
+
+create table if not exists `studentsponsorfees` (
+  `id` int(11) not null auto_increment,
+  `student_id` int(11) default null,
+  `sponsor_id` int(11) default null,
+  `bankfee` decimal(10,2) default null,
+  `exchangeRate` decimal (10,2) default null,
+  `amountToPay` decimal(20,2) default null,
+  PRIMARY KEY (`id`),
+  KEY `FK_student` (`student_id`),
+  KEY `FK_sponsor` (`sponsor_id`),
+  CONSTRAINT `FK_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  CONSTRAINT `FK_sponsor` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT =1 DEFAULT CHAR SET =utf8
