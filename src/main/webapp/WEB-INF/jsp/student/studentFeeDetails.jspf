@@ -58,7 +58,7 @@
             <div class="form-group">
                 <label class="control-label col-md-4" for="amountOutstanding">Fees payable for payment period:</label>
                 <div class="col-md-6">
-                    <spring-form:input class="form-control" name="feesToSave" path="amountOutstanding" id="amountOutstanding" type="text" />
+                    <spring-form:input class="form-control" name="feesToSave" path="amountOutstanding" id="amountOutstanding" type="text" readonly="true" />
                     <button type="button" class="btn-link" id="calculate">Calculate fee</button>
                 </div>
 
@@ -106,7 +106,19 @@
         }
     });
 
+    $('#bankFee').change(function() {
+       $('#calculate').text("Calculate fee*");
+       $('#calculate').css('color', 'red');
+    });
+
+    $('#exchangeRate').change(function() {
+       $('#calculate').text("Calculate fee*");
+       $('#calculate').css('color', 'red');
+    });
+
     $('#calculate').click(function() {
+        $('#calculate').text("Calculate fee");
+        $('#calculate').css('color', 'blue');
         var feesInLKR = calculateFeesInLKR();
 //        alert("monthly allowance = " + monthlyAllowance + "\n monthly bank fee = " + monthlyBankFee + "\n total in LKR = " + totalInLKR + "\n months:" + numMonthsToCalculate + "\n fees:" + feesInLKR)
 

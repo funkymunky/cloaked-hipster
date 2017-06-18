@@ -104,7 +104,7 @@ public class StudentSponsorFeesDaoImpl implements StudentSponsorFeesDao {
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
         decimalFormat.setParseBigDecimal(true);
 
-        BigDecimal bigDecimal = (BigDecimal) decimalFormat.parse(stringToConvert);
+        BigDecimal bigDecimal = stringToConvert.equals("") ? BigDecimal.ZERO : (BigDecimal) decimalFormat.parse(stringToConvert);
         return bigDecimal;
     }
 }
