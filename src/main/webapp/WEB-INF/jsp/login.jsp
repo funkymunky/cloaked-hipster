@@ -41,5 +41,6 @@
             <c:if test="${not empty message}"><span class="error">${message}</span></c:if>
         </form>
         </div>
+    </div>
     </body>
 </html>

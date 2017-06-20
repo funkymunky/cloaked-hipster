@@ -17,7 +17,7 @@
 
     <!--<import resource="lsfConfig/jmx.xml" />-->
     <!--<import resource="lsfConfig/lsf-servlet.xml" />-->
-    <import resource="lsfConfig/lsf-security.xml"/>
+    <!--<import resource="lsfConfig/lsf-security.xml"/>-->
     <import resource="properties.xml"/>
     <!-- ========================= DATASOURCE ======================== -->
 

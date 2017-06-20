@@ -13,19 +13,19 @@
         We register a filter named springSecurityFilterChain that delegates all requests
         matching the url pattern ‘/*’ to a DelegatingFilterProxy.
     -->
-    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
+    <!--<filter>-->
+        <!--<filter-name>springSecurityFilterChain</filter-name>-->
+        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+    <!--</filter>-->
 
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-        <dispatcher>ERROR</dispatcher>
-    </filter-mapping>
+    <!--<filter-mapping>-->
+        <!--<filter-name>springSecurityFilterChain</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+        <!--<dispatcher>REQUEST</dispatcher>-->
+        <!--<dispatcher>FORWARD</dispatcher>-->
+        <!--<dispatcher>INCLUDE</dispatcher>-->
+        <!--<dispatcher>ERROR</dispatcher>-->
+    <!--</filter-mapping>-->
 
     <!--
         We configure a listener to load the context of the web application at start up.
@@ -76,7 +76,7 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>default.jsp</welcome-file>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>hello.jsp</welcome-file>
     </welcome-file-list>
 
     <!--<error-page>-->

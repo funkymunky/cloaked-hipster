@@ -24,7 +24,7 @@
                        <li><a href="#">Separated link</a></li>
                    </ul>
                </li>
-               <li><a href="/lsf/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+               <%--<li><a href="/lsf/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>--%>
            </ul>
            <ul class="nav navbar-nav navbar-right">
                <li class="version"><a href="">Version:<spring:message code="version.number" /></a></li>
