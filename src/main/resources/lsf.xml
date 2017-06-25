@@ -19,6 +19,12 @@
     <!--<import resource="lsfConfig/lsf-servlet.xml" />-->
     <!--<import resource="lsfConfig/lsf-security.xml"/>-->
     <import resource="properties.xml"/>
+
+    <!-- bind your messages.properties -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+        <property name="fallbackToSystemLocale" value="false" />
+    </bean>
     <!-- ========================= DATASOURCE ======================== -->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
