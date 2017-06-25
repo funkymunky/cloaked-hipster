@@ -3,7 +3,10 @@ package net.lsf.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -86,7 +89,7 @@ public class Education implements Serializable {
     }
 
     public BigDecimal getMonthlyAllowance() {
-        return monthlyAllowance;
+        return (monthlyAllowance == null) ? BigDecimal.ZERO : monthlyAllowance;
     }
 
     public void setMonthlyAllowance(BigDecimal monthlyAllowance) {

@@ -7,6 +7,7 @@ import net.lsf.model.Education;
 import net.lsf.model.Sponsorship;
 import net.lsf.model.Student;
 import net.lsf.model.StudentSponsorFees;
+import net.lsf.utils.Formatter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.List;
 
 @Repository
 @Transactional
 public class StudentSponsorFeesDaoImpl implements StudentSponsorFeesDao {
+
+    private final Formatter formatter = new Formatter();
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -97,12 +99,7 @@ public class StudentSponsorFeesDaoImpl implements StudentSponsorFeesDao {
     }
 
     private BigDecimal convertStringToDecimal(String stringToConvert) throws ParseException {
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setGroupingSeparator(',');
-        symbols.setDecimalSeparator('.');
-        String pattern = "#,##0.0#";
-        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-        decimalFormat.setParseBigDecimal(true);
+        DecimalFormat decimalFormat = formatter.getDecimalFormat();
 
         BigDecimal bigDecimal = stringToConvert.equals("") ? BigDecimal.ZERO : (BigDecimal) decimalFormat.parse(stringToConvert);
         return bigDecimal;

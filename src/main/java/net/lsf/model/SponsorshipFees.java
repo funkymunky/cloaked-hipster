@@ -54,7 +54,7 @@ public class SponsorshipFees implements Serializable {
     }
 
     public BigDecimal getAmountOutstanding() {
-        return amountOutstanding;
+        return (amountOutstanding == null) ? BigDecimal.ZERO : amountOutstanding;
     }
 
     public void setAmountOutstanding(BigDecimal amountOutstanding) {
