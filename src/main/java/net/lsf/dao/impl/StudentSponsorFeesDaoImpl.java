@@ -42,10 +42,12 @@ public class StudentSponsorFeesDaoImpl implements StudentSponsorFeesDao {
         Sponsorship sponsorship = getSponsorshipForStudent(studentId);
         Education education = getEducationForStudent(studentId);
 
-        studentFeeDto.setMonthlyAllowance(education.getMonthlyAllowance().toString());
-        studentFeeDto.setElectedCurrency(sponsorship.getElectedCurrency());
-        studentFeeDto.setPaymentFrom(sponsorship.getPaymentFrom());
-        studentFeeDto.setPaymentTo(sponsorship.getPaymentTill());
+        if (education != null && sponsorship !=null) {
+            studentFeeDto.setMonthlyAllowance(education.getMonthlyAllowance().toString());
+            studentFeeDto.setElectedCurrency(sponsorship.getElectedCurrency());
+            studentFeeDto.setPaymentFrom(sponsorship.getPaymentFrom());
+            studentFeeDto.setPaymentTo(sponsorship.getPaymentTill());
+        }
 
         StudentSponsorFees currentStudentSponsorFees = getStudentSponsorFeeForStudent(studentId);
         if (currentStudentSponsorFees != null) {
