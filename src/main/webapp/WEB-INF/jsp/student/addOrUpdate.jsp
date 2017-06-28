@@ -58,9 +58,9 @@
                                         <button type="submit" class="btn btn-primary submit">Add student</button>
                                     </c:when>
                                     <c:otherwise>
-                                        <sec:authorize ifAllGranted="ROLE_ADMIN">
+                                        <%--<sec:authorize ifAllGranted="ROLE_ADMIN">--%>
                                             <button type="submit" class="btn btn-primary">Update student</button>
-                                        </sec:authorize>
+                                        <%--</sec:authorize>--%>
                                     </c:otherwise>
                                 </c:choose>
                                 <button type="button" class="btn" onclick="location.href='/lsf/student/list'">Cancel</button>
