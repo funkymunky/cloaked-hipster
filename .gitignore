@@ -10,7 +10,7 @@ target/
 
 # ignore log4j property file
 src/main/resources/log4j.properties
-src/main/resources/overridden.properties
+#src/main/resources/overridden.properties
 #ignore images directory
 src/main/webapp/images/
 
