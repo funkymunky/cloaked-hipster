@@ -62,6 +62,7 @@ public class AddressController {
         model.addAttribute("activeTab", "address");
         model.addAttribute("message", message);
         model.addAttribute("updateMode", true);
+        model.addAttribute("studentFee", studentService.getStudentSponsorFees(id));
         return String.format("/%s/addOrUpdate", urlParent);
     }
 

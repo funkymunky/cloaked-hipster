@@ -67,6 +67,7 @@ public class SponsorshipController {
         model.addAttribute("activeTab", "sponsor");
         model.addAttribute("message", message);
         model.addAttribute("updateMode", true);
+        model.addAttribute("studentFee", studentService.getStudentSponsorFees(id));
 
         return "/student/addOrUpdate";
     }

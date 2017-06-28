@@ -65,6 +65,7 @@ public class StudentFeeController {
         model.addAttribute("bankValues", BankInstitution.values());
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
+        model.addAttribute("studentFee", studentService.getStudentSponsorFees(id));
 
         return "/student/addOrUpdate";
     }

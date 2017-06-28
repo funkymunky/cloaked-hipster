@@ -77,6 +77,8 @@ public class EducationController {
             model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
             model.addAttribute("message", message);
             model.addAttribute("updateMode", true);
+            model.addAttribute("studentFee", studentService.getStudentSponsorFees(id));
+
         }
         return "/student/addOrUpdate";
     }

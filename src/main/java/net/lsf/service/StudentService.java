@@ -51,4 +51,6 @@ public interface StudentService {
     StudentFeeDTO populateStudentFeeInfo(int studentId);
 
     void updateStudentSponsorFees(StudentFeeDTO studentSponsorFee, int studentId) throws ParseException;
+
+    StudentFeeDTO getStudentSponsorFees(int studentId);
 }

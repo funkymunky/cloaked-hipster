@@ -158,4 +158,9 @@ public class StudentServiceImpl implements StudentService {
     public void updateStudentSponsorFees(StudentFeeDTO studentSponsorFee, int studentId) throws ParseException {
         studentSponsorFeesDao.updateFeesForStudentAndSponsor(studentSponsorFee, studentId);
     }
+
+    @Override
+    public StudentFeeDTO getStudentSponsorFees(int studentId) {
+        return studentSponsorFeesDao.getStudentSponsorFeeInformation(studentId);
+    }
 }

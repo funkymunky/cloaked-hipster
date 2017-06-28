@@ -66,6 +66,8 @@ public class StudentController {
         model.addAttribute("agentTypeValues", AgentType.values());
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
+        model.addAttribute("studentFee", new StudentFeeDTO());
+
         return "/student/addOrUpdate";
     }
 
@@ -107,6 +109,7 @@ public class StudentController {
         model.addAttribute("listOfSponsors", sponsorService.getAllSponsors());
         model.addAttribute("maxUploadSize", studentService.getMaxUploadFileSize());
         model.addAttribute("applicationDate", studentService.getApplicationDateForStudent(id));
+        model.addAttribute("studentFee", new StudentFeeDTO());
         return "/student/addOrUpdate";
     }
 
