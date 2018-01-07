@@ -6,8 +6,9 @@
 - DONE - Address info: tel no & email address missing (students and sponsors). [27/09/2014]
 - DONE - Bank info: bank appears as 1, 2, 3 etc [26/09/2014]
 - DONE - Comments: not all comments shown latest ones missing. [06/10/2014]
-- Reports: Does not separat uni/school student counts. Total only is shown.
-- DONE - Making changes to any form and exiting does not prompt to save before leaving. [07/10/2014] 
+- Reports: Does not separate uni/school student counts. Total only is shown.
+- DONE - Making changes to any form and exiting does not prompt to save before leaving. [07/10/2014]
+- Security and roles does not work on Dad's machine
 
 
 
@@ -61,4 +62,4 @@
 - fix dependency and remove sl4j
 - cut out hibernate logging
 - login / security
--
+- a way to manage payments being made each year

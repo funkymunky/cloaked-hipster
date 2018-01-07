@@ -43,7 +43,7 @@ public class SponsorServiceImpl implements SponsorService {
         List<SponsorDTO> allSponsorsDTO = new ArrayList<SponsorDTO>();
         List<Sponsor> allSponsors = sponsorDao.getAllSponsors();
         for (Sponsor sponsor : allSponsors) {
-            SponsorDTO sponsorDTO = new SponsorDTO(sponsor.getId(), sponsor.getFirstName(), sponsor.getLastName());
+            SponsorDTO sponsorDTO = new SponsorDTO(sponsor.getId(), sponsor.getFirstName(), sponsor.getLastName(), sponsor.getEmail(), sponsor.getPhone1(), sponsor.getPhone2(), getAllSponsoredKids(sponsor.getId()));
             allSponsorsDTO.add(sponsorDTO);
         }
 
@@ -74,7 +74,7 @@ public class SponsorServiceImpl implements SponsorService {
 
         Set<Sponsor> listOfSponsors = sponsorDao.getAllSponsorsByName(searchText);
         for (Sponsor sponsor : listOfSponsors) {
-            SponsorDTO sponsorDTO = new SponsorDTO(sponsor.getId(), sponsor.getFirstName(), sponsor.getLastName());
+            SponsorDTO sponsorDTO = new SponsorDTO(sponsor.getId(), sponsor.getFirstName(), sponsor.getLastName(), sponsor.getEmail(), sponsor.getPhone1(), sponsor.getPhone2(), null);
             listOfSponsorsDTO.add(sponsorDTO);
         }
         return listOfSponsorsDTO;

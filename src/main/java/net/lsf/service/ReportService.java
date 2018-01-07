@@ -4,6 +4,7 @@ import net.lsf.AgentType;
 import net.lsf.BankInstitution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
+import net.lsf.data.SponsorDTO;
 import net.lsf.model.Student;
 import net.lsf.site.report.ReportException;
 
@@ -16,4 +17,6 @@ public interface ReportService {
     List<Student> getStudentsByAgentType(AgentType agentType, InstitutionType institutionType) throws ReportException;
     List<Student> getStudentsByBank(SponsorshipType sponsorshipType, BankInstitution bankInstiution) throws ReportException;
     List<Student> getStudentsByInstitutionType(SponsorshipType sponsorshipType, InstitutionType institutionType) throws ReportException;
+
+    List<SponsorDTO> getAllSponsors();
 }

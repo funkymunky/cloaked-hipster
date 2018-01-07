@@ -4,9 +4,11 @@ import net.lsf.AgentType;
 import net.lsf.BankInstitution;
 import net.lsf.InstitutionType;
 import net.lsf.SponsorshipType;
+import net.lsf.data.SponsorDTO;
 import net.lsf.model.Bank;
 import net.lsf.model.Student;
 import net.lsf.service.ReportService;
+import net.lsf.service.SponsorService;
 import net.lsf.service.StudentService;
 import net.lsf.site.report.ReportException;
 import net.lsf.utils.BankBuilder;
@@ -23,6 +25,9 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private SponsorService sponsorService;
 
     @Override
     public List<Student> getStudentsBySponsorshipType(SponsorshipType sponsorshipType) throws ReportException {
@@ -70,6 +75,11 @@ public class ReportServiceImpl implements ReportService {
                         student.getEducation().getInstitutionType().equals(institutionType.getInstitutionTypeName()))
                 .map(getStudentForReport())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SponsorDTO> getAllSponsors() {
+        return sponsorService.getAllSponsors();
     }
 
     private Function<? super Student, ? extends Student> getStudentForReport() throws ReportException {

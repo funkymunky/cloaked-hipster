@@ -1,6 +1,8 @@
 package net.lsf.service.impl;
 
 import net.lsf.InstitutionType;
+import net.lsf.SponsorshipType;
+import net.lsf.data.SponsorDTO;
 import net.lsf.model.Bank;
 import net.lsf.model.Education;
 import net.lsf.model.Student;
@@ -47,6 +49,60 @@ public class WriterServiceImpl implements WriterService {
         } finally {
             writer.flush();
             writer.close();
+        }
+    }
+
+    @Override
+    public void writeCsvFile(String filename, String[] headerRow, List<SponsorDTO> content, HttpServletResponse response) throws IOException {
+        BufferedWriter writer = new BufferedWriter(response.getWriter());
+        try {
+            response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", filename));
+            for (String h : headerRow) {
+                writer.write(h);
+                writer.write(",");
+            }
+            writer.newLine();
+
+            writeSponsorContent(content, writer);
+
+        } catch (IOException ex) {
+        } finally {
+            writer.flush();
+            writer.close();
+        }
+
+    }
+
+    private void writeSponsorContent(List<SponsorDTO> content, BufferedWriter writer) throws IOException {
+        for (SponsorDTO eachSponsor : content) {
+            writer.write(Integer.toString(eachSponsor.getSponsorId()));
+            writer.write(",");
+            writer.write((eachSponsor.getName() == null) ? "" : eachSponsor.getName());
+            writer.write(",");
+            writer.write((eachSponsor.getEmail() == null) ? "" : eachSponsor.getEmail());
+            writer.write(".");
+            writer.write((eachSponsor.getPhone1() == null) ? "" : eachSponsor.getPhone1());
+            writer.write(",");
+            writer.write((eachSponsor.getPhone2() == null) ? "" : eachSponsor.getPhone2());
+            writer.write(",");
+            if (eachSponsor.getAllSponsoredKids().size() > 0 ) {
+                onlyExportCurrentlySponsoredKids(eachSponsor.getAllSponsoredKids(), writer);
+            }
+            writer.newLine();
+
+        }
+
+    }
+
+    private void onlyExportCurrentlySponsoredKids(List<Student> allSponsoredKids, BufferedWriter writer) throws IOException{
+        for (Student student : allSponsoredKids) {
+            if (student.getSponsorship().getSponsorshipType().equalsIgnoreCase(SponsorshipType.CurrentlySponsored.getName())) {
+                writer.write("\"");
+                writer.write(student.getLastName());
+                writer.write(", ");
+                writer.write(student.getFirstName());
+                writer.write("\";");
+            }
         }
     }
 
@@ -97,7 +153,7 @@ public class WriterServiceImpl implements WriterService {
             }
             writer.write(",");
 
-            writer.write(eachStudent.getTelephone());
+            writer.write((eachStudent.getTelephone() == null) ? "" : eachStudent.getTelephone());
             writer.write(",");
 
             if (addSponsorName) {
@@ -109,15 +165,15 @@ public class WriterServiceImpl implements WriterService {
 
             Bank bank = eachStudent.getBank();
             if (bank != null) {
-                writer.write(bank.getAccountName());
+                writer.write((bank.getAccountName() == null) ? "" : bank.getAccountName());
                 writer.write(",");
-                writer.write(bank.getBank());
+                writer.write((bank.getBank() == null) ? "" : bank.getBank());
                 writer.write(",");
-                writer.write(bank.getBranch());
+                writer.write((bank.getBranch() == null) ? "" : bank.getBranch());
                 writer.write(",");
-                writer.write(bank.getAccountNumber());
+                writer.write((bank.getAccountNumber() == null) ? "" : bank.getAccountNumber());
                 writer.write(",");
-                writer.write(bank.getStandingOrder());
+                writer.write((bank.getStandingOrder() == null) ? "" : bank.getStandingOrder());
             } else {
                 writer.write(",,,,");
             }

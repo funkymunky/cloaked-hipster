@@ -1,0 +1,33 @@
+<%@ taglib prefix="fmtd" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date" %>
+<table class="table table-striped">
+<thead><tr>
+    <th>Id</th>
+    <th>Sponsor name</th>
+    <th>Email</th>
+    <th>Phone1</th>
+    <th>Phone2</th>
+    <th>Sponsored Kids</th>
+</tr>
+</thead>
+<tbody>
+
+<c:forEach var="sponsor" items="${sponsors}">
+    <tr>
+        <td>${sponsor.sponsorId}</td>
+        <td><a href="/lsf/sponsor/edit/${sponsor.sponsorId}">${sponsor.name}</a></td>
+        <td>${sponsor.email}</td>
+        <td>${sponsor.phone1}</td>
+        <td>${sponsor.phone2}</td>
+        <td>
+            <c:forEach var="student" items="${sponsor.allSponsoredKids}">
+            <c:set var="sponsorStatus" value="${student.sponsorship.sponsorshipType}"/>
+            <c:if test = "${sponsorStatus == 'CurrentlySponsored'}">
+            ${student.lastName}, ${student.firstName} (${student.sponsorship.sponsorshipType})<br>
+            </c:if>
+            </c:forEach>
+    </tr>
+</c:forEach>
+</tbody>
+</table>
+
